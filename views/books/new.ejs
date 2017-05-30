@@ -1,0 +1,39 @@
+<% include ../partials/header %>
+
+<!-- Following Menu -->
+<div class="ui large top fixed hidden menu">
+  <div class="ui container">
+    <a href="/" class="active item">Home</a>
+    <a class="item">Add Book</a>
+    <a class="item">Find Book</a>
+    <a class="item">Discover</a>
+    <div class="right menu">
+      <div class="item">
+        <a class="ui button">Log in</a>
+      </div>
+      <div class="item">
+        <a class="ui primary button">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="main-title" class="ui raised very padded text container segment">
+  <h1 class="ui header">Add New Book</h1>
+  <form class="ui form" action="/books" method="POST">
+    <div class="field">
+      <label>Title</label>
+      <input type="text" name="title" placeholder="Title">
+    </div>
+    <div class="field">
+      <label>Description</label>
+      <textarea row="2" name="description"></textarea>
+    </div>
+      <div class="field">
+      <label>Author</label>
+      <input type="text" name="author" placeholder="Author">
+    </div>
+    <button type="submit" class="ui tiny green basic button">Add Book</button>
+</div>
+
+<% include ../partials/footer %>

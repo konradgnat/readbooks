@@ -1,0 +1,66 @@
+<% include ../partials/header %>
+
+<!-- Following Menu -->
+<div class="ui large top fixed hidden menu">
+  <div class="ui container">
+    <a href="/" class="active item">Home</a>
+    <a class="item">Add Book</a>
+    <a class="item">Find Book</a>
+    <a class="item">Discover</a>
+    <div class="right menu">
+      <div class="item">
+        <a class="ui button">Log in</a>
+      </div>
+      <div class="item">
+        <a class="ui primary button">Sign Up</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="main-title" class="ui raised very padded text container segment">
+  <h1 class="ui header"><%=book.title%></h1>
+  <p><%=book.description%></p>
+  <div class="ui comments">
+    <% book.comments.forEach(function(comment){ %>
+      <%console.log(comment)%>
+      <div class="comment">
+        <a class="avatar">
+          <img src="https://semantic-ui.com/images/avatar/small/matt.jpg">
+        </a>
+        <div class="content">
+          <a class="author"><%=comment.author%></a>
+          <div class="metadata">
+            <span class="date">Today at 5:42PM</span>
+          </div>
+          <div class="text">
+            <%=comment.text%>
+          </div>
+          <div class="actions">
+            <a class="reply">Reply</a>
+          </div>
+        </div>
+      </div>
+      <% })%>
+    
+  </div>
+  <div class="ui divider"></div>
+
+  <form class="ui form" action="/books/<%=book._id%>/comments" method="POST">
+    <div class="field">
+      <textarea placeholder="comment" rows="2" name="comment[text]"></textarea>
+    </div>
+    <div class="field">
+      <input type="text" name="comment[author]" placeholder="author">
+    </div>
+    <button type="submit" class="ui tiny green basic button">post comment</button>
+    
+  </form>
+  <div class="ui divider"></div>
+  <a href="/books/<%=book.id%>/edit" class="ui tiny blue basic button">edit</a>
+  <form class="inline-element" action="/books/<%=book.id%>?_method=DELETE" method="POST">
+    <button class="ui tiny red basic button" type="submit">delete</button>
+  </form>
+</div>
+
+<% include ../partials/footer %>
