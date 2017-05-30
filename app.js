@@ -7,6 +7,8 @@ var bodyParser 			= require('body-parser'),
 	Comment				= require('./models/comment'),
 	seedDB				= require('./seeds');
 
+var port = process.env.PORT || 8080;
+
 // CONNECT DATABASE
 mongoose.connect('mongodb://localhost/booksread');
 
@@ -18,7 +20,7 @@ mongoose.connect('mongodb://localhost/booksread');
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(methodOverride("_method"));
-app.use(express.static("public"));
+app.use(express.static(__dirname + '/public'));
 seedDB();
 
 app.get('/', function(req, res){
@@ -116,6 +118,6 @@ app.post('/books/:id/comments', function(req, res){
 	})
 })
 
-app.listen(8080, function(){
-	console.log("running on 8080");
+app.listen(port, function() {
+    console.log('App is running on http://localhost:' + port);
 });
