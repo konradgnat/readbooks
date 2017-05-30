@@ -118,6 +118,4 @@ app.post('/books/:id/comments', function(req, res){
 	})
 })
 
-app.listen(process.env.PORT || 8080, function() {
-    console.log('App is running on http://localhost:' + port);
-});
+app.listen(process.env.PORT, process.env.IP);
