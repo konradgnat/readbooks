@@ -7,15 +7,9 @@ var bodyParser 			= require('body-parser'),
 	Comment				= require('./models/comment'),
 	seedDB				= require('./seeds');
 
-// var port = process.env.PORT || 8080;
-
 // CONNECT DATABASE
-// mongoose.connect('mongodb://localhost/booksread');
-
-// Book.create({
-// 	title:"Eloquent Javascript",
-// 	description: "This thoroughly revised edition reflects the current state of JavaScript and Web browsers, with new material, such as a chapter on code performance in JavaScript, and expanded coverage of recursion and closures. ..."
-// });
+var url = process.env.DATABASEURL || 'mongodb://localhost/booksread';
+mongoose.connect(url);
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended : true}));
