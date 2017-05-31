@@ -7,10 +7,10 @@ var bodyParser 			= require('body-parser'),
 	Comment				= require('./models/comment'),
 	seedDB				= require('./seeds');
 
-var port = process.env.PORT || 8080;
+// var port = process.env.PORT || 8080;
 
 // CONNECT DATABASE
-mongoose.connect('mongodb://localhost/booksread');
+// mongoose.connect('mongodb://localhost/booksread');
 
 // Book.create({
 // 	title:"Eloquent Javascript",
