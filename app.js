@@ -9,7 +9,7 @@ var bodyParser 			= require('body-parser'),
 
 // CONNECT DATABASE
 var url = process.env.DATABASEURL || 'mongodb://localhost/booksread';
-mongoose.connect(url);
+mongoose.connect("mongodb://bookreader:lovesMuir@ds157971.mlab.com:57971/booksread");
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended : true}));
