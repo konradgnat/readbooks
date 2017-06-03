@@ -5,7 +5,23 @@ var bodyParser 			= require('body-parser'),
 	app					= express(),
 	Book 				= require('./models/book'),
 	Comment				= require('./models/comment'),
-	seedDB				= require('./seeds');
+	seedDB				= require('./seeds'),
+	User				= require('./models/user'),
+	passport			= require('passport'),
+	LocalStrategy		= require('passport-local');
+
+//CONFIGURE AUTH
+app.use(require("express-session")({
+	secret:"Om tare tu tare tore soha",
+	resave: false,
+	saveUninitialized:false
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
 
 // CONNECT DATABASE
 var url = process.env.DATABASEURL || 'mongodb://localhost/booksread';
