@@ -11,3 +11,35 @@
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.css">
   <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
 </head>
+<body>
+
+<div class="ui large top fixed hidden menu">
+  <div class="ui container">
+    <a href="/" class="active item">Home</a>
+    <a href="/books/new" class="item">Add Book</a>
+    <a class="item">Find Book</a>
+    <a class="item">Discover</a>
+    <div class="right menu">
+      <% if(!currentUser){%> 
+      	<div class="item">
+	        <a href="/login" class="ui button">Log in</a>
+  			 </div>
+  			 <div class="item">
+  		         <a href="/register" class="ui primary button">Sign Up</a>
+  			 </div>
+      <%} else { %>
+  			 <div class="item">
+  	             <p>Signed is as <%console.log(currentUser);%>
+          <%if(currentUser.facebook){%>
+            <%=currentUser.facebook.name%></p>
+          <% } else {%>
+            <%=currentUser.local.email%></p>
+          <%}%>
+         </div>
+  			 <div class="item">
+  		         <a href="/logout" class="ui primary button">Logout</a>
+  			 </div>
+      <%}%>
+    </div>
+  </div>
+</div> 

@@ -1,0 +1,25 @@
+<% include partials/header %>
+
+<div class="pusher">
+	<div class="ui vertical masthead segment">
+	    <div class="ui text container">
+	        <% if (message.length > 0) { %>
+		        <div class="ui warning message"><%= message %></div>
+		    <% } %>
+	      <h1 class="ui header">Sign Up</h1>
+			<form class="ui form" action="/register" method="POST">
+				<div class="field">
+					<label>email</label>
+					<input type="text" name="email" placeholder="email">
+				</div>
+				<div class="field">
+					<label>password</label>
+					<input type="password" name="password" placeholder="password">
+				</div>
+				<input class="ui tiny button" type="submit" value="submit">
+			</form>
+	    </div>
+    </div>
+</div>
+
+<% include partials/footer %>

@@ -5,7 +5,7 @@ var express = require('express'),
 
 
 // ADD COMMENT
-router.post('/', function(req, res){
+router.post('/', isLoggedIn, function(req, res){
 	Book.findById(req.params.id, function(err, book){
 		if(err){
 			console.log(err);
@@ -21,6 +21,14 @@ router.post('/', function(req, res){
 			})
 		}
 	})
-})
+});
+
+// MIDDLEWARE
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+};
 
 module.exports = router;

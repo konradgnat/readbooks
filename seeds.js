@@ -5,15 +5,36 @@ var mongoose = require('mongoose'),
 var data = [
 	{
 		title:"Eloquent Javascript",
-		description: "This thoroughly revised edition reflects the current state of JavaScript and Web browsers, with new material, such as a chapter on code performance in JavaScript, and expanded coverage of recursion and closures. ..."
+		author: "Juju",
+		dateRead: Date.now(),
+		description: "This thoroughly revised edition reflects the current state of JavaScript and Web browsers, with new material, such as a chapter on code performance in JavaScript, and expanded coverage of recursion and closures. ...",
+		note: "super good",
+		postedBy: {
+			id: "59344d3e65f3a72f9ab06fc9",
+			email: "konrad9"
+		}
 	},
 	{
-		title:"ELMO",
-		description: "This thoroughly revised edition reflects the current state of JavaScript and Web browsers, with new material, such as a chapter on code performance in JavaScript, and expanded coverage of recursion and closures. ..."
+		title:"Japanther",
+		author: "Juju",
+		dateRead: Date.now(),
+		description: "This thoroughly revised edition reflects the current state of JavaScript and Web browsers, with new material, such as a chapter on code performance in JavaScript, and expanded coverage of recursion and closures. ...",
+		note: "so so ",
+		postedBy: {
+			id: "59344d3e65f3a72f9ab06fc9",
+			email: "konrad2"
+		}
 	},
 	{
-		title:"Good Dogs",
-		description: "This thoroughly revised edition reflects the current state of JavaScript and Web browsers, with new material, such as a chapter on code performance in JavaScript, and expanded coverage of recursion and closures. ..."
+		title:"13th Floor Elevators",
+		author: "Juju",
+		dateRead: Date.now(),
+		description: "This thoroughly revised edition reflects the current state of JavaScript and Web browsers, with new material, such as a chapter on code performance in JavaScript, and expanded coverage of recursion and closures. ...",
+		note: "super good",
+		postedBy: {
+			id: "59344d3e65f3a72f9ab06fc9",
+			email: "konrad"
+		}
 	}
 ]
 

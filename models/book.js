@@ -6,6 +6,13 @@ var bookSchema = mongoose.Schema({
 	dateRead: Date,
 	description: String,
 	note: String,
+    postedBy: {
+    	id: {
+    		type: mongoose.Schema.Types.ObjectId,
+    		ref: "User"
+    	},
+    	email: String
+    },
 	comments: [ 
 		{
 			type: mongoose.Schema.Types.ObjectId,

@@ -14,15 +14,19 @@ router.get('/', function(req, res){
 });
 
 // ADD NEW BOOK
-router.get('/new', function(req, res){
+router.get('/new', isLoggedIn, function(req, res){
 	res.render('books/new');
 })
-router.post('/', function(req, res){
-	console.log(req.body)
+router.post('/', isLoggedIn, function(req, res){
 	var title = req.body.title,
 		description = req.body.description,
-		newBook = { title: title, author: "author", dateRead: Date.now(),
-		 description: description, note:"note" };
+		author = req.body.author,
+		postedBy = {
+			id : req.user._id,
+			email : (req.user.local.email) ? (req.user.local.email) : (req.user.facebook.name)
+		},
+		newBook = { title: title, author: author, dateRead: Date.now(),
+		 description: description, note:"note", postedBy : postedBy };
 	Book.create(newBook, function(err){
 		if(err){
 			console.log(err);
@@ -44,7 +48,7 @@ router.get('/:id', function(req, res){
 })
 
 // EDIT BOOK
-router.get('/:id/edit', function(req, res){
+router.get('/:id/edit', checkPostOwnership, function(req, res){
 	Book.findById(req.params.id, function(err, foundBook){
 		if(err){
 			console.log(err);
@@ -55,7 +59,7 @@ router.get('/:id/edit', function(req, res){
 })
 
 // UPDATE BOOK
-router.put('/:id', function(req, res){
+router.put('/:id', checkPostOwnership, function(req, res){
 	Book.findByIdAndUpdate(req.params.id, req.body.book, function(err, updatedBook){
 		if(err){
 			console.log(err);
@@ -66,7 +70,7 @@ router.put('/:id', function(req, res){
 })
 
 // DESTROY BOOK
-router.delete('/:id', function(req, res){
+router.delete('/:id', checkPostOwnership, function(req, res){
 	Book.findByIdAndRemove(req.params.id, function(err){
 		if(err){
 			console.log(err);
@@ -74,6 +78,35 @@ router.delete('/:id', function(req, res){
 			res.redirect('/books');
 		}
 	})
-})
+});
+
+// MIDDLEWARE
+function checkPostOwnership(req, res, next){
+	console.log(req.user);
+    if(req.isAuthenticated()){
+        Book.findById(req.params.id, function(err, foundBook){
+            if(err){
+                res.redirect('back');
+            } else {
+                if(foundBook.postedBy.id.equals(req.user._id)){
+                    next();
+                } else {
+                    res.redirect("back");
+                }
+            }
+        })
+    } else {
+        res.redirect("back");
+    }
+}
+
+// MIDDLEWARE
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect("/login");
+}
+
 
 module.exports = router;
