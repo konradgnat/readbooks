@@ -1,0 +1,70 @@
+<% include partials/header %>
+
+<div class="pusher">
+	<div class="ui vertical masthead segment">
+	    <div class="ui text container">
+			<div class="ui raised very padded text container segment">
+			  <h1 class="ui header">Profile</h1>
+			  <div class="segment">
+			  	<a href="/logout" class="ui button basic">Logout</a>
+			  	<h3>Local</h3>
+			  	<% if (currentUser.local.email) { %>
+                    <p>
+                        <strong>id</strong>: <%= currentUser._id %><br>
+                        <strong>email</strong>: <%= currentUser.local.email %><br>
+                        <strong>password</strong>: <%= currentUser.local.password %>
+                    </p>
+		  			<a href="/unlink/local" class="ui button basic">Unlink Local Account</a>
+		  		<% } else { %>
+
+		  			<a href="/connect/local" class="ui button basic">Connect Local</a>
+
+	  			<% } %>
+			  	<h3>Facebook</h3>
+			  	<% if (currentUser.facebook.token) { %>
+                    <p>
+                        <strong>id</strong>: <%= currentUser.facebook.id %><br>
+                        <strong>email</strong>: <%= currentUser.facebook.email %><br>
+                        <strong>name</strong>: <%= currentUser.facebook.name %>
+                    </p>
+		  			<a href="/unlink/facebook" class="ui button basic">Unlink Facebook Account</a>
+		  		<% } else { %>
+
+		  			<a href="/connect/facebook" class="ui button basic">Connect Facebook Account</a>
+
+	  			<% } %>
+			  	<h3>Twitter</h3>
+			  	<% if (currentUser.twitter.token) { %>
+                    <p>
+                        <strong>id</strong>: <%= currentUser.twitter.id %><br>
+                        <strong>email</strong>: <%= currentUser.twitter.token %><br>
+                        <strong>password</strong>: <%= currentUser.twitter.displayName %><br>
+                        <strong>password</strong>: <%= currentUser.twitter.username %>
+                    </p>
+		  			<a href="/unlink/twitter" class="ui button basic">Unlink Twitter Account</a>
+		  		<% } else { %>
+
+		  			<a href="/connect/twitter" class="ui button basic">Connect Twitter Account</a>
+
+	  			<% } %>
+			  	<h3>Google</h3>
+			  	<% if (currentUser.google.token) { %>
+                    <p>
+                        <strong>id</strong>: <%= currentUser.google.id %><br>
+                        <strong>email</strong>: <%= currentUser.google.token %><br>
+                        <strong>password</strong>: <%= currentUser.google.email %><br>
+                        <strong>password</strong>: <%= currentUser.google.name %>
+                    </p>
+		  			<a href="/unlink/google" class="ui button basic">Unlink Google Account</a>
+		  		<% } else { %>
+
+		  			<a href="/connect/google" class="ui button basic">Connect Google Account</a>
+
+	  			<% } %>
+			  </div>
+			</div>
+	    </div>
+    </div>
+</div>
+
+<% include partials/footer %>
