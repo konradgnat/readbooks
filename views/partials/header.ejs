@@ -29,12 +29,16 @@
   			 </div>
       <%} else { %>
   			 <div class="item">
-  	             <p>Signed is as <%console.log(currentUser);%>
-          <%if(currentUser.facebook){%>
+  	             <p>Signed is as 
+          <%if(currentUser.facebook.name){%>
             <%=currentUser.facebook.name%></p>
-          <% } else {%>
+          <% } else if(currentUser.local.email) {%>
             <%=currentUser.local.email%></p>
-          <%}%>
+          <% } else if(currentUser.twitter.displayName) {%>
+            <%=currentUser.twitter.displayName%></p>
+          <% } else if(currentUser.google.name) {%>
+            <%= currentUser.google.name%></p>
+          <% } %>
          </div>
          <div class="item">
                <a href="/profile" class="ui primary button">Profile</a>

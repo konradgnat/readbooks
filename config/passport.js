@@ -111,11 +111,6 @@ module.exports	= function(passport){
 		process.nextTick(function(){
 		console.log("fb profile = ");
 		console.log( profile);
-		console.log("fb passport strategy req.user = ");
-		console.log(req.user);
-		// console.log("req = ");
-		// console.log(req);
-			// check if hte user is already logged in 
 			if (!req.user) {
 				console.log("req.user is not found");
 				console.log(!req.user);
@@ -188,8 +183,6 @@ module.exports	= function(passport){
 		// asynchronous
 		console.log("profile = ");
 		console.log( profile);
-		console.log("req.user = ");
-		console.log(req.user);
 		process.nextTick(function(){
 			if (!req.user) {
 				console.log("req.user is not found");
@@ -260,11 +253,6 @@ module.exports	= function(passport){
     function(req, token, refreshToken, profile, done) {
 		console.log("profile = ");
 		console.log( profile);
-		console.log("req.user = ");
-		console.log(req.user);
-		// console.log("req = ");
-		// console.log(req);
-		// asynchronous
 		process.nextTick(function(){
 			if (!req.user) {
 				console.log("req.user is not found");
