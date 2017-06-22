@@ -3,7 +3,7 @@ var LocalStrategy		= require('passport-local').Strategy,
 	TwitterStrategy 	= require('passport-twitter').Strategy,
 	GoogleStrategy		= require('passport-google-oauth').OAuth2Strategy,
 	User				= require('../models/user'),
-	configAuth 			= require('./auth.js');
+	configAuth 			= require('../models/auth');
 
 module.exports	= function(passport){
 	
