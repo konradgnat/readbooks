@@ -15,10 +15,10 @@ var data = [
 		}
 	},
 	{
-		title:"Japanther",
-		author: "Juju",
+		title:"JThe Chronicles of Narnia",
+		author: "C. S. Lewis",
 		dateRead: Date.now(),
-		description: "This thoroughly revised edition reflects the current state of JavaScript and Web browsers, with new material, such as a chapter on code performance in JavaScript, and expanded coverage of recursion and closures. ...",
+		description: "The Chronicles of Narnia is a series of seven fantasy novels by C. S. Lewis. It is considered a classic of children's literature and is the author's best-known work, having sold over 100 million copies in 47 languages....",
 		note: "so so ",
 		postedBy: {
 			id: "59344d3e65f3a72f9ab06fc9",
@@ -26,10 +26,10 @@ var data = [
 		}
 	},
 	{
-		title:"13th Floor Elevators",
-		author: "Juju",
+		title:"Twenty Years at Hull House",
+		author: "Jane Addams",
 		dateRead: Date.now(),
-		description: "This thoroughly revised edition reflects the current state of JavaScript and Web browsers, with new material, such as a chapter on code performance in JavaScript, and expanded coverage of recursion and closures. ...",
+		description: ""Twenty Years at Hull House" is the story of the Hull House settlement by its founder Jane Addams. The settlement movement, which gained popularity first in London at the end of the 19th century, soon ......",
 		note: "super good",
 		postedBy: {
 			id: "59344d3e65f3a72f9ab06fc9",
