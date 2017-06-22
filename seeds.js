@@ -29,7 +29,7 @@ var data = [
 		title:"Twenty Years at Hull House",
 		author: "Jane Addams",
 		dateRead: Date.now(),
-		description: ""Twenty Years at Hull House" is the story of the Hull House settlement by its founder Jane Addams. The settlement movement, which gained popularity first in London at the end of the 19th century, soon ......",
+		description: "Twenty Years at Hull House is the story of the Hull House settlement by its founder Jane Addams. The settlement movement, which gained popularity first in London at the end of the 19th century, soon ......",
 		note: "super good",
 		postedBy: {
 			id: "59344d3e65f3a72f9ab06fc9",
