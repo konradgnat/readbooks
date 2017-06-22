@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
 var data = [
 	{
 		title:"Eloquent Javascript",
-		author: "Juju",
+		author: "Marijn Haverbeke",
 		dateRead: Date.now(),
 		description: "This thoroughly revised edition reflects the current state of JavaScript and Web browsers, with new material, such as a chapter on code performance in JavaScript, and expanded coverage of recursion and closures. ...",
 		note: "super good",
@@ -15,7 +15,7 @@ var data = [
 		}
 	},
 	{
-		title:"JThe Chronicles of Narnia",
+		title:"The Chronicles of Narnia",
 		author: "C. S. Lewis",
 		dateRead: Date.now(),
 		description: "The Chronicles of Narnia is a series of seven fantasy novels by C. S. Lewis. It is considered a classic of children's literature and is the author's best-known work, having sold over 100 million copies in 47 languages....",
