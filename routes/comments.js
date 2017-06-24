@@ -14,6 +14,11 @@ router.post('/', isLoggedIn, function(req, res){
 				if(err){
 					console.log(err);
 				} else {
+					console.log("req.user = ");
+					console.log(req.user);
+                    newComment.author.id = req.user._id;
+                    newComment.author.username = req.user.name;
+                    newComment.save();
 					book.comments.push(newComment);
 					book.save();
 					res.redirect('/books/' + book._id);

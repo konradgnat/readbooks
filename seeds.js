@@ -50,18 +50,18 @@ function seedDB(){
 						console.log(err);
 					} else {
 						console.log("Book created");
-						Comment.create({ 
-								text: "This is a steller book!!",
-								author: "Jane"
-							}, function(err, comment){
-							if(err){
-								console.log(err);
-							} else {
-								book.comments.push(comment);
-								book.save();
-								console.log("created new comment");
-							}
-						})
+						// Comment.create({ 
+						// 		text: "This is a steller book!!",
+						// 		author: "Jane"
+						// 	}, function(err, comment){
+						// 	if(err){
+						// 		console.log(err);
+						// 	} else {
+						// 		book.comments.push(comment);
+						// 		book.save();
+						// 		console.log("created new comment");
+						// 	}
+						// })
 					}
 				})
 			})

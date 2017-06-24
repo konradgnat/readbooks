@@ -52,6 +52,7 @@ module.exports	= function(passport){
 
 	passport.use('local-signup', new LocalStrategy({
 		// override default local strategy username wiht email
+
 		usernameField : 'email',
 		passwordField : 'password',
 		passReqToCallback : true // allows us to pass back the entire request to the callback
@@ -79,6 +80,11 @@ module.exports	= function(passport){
 				} else {
 					// if there is no user with that email, create new user
 					var newUser	= new User();
+					console.log("req = ");
+					console.log(req);
+					console.log("req.user = ");
+					console.log(req.user);
+					newUser.name =req.body.name;
 					newUser.local.email	= email;
 					newUser.local.password= newUser.generateHash(password);
 
@@ -137,7 +143,7 @@ module.exports	= function(passport){
 						// set all fb information in our user model
 						newUser.facebook.id 	= profile.id;
 						newUser.facebook.token 	= token;
-						newUser.facebook.name 	= profile.name.givenName + " " + profile.name.familyName;
+						newUser.name 	= profile.name.givenName + " " + profile.name.familyName;
 						newUser.facebook.email 	= profile.emails[0].value;// ? (profile.emails[0].value): (profile.emails.value);
 						// save user to db
 						newUser.save(function(err){
@@ -210,7 +216,7 @@ module.exports	= function(passport){
 						newUser.twitter.id 				= profile.id;
 						newUser.twitter.token 			= token;
 						newUser.twitter.username 		= profile.username;
-						newUser.twitter.displayName 	= profile.displayName;
+						newUser.name 					= profile.displayName;
 						// save user to db
 						newUser.save(function(err){
 							if(err)
@@ -279,7 +285,7 @@ module.exports	= function(passport){
 						// set all google information in our user model
 						newUser.google.id 				= profile.id;
 						newUser.google.token 			= token;
-						newUser.google.name 			= profile.displayName;
+						newUser.name 					= profile.displayName;
 						newUser.google.email 			= profile.emails[0].value;
 						// save user to db
 						newUser.save(function(err){

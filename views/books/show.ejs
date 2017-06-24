@@ -5,13 +5,12 @@
   <p><%=book.description%></p>
   <div class="ui comments">
     <% book.comments.forEach(function(comment){ %>
-      <%console.log(comment)%>
       <div class="comment">
         <a class="avatar">
           <img src="https://semantic-ui.com/images/avatar/small/matt.jpg">
         </a>
         <div class="content">
-          <a class="author"><%=comment.author%></a>
+          <a class="author"><%=comment.author.username%></a>
           <div class="metadata">
             <span class="date">Today at 5:42PM</span>
           </div>
@@ -19,12 +18,18 @@
             <%=comment.text%>
           </div>
           <div class="actions">
-            <a class="reply">Reply</a>
+              <a class="reply">Reply</a>
+
+            <% if (comment.author.id.equals(currentUser._id)) { %>
+              <a class="edit">Edit</a>
+              <form class="inline-element" action="/comments" class="delete">
+                <a type="submit" class="delete">Delete</a>       
+              </form>      
+            <% } %>
           </div>
         </div>
       </div>
-      <% })%>
-    
+    <% })%>
   </div>
   <div class="ui divider"></div>
   <% if(!currentUser){%> 
@@ -35,9 +40,6 @@
     <form class="ui form" action="/books/<%=book._id%>/comments" method="POST">
       <div class="field">
         <textarea placeholder="comment" rows="2" name="comment[text]"></textarea>
-      </div>
-      <div class="field">
-        <input type="text" name="comment[author]" placeholder="author">
       </div>
       <button type="submit" class="ui tiny green basic button">post comment</button>
     </form>
