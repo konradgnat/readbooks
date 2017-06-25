@@ -28,6 +28,27 @@ router.post('/', isLoggedIn, function(req, res){
 	})
 });
 
+// EDIT ROUTES
+
+router.get('/comments/:id/edit', function(req, res) {
+	Comment.findById(req.params.id, function(err, comment) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.render('comments/edit', { comment: comment });
+		}
+	})
+})
+router.put('/comments/:id', function(req, res) {
+	Comment.findByIdAndUpdate(req.params.id, req.body.comment, function(err, updatedComment) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.render()
+		}
+	})
+})
+
 // MIDDLEWARE
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){

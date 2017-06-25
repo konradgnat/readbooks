@@ -1,7 +1,8 @@
 var express = require('express'),
 	router	= express(),
 	flash 	= require('connect-flash'),
-	passport = require('passport');
+	passport = require('passport'),
+	Comment = require('../models/comment');
 
 router.get('/', function(req, res){
 	res.redirect('/books');
@@ -67,6 +68,7 @@ router.get('/auth/google/callback',
 		successRedirect : '/books',
 		failureRedirect : '/books'
 }));
+
 
 // MIDDLEWARE
 function isLoggedIn(req, res, next){
