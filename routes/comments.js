@@ -14,8 +14,6 @@ router.post('/', isLoggedIn, function(req, res){
 				if(err){
 					console.log(err);
 				} else {
-					console.log("req.user = ");
-					console.log(req.user);
                     newComment.author.id = req.user._id;
                     newComment.author.username = req.user.name;
                     newComment.save();
@@ -30,16 +28,16 @@ router.post('/', isLoggedIn, function(req, res){
 
 // EDIT ROUTES
 
-router.get('/comments/:id/edit', function(req, res) {
-	Comment.findById(req.params.id, function(err, comment) {
+router.get('/:comment_id/edit', function(req, res) {
+	Comment.findById(req.params.comment_id, function(err, foundComment) {
 		if (err) {
 			console.log(err);
 		} else {
-			res.render('comments/edit', { comment: comment });
+			res.render('comments/edit', { comment: foundComment, book_id: req.params.id });
 		}
 	})
 })
-router.put('/comments/:id', function(req, res) {
+router.put('/:comment_id', function(req, res) {
 	Comment.findByIdAndUpdate(req.params.id, req.body.comment, function(err, updatedComment) {
 		if (err) {
 			console.log(err);

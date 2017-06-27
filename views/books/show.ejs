@@ -21,7 +21,7 @@
               <a class="reply">Reply</a>
 
             <% if (comment.author.id.equals(currentUser._id)) { %>
-              <a href="/comments/<%=comment._id%>/edit" class="edit">Edit</a>
+              <a href="/books/<%=book.id%>/comments/<%=comment._id%>/edit" class="edit">Edit</a>
               <form class="inline-element" action="/comments/<%=comment._id%>?_method=DELETE" method="POST" class="delete">
                 <input type="submit" class="delete" value="Delete"/>       
               </form>      

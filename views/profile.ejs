@@ -32,10 +32,9 @@
 		  		<% } else if (currentUser.google.token) { %>
 			  	<h3>Google</h3>
                     <p>
-                        <strong>id</strong>: <%= currentUser.google.id %><br>
-                        <strong>email</strong>: <%= currentUser.google.token %><br>
+                        <strong>name</strong>: <%= currentUser.google.name %><br>
+                        <strong>email</strong>: <%= currentUser.google.email %><br>
                         <strong>password</strong>: <%= currentUser.google.email %><br>
-                        <strong>password</strong>: <%= currentUser.google.name %>
                     </p>
 		  		<% } %>
 			  </div>
