@@ -1,8 +1,19 @@
 <% include partials/header %>
 
+<div class="landing-hero ui inverted vertical masthead center aligned segment">
+  <div class="ui text container">
+    <h1 class="ui inverted header">
+      Welcome to ReadBooks!
+    </h1>
+    <h2>Report on books you have read and see what your friends are reading.</h2>
+    <a href="/login" class="ui inverted button">Log in</a>
+    <a href="/register" class="ui inverted button">Sign Up</a>
+  </div>
+</div>
+
 <div id="main-title" class="ui raised very padded text container segment">
-  <h1 class="ui header"> Welcome to ReadBooks!</h1>
-  <p> Check out what we have!</p>
+  <h1 class="ui header"> </h1>
+  <p> Check out these latest reads!</p>
   <% books.forEach(function(book){ %>
     <div class="ui segment">
       <h3 class="ui header"><%=book.title%></h3>

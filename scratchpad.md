@@ -14,3 +14,6 @@
           //TODOS- CREATE DATE stamp of when comment was made
 
 
+
+  <%console.log(book_id); console.log(comment._id);%>
+<form class="ui form" action="books/<%=book_id%>/comments/<%=comment._id%>?_method=PUT" method="POST">

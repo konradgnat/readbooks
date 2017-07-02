@@ -22,7 +22,7 @@
 
             <% if (comment.author.id.equals(currentUser._id)) { %>
               <a href="/books/<%=book.id%>/comments/<%=comment._id%>/edit" class="edit">Edit</a>
-              <form class="inline-element" action="/comments/<%=comment._id%>?_method=DELETE" method="POST" class="delete">
+              <form class="inline-element" action="/books/<%=book.id%>/comments/<%=comment._id%>?_method=DELETE" method="POST" class="delete">
                 <input type="submit" class="delete" value="Delete"/>       
               </form>      
             <% } %>
@@ -34,7 +34,7 @@
   <div class="ui divider"></div>
   <% if(!currentUser){%> 
     <div class="item">
-      <p>Sign in to comment</p>
+      <p><a href="/login">Log in</a> to comment</p>
     </div>
   <% } else { %>
     <form class="ui form" action="/books/<%=book._id%>/comments" method="POST">

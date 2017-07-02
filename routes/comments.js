@@ -38,14 +38,23 @@ router.get('/:comment_id/edit', function(req, res) {
 	})
 })
 router.put('/:comment_id', function(req, res) {
-	Comment.findByIdAndUpdate(req.params.id, req.body.comment, function(err, updatedComment) {
+	Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, updatedComment) {
 		if (err) {
 			console.log(err);
 		} else {
-			res.render()
+			res.redirect("/books/" + req.params.id);
 		}
 	})
 })
+router.delete('/:comment_id', function(req, res) {
+	Comment.findByIdAndRemove(req.params.comment_id, function(err) {
+		if (err) {
+			console.log(err);
+		} else {
+			res.redirect("/books/" + req.params.id);
+		}
+	});
+});
 
 // MIDDLEWARE
 function isLoggedIn(req, res, next){

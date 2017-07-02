@@ -9,5 +9,17 @@
   padding: 1em 0em;
 }
 .ui.text.container{
-	margin-top:100px;
+	margin-top:250px;
+}
+
+.landing-hero {
+	position: relative;
+	overflow: hidden;
+	color: white;
+	background: url('../images/books-hero.jpeg') no-repeat center center!important;
+	-o-background-size: cover;
+	-moz-background-size: cover;
+	-webkit-background-size: cover;
+	-ms-background-size: cover;
+	background-size: cover;
 }
