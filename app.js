@@ -19,9 +19,9 @@ var indexRoutes 	= require('./routes/index'),
 	commentRoutes	= require('./routes/comments');
 
 // CONNECT DATABASE
-//var url = process.env.DATABASEURL || 'mongodb://localhost/booksread';
-mongoose.Promise = require('bluebird');
-// mongoose.connect("mongodb://localhost/booksread");
+
+// mongoose.Promise = require('bluebird');
+mongoose.connect("mongodb://localhost/booksread");
 
 mongoose.connect("mongodb://bookreader:lovesMuir@ds157971.mlab.com:57971/booksread");
 
@@ -50,14 +50,14 @@ app.use(function(req, res, next){
 })
 
 app.use(methodOverride("_method"));
-// seedDB();
+seedDB();
 
 app.use('/', indexRoutes);
 app.use('/books',  bookRoutes);
 app.use('/books/:id/comments', commentRoutes);
 
 
-app.listen(process.env.PORT, process.env.IP);
-// app.listen(8080, function(){
-// 	console.log("server on 8080");
-// });
+// app.listen(process.env.PORT, process.env.IP);
+app.listen(8080, function(){
+	console.log("server on 8080");
+});
