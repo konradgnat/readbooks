@@ -21,7 +21,7 @@ var indexRoutes 	= require('./routes/index'),
 // CONNECT DATABASE
 
 // mongoose.Promise = require('bluebird');
-mongoose.connect("mongodb://localhost/booksread");
+// mongoose.connect("mongodb://localhost/booksread");
 
 mongoose.connect("mongodb://bookreader:lovesMuir@ds157971.mlab.com:57971/booksread");
 
