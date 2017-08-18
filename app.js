@@ -58,6 +58,6 @@ app.use('/books/:id/comments', commentRoutes);
 
 
 // app.listen(process.env.PORT, process.env.IP);
-app.listen(8080, function(){
+app.listen(process.env.PORT, function(){
 	console.log("server on 8080");
 });
