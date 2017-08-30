@@ -1,24 +1,25 @@
 <% include ../partials/header %>
 
+
 <div id="main-title" class="ui raised very padded text container segment">
   <h1 class="ui header"><%=book.title%></h1>
+  <p class="content">posted by: <%= currentUser.username%></p>
   <p><%=book.description%></p>
   <div class="ui comments">
-    <% book.comments.forEach(function(comment){ %>
+    <% book.comments.forEach(function(comment){ 
+var d = comment._id.getTimestamp();
+var datestring = d.getDate()  + "-" + (d.getMonth()+1) + "-" + d.getFullYear() + " " +
+d.getHours() + ":" + d.getMinutes(); %>
       <div class="comment">
-        <a class="avatar">
-          <img src="https://semantic-ui.com/images/avatar/small/matt.jpg">
-        </a>
         <div class="content">
           <a class="author"><%=comment.author.username%></a>
           <div class="metadata">
-            <span class="date">Today at 5:42PM</span>
+            <span class="date"><%= datestring%></span>
           </div>
           <div class="text">
             <%=comment.text%>
           </div>
           <div class="actions">
-              <a class="reply">Reply</a>
 
             <% if (comment.author.id.equals(currentUser._id)) { %>
               <a href="/books/<%=book.id%>/comments/<%=comment._id%>/edit" class="edit">Edit</a>

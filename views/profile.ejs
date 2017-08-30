@@ -10,31 +10,30 @@
 			  	<% if (currentUser.local.email) { %>
 			  	<h3>Local</h3>
                     <p>
-                        <strong>id</strong>: <%= currentUser._id %><br>
+                        <strong>Username</strong>: <%= currentUser.username %><br>
                         <strong>email</strong>: <%= currentUser.local.email %><br>
-                        <strong>password</strong>: <%= currentUser.local.password %>
+                        <strong>password</strong>: **********
                     </p>
 		  		<% } else if (currentUser.facebook.token) { %>
 			  	<h3>Facebook</h3>
                     <p>
-                        <strong>id</strong>: <%= currentUser.facebook.id %><br>
+                        <strong>Username</strong>: <%= currentUser.username %><br>
                         <strong>email</strong>: <%= currentUser.facebook.email %><br>
-                        <strong>name</strong>: <%= currentUser.facebook.name %>
+                        <strong>password</strong>: **********
                     </p>
 		  		<% } else if (currentUser.twitter.token) { %>
 			  	<h3>Twitter</h3>
                     <p>
-                        <strong>id</strong>: <%= currentUser.twitter.id %><br>
+                        <strong>Username</strong>: <%= currentUser.username %><br>
                         <strong>email</strong>: <%= currentUser.twitter.token %><br>
-                        <strong>password</strong>: <%= currentUser.twitter.displayName %><br>
-                        <strong>password</strong>: <%= currentUser.twitter.username %>
+                        <strong>password</strong>: **********
                     </p>
 		  		<% } else if (currentUser.google.token) { %>
 			  	<h3>Google</h3>
                     <p>
-                        <strong>name</strong>: <%= currentUser.google.name %><br>
+                        <strong>Username</strong>: <%= currentUser.username %><br>
                         <strong>email</strong>: <%= currentUser.google.email %><br>
-                        <strong>password</strong>: <%= currentUser.google.email %><br>
+                        <strong>password</strong>: **********
                     </p>
 		  		<% } %>
 			  </div>
