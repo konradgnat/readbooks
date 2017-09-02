@@ -18,12 +18,16 @@ var indexRoutes 	= require('./routes/index'),
 	bookRoutes		= require('./routes/books'),
 	commentRoutes	= require('./routes/comments');
 
+// Production or dev?
+var production = true;
+
 // CONNECT DATABASE
+if (production) {
+	mongoose.connect("mongodb://bookreader:lovesMuir@ds157971.mlab.com:57971/booksread");
+} else {
+	mongoose.connect("mongodb://localhost/booksread");
+}
 
-// mongoose.Promise = require('bluebird');
-// mongoose.connect("mongodb://localhost/booksread");
-
-mongoose.connect("mongodb://bookreader:lovesMuir@ds157971.mlab.com:57971/booksread");
 
 require('./config/passport')(passport); // pass passport for configuration
 
