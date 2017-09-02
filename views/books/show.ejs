@@ -3,25 +3,31 @@
 
 <div id="main-title" class="ui raised very padded text container segment">
   <h1 class="ui header"><%=book.title%></h1>
-  <p class="content">posted by: <%= currentUser.username%></p>
+
+<!-- Post date string format -->
+<%
+var d = book._id.getTimestamp();
+var postDate = (d.getMonth()+1) + "-" + d.getDate() + "-" + d.getFullYear() + " " +
+d.getHours() + ":" + d.getMinutes(); %>
+  <p class="content">posted on <%= postDate %></p>
   <p><%=book.description%></p>
   <div class="ui comments">
     <% book.comments.forEach(function(comment){ 
 var d = comment._id.getTimestamp();
-var datestring = d.getDate()  + "-" + (d.getMonth()+1) + "-" + d.getFullYear() + " " +
+var datestring = (d.getMonth()+1) + "-" + d.getDate() + "-" + d.getFullYear() + " " +
 d.getHours() + ":" + d.getMinutes(); %>
       <div class="comment">
         <div class="content">
           <a class="author"><%=comment.author.username%></a>
           <div class="metadata">
-            <span class="date"><%= datestring%></span>
+            <span class="date"><%= datestring %></span>
           </div>
           <div class="text">
             <%=comment.text%>
           </div>
           <div class="actions">
 
-            <% if (comment.author.id.equals(currentUser._id)) { %>
+            <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
               <a href="/books/<%=book.id%>/comments/<%=comment._id%>/edit" class="edit">Edit</a>
               <form class="inline-element" action="/books/<%=book.id%>/comments/<%=comment._id%>?_method=DELETE" method="POST" class="delete">
                 <input type="submit" class="delete" value="Delete"/>       
@@ -35,7 +41,7 @@ d.getHours() + ":" + d.getMinutes(); %>
   <div class="ui divider"></div>
   <% if(!currentUser){%> 
     <div class="item">
-      <p><a href="/login">Log in</a> to comment</p>
+      <p><a href="/login">Log in</a> or <a href="/register">sign up</a> to comment</p>
     </div>
   <% } else { %>
     <form class="ui form" action="/books/<%=book._id%>/comments" method="POST">
@@ -50,7 +56,7 @@ d.getHours() + ":" + d.getMinutes(); %>
   <% if(currentUser && book.postedBy.id.equals(currentUser._id)) { %>
     <a href="/books/<%=book.id%>/edit" class="ui tiny blue basic button">edit</a>
       <form class="inline-element" action="/books/<%=book.id%>?_method=DELETE" method="POST">
-        <button class="ui tiny red basic button" type="submit">delete</button>
+        <input class="ui tiny red basic button" type="submit" value="delete"/>
       </form>
   <%}%>
 

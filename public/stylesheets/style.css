@@ -23,3 +23,15 @@
 	-ms-background-size: cover;
 	background-size: cover!important;
 }
+
+input[type="submit"].delete {
+    background-color: transparent!important;
+    border: none!important;
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 .75em 0 0;
+    color: rgba(0,0,0,.4);
+}
+input[type="submit"].delete:hover {
+    color: rgba(255,0,0,.8);
+}
