@@ -1,21 +1,47 @@
 <% include ../partials/header %>
 
-
-<div id="main-title" class="ui raised very padded text container segment">
-  <h1 class="ui header"><%=book.title%></h1>
-
 <!-- Post date string format -->
 <%
-var d = book._id.getTimestamp();
-var postDate = (d.getMonth()+1) + "-" + d.getDate() + "-" + d.getFullYear() + " " +
-d.getHours() + ":" + d.getMinutes(); %>
-  <p class="content">posted on <%= postDate %></p>
+  var d = book._id.getTimestamp();
+  var postDate = (d.getMonth()+1) + "-" + d.getDate() + "-" + d.getFullYear(); 
+%>
+
+<div id="main-title" class="book_main ui raised very padded text container segment">
+  <div class="ui items">
+    <div class="ui item">
+      <div class="ui tiny image">
+        <img class="" src="<%=book.thumbnail%>">
+        
+      </div>
+      <div class="content">
+        <h1 class="ui header"><%=book.title%></h1>
+        <div class="meta">
+          <span class="author"><%=book.author%></span><br>
+          <span class="date">published: <%=book.publishedDate%></span><br>
+          <span class="posted_date">read on <%= postDate %></span><br>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <h4 class="ui header">description</h4>
   <p><%=book.description%></p>
+  <h4 class="ui header">readers thoughts</h4>
+  <p><%=book.thoughts%></p>
+        <% if(currentUser && book.postedBy.id.equals(currentUser._id)) { %>
+      <a href="/books/<%=book.id%>/edit" class="ui tiny blue basic button">edit post</a>
+      <form class="inline-element" action="/books/<%=book.id%>?_method=DELETE" method="POST">
+        <input class="ui tiny red basic button" type="submit" value="delete post"/>
+      </form>
+
+    <%}%>
+
   <div class="ui comments">
     <% book.comments.forEach(function(comment){ 
-var d = comment._id.getTimestamp();
-var datestring = (d.getMonth()+1) + "-" + d.getDate() + "-" + d.getFullYear() + " " +
-d.getHours() + ":" + d.getMinutes(); %>
+      var d = comment._id.getTimestamp();
+      var datestring = (d.getMonth()+1) + "-" + d.getDate() + "-" + d.getFullYear() + " " +
+      d.getHours() + ":" + d.getMinutes(); %>
+    <div class="ui divider"></div>
       <div class="comment">
         <div class="content">
           <a class="author"><%=comment.author.username%></a>
@@ -32,34 +58,34 @@ d.getHours() + ":" + d.getMinutes(); %>
               <form class="inline-element" action="/books/<%=book.id%>/comments/<%=comment._id%>?_method=DELETE" method="POST" class="delete">
                 <input type="submit" class="delete" value="Delete"/>       
               </form>      
-            <% } %>
+              <% } %>
+            </div>
           </div>
         </div>
-      </div>
     <% })%>
-  </div>
-  <div class="ui divider"></div>
-  <% if(!currentUser){%> 
-    <div class="item">
-      <p><a href="/login">Log in</a> or <a href="/register">sign up</a> to comment</p>
-    </div>
-  <% } else { %>
-    <form class="ui form" action="/books/<%=book._id%>/comments" method="POST">
-      <div class="field">
-        <textarea placeholder="comment" rows="2" name="comment[text]"></textarea>
+
+    <div class="ui divider"></div>
+    <% if(!currentUser){%> 
+      <div class="item">
+        <p><a href="/login">Log in</a> or <a href="/register">sign up</a> to comment</p>
       </div>
-      <button type="submit" class="ui tiny green basic button">post comment</button>
-    </form>
-  <%}%>
-  <div class="ui divider"></div>
-
-  <% if(currentUser && book.postedBy.id.equals(currentUser._id)) { %>
-    <a href="/books/<%=book.id%>/edit" class="ui tiny blue basic button">edit</a>
-      <form class="inline-element" action="/books/<%=book.id%>?_method=DELETE" method="POST">
-        <input class="ui tiny red basic button" type="submit" value="delete"/>
+    <% } else { %>
+      <form class="ui form" action="/books/<%=book._id%>/comments" method="POST">
+        <div class="field">
+          <textarea placeholder="comment" rows="2" name="comment[text]"></textarea>
+        </div>
+        <button type="submit" class="ui tiny green basic button">post comment</button>
       </form>
-  <%}%>
+    <%}%>
+    <div class="ui divider"></div>
 
+
+
+  </div>
 </div>
+
+
+
+
 
 <% include ../partials/footer %>

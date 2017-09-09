@@ -11,23 +11,30 @@
   </div>
 </div>
 
+
 <div id="main-title" class="ui raised very padded text container segment">
   <h1 class="ui header"> </h1>
-  <p> Check out these latest reads!</p>
+  <div class="ui divided items">
   <% books.forEach(function(book){ %>
-    <div class="ui segment">
-      <h3 class="ui header"><%=book.title%></h3>
-      <div>author: <%=book.author%></div>
-      <div class="meta">
-        <span>posted by: <%=book.postedBy.email%></span>
+    <div class="item book_cards">
+      <div class="ui tiny image">
+        <img class="book_thumbnail" src="<%=book.thumbnail%>">
+
       </div>
-      <div class="ui clearing divider"></div>
-      <% if(book.description){ %>
-        <p><%=book.description.substring(0, 100);%></p>
-        <%}%>
-      <a href="/books/<%=book._id%>">read more</a>
+      <div class="content">
+        <div class="header"><%=book.title%></div>
+      <div class="meta">
+        <span>read by: <%=book.postedBy.email%></span>
+      </div>
+    <% if(book.thoughts){ %>
+      <p><%=book.thoughts.substring(0, 100);%>...</p>
+      <%}%>
+    <a href="/books/<%=book._id%>">read more</a>
     </div>
+  </div>
   <%})%>
+    
+  </div>
 </div>
 
 <% include partials/footer %>

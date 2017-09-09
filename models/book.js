@@ -2,10 +2,11 @@ var mongoose = require('mongoose');
 
 var bookSchema = mongoose.Schema({
 	title: String,
+	thumbnail: String,
 	author: String,
-	dateRead: Date,
+	publishedDate: String,
 	description: String,
-	note: String,
+	thoughts: String,
     postedBy: {
     	id: {
     		type: mongoose.Schema.Types.ObjectId,

@@ -18,15 +18,19 @@ router.get('/new', isLoggedIn, function(req, res){
 	res.render('books/new');
 })
 router.post('/', isLoggedIn, function(req, res){
+	console.log(req);
 	var title = req.body.title,
 		description = req.body.description,
 		author = req.body.author,
+		publishedDate = req.body.publishedDate,
+		thumbnail = req.body.thumbnail,
+		thoughts = req.body.thoughts,
 		postedBy = {
 			id : req.user._id,
 			email : (req.user.local.email) ? (req.user.local.email) : (req.user.facebook.name)
 		},
-		newBook = { title: title, author: author, dateRead: Date.now(),
-		 description: description, note:"note", postedBy : postedBy };
+		newBook = { thumbnail: thumbnail, title: title, author: author, publishedDate: publishedDate,
+		 description: description, thoughts:thoughts, postedBy : postedBy };
 	Book.create(newBook, function(err){
 		if(err){
 			console.log(err);
