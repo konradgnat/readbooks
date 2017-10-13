@@ -45,3 +45,14 @@ input[type="submit"].delete {
 input[type="submit"].delete:hover {
     color: rgba(255,0,0,.8);
 }
+
+.hero__inner {
+
+    background: rgba(0,0,0,0.5);
+    padding: 40px;
+}
+@media (max-width: 767px) {
+	.hero__inner {
+	    margin-top: 125px!important;
+	}
+}
