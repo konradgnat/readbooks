@@ -28,7 +28,6 @@ if (production) {
 	mongoose.connect("mongodb://localhost/booksread");
 }
 
-
 require('./config/passport')(passport); // pass passport for configuration
 
 app.use(express.static(__dirname + '/public'));
