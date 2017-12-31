@@ -16,16 +16,21 @@ var bodyParser 			= require('body-parser'),
 // ROUTES
 var indexRoutes 	= require('./routes/index'),
 	bookRoutes		= require('./routes/books'),
-	commentRoutes	= require('./routes/comments');
+	commentRoutes	= require('./routes/comments'),
+	profileRoutes	= require('./routes/profile');
 
 // Production or dev?
-var production = true;
+var production = false;
 
 // CONNECT DATABASE
 if (production) {
-	mongoose.connect("mongodb://bookreader:lovesMuir@ds157971.mlab.com:57971/booksread");
+	mongoose.connect("mongodb://bookreader:lovesMuir@ds157971.mlab.com:57971/booksread")
+	.then(() =>  console.log('mongodb connection succesful'))
+	.catch((err) => console.error(err));
 } else {
-	mongoose.connect("mongodb://localhost/booksread");
+	mongoose.connect("mongodb://localhost/booksread")
+	.then(() =>  console.log('mongodb connection succesful'))
+	.catch((err) => console.error(err));
 }
 
 require('./config/passport')(passport); // pass passport for configuration
@@ -57,6 +62,7 @@ seedDB();
 
 app.use('/', indexRoutes);
 app.use('/books',  bookRoutes);
+app.use('/profile',  profileRoutes);
 app.use('/books/:id/comments', commentRoutes);
 
 

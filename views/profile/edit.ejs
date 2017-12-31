@@ -1,0 +1,65 @@
+<% include ../partials/header %>
+
+<div class="pusher">
+	<div class="ui vertical masthead segment">
+	    <div class="ui text container">
+			<div class="ui raised very padded text container segment">
+                <h1 class="ui header">
+                    Edit Profile
+                    <a class="sub header">Edit Profile</a>
+                </h1>
+                <div class="segment">
+                    <a href="/logout" class="ui button basic">Logout</a>
+                    <div class="ui blue divider"></div>
+                    <h3>About Me</h3>
+                    <form  class="ui form" action="/profile/<%=currentUser._id%>?_method=PUT" method="POST"> 
+                        <div class="field">
+                            <label>Location</label>
+                            <input type="text" placeholder="Your location (Optional: city, state, country)" name="location" />
+                        </div>
+                        <div class="field">
+                            <label>Interests</label>
+                            <input type="text" placeholder="Your Interests" name="interests" />
+                        </div>
+                        <div class="field">
+                            <label>Top Five Favorite Authors</label>
+                            <input type="text" placeholder="Your top five favorite authors" name="topFiveAuthors" />
+                        </div>
+                        <% if (currentUser.local.email) { %>
+                        <h3>Local</h3>
+                            <p>
+                                <strong>Username</strong>: <%= currentUser.username %><br>
+                                <strong>email</strong>: <%= currentUser.local.email %><br>
+                                <strong>password</strong>: **********
+                            </p>
+                        <% } else if (currentUser.facebook.token) { %>
+                        <h3>Facebook</h3>
+                            <p>
+                                <strong>Username</strong>: <%= currentUser.username %><br>
+                                <strong>email</strong>: <%= currentUser.facebook.email %><br>
+                                <strong>password</strong>: **********
+                            </p>
+                        <% } else if (currentUser.twitter.token) { %>
+                        <h3>Twitter</h3>
+                            <p>
+                                <strong>Username</strong>: <%= currentUser.username %><br>
+                                <strong>email</strong>: <%= currentUser.twitter.token %><br>
+                                <strong>password</strong>: **********
+                            </p>
+                        <% } else if (currentUser.google.token) { %>
+                        <h3>Google</h3>
+                            <p>
+                                <strong>Username</strong>: <%= currentUser.username %><br>
+                                <strong>email</strong>: <%= currentUser.google.email %><br>
+                                <strong>password</strong>: **********
+                            </p>
+                        <% } %>
+                        <button type="submit" class="ui tiny green basic button">Save Profile</button>
+                    </form>
+			     </div>
+			</div>
+	    </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

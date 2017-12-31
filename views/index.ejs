@@ -14,18 +14,6 @@
 <%} else { %>
   <div>Welcome back</div>
 <% } %>  
-<!-- <div class="landing-hero ui inverted vertical masthead center aligned segment">
-  <div class="ui text container hero__inner">
-    <h1 class="ui inverted header">
-      Welcome to ReadBooks!
-    </h1>
-    <h2>Share what you think of books you have read and see what your friends are reading.</h2>
-    <a href="/login" class="ui inverted button">Log in</a>
-    <a href="/register" class="ui inverted button">Sign Up</a>
-  </div>
-</div> -->
-
-
 <div id="main-title" class="ui raised very padded text container segment">
   <h1 class="ui header"> </h1>
   <div class="ui divided items">
@@ -38,7 +26,7 @@
       <div class="content">
         <div class="header"><%=book.title%></div>
       <div class="meta">
-        <span>read by: <%=book.postedBy.email%></span>
+        <span>read by: <a href="/profile/<%=book.postedBy.id%>"><%=book.postedBy.username%></a></span>
       </div>
     <% if(book.thoughts){ %>
       <p><%=book.thoughts.substring(0, 100);%>...</p>

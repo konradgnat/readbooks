@@ -18,15 +18,16 @@
         <div class="meta">
           <span class="author"><%=book.author%></span><br>
           <span class="date">published: <%=book.publishedDate%></span><br>
+          <span>read by: <a href="/profile/<%=book.postedBy.id%>"><%=book.postedBy.username%></a></span><br/>          
           <span class="posted_date">read on <%= postDate %></span><br>
         </div>
       </div>
     </div>
   </div>
 
-  <h4 class="ui header">description</h4>
+  <h4 class="ui header">Description</h4>
   <p><%=book.description%></p>
-  <h4 class="ui header">readers thoughts</h4>
+  <h4 class="ui header">Readers thoughts</h4>
   <p><%=book.thoughts%></p>
         <% if(currentUser && book.postedBy.id.equals(currentUser._id)) { %>
       <a href="/books/<%=book.id%>/edit" class="ui tiny blue basic button">edit post</a>

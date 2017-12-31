@@ -1,0 +1,32 @@
+<% include ../partials/header %>
+
+<div class="pusher">
+	<div class="ui vertical masthead segment">
+	    <div class="ui text container">
+			<div class="ui raised very padded text container segment">
+                <h1 class="ui header">
+                        <%= user.username %> Profile
+                </h1>
+                <button class="ui green button">
+                    <i class="user icon"></i>
+                    Follow
+                </button>
+                <button class="ui green button">
+                    <i class="mail outline icon"></i>
+                    Send Message
+                </button>
+                <div class="segment">
+                    <div class="ui blue divider"></div>
+                    <h3>About Me</h3>
+                    <p>
+                        <strong>Location</strong>: <%= user.location %><br>
+                        <strong>Interests</strong>: <%= user.interests %><br>
+                        <strong>Top Five Favorite Authors</strong>: <%= user.topFiveAuthors %><br>
+                    </p>
+			    </div>
+			</div>
+	    </div>
+    </div>
+</div>
+
+<% include ../partials/footer %>

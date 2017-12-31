@@ -27,6 +27,7 @@ router.post('/', isLoggedIn, function(req, res){
 		thoughts = req.body.thoughts,
 		postedBy = {
 			id : req.user._id,
+			username : req.user.username,
 			email : (req.user.local.email) ? (req.user.local.email) : (req.user.facebook.name)
 		},
 		newBook = { thumbnail: thumbnail, title: title, author: author, publishedDate: publishedDate,

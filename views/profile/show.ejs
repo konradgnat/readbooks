@@ -1,12 +1,22 @@
-<% include partials/header %>
+<% include ../partials/header %>
 
 <div class="pusher">
 	<div class="ui vertical masthead segment">
 	    <div class="ui text container">
 			<div class="ui raised very padded text container segment">
-			  <h1 class="ui header">Profile</h1>
+			  <h1 class="ui header">
+                    Profile
+                    <a href="/profile/<%=currentUser.id%>/edit" class="sub blue edit header">Edit Profile</a>
+              </h1>
 			  <div class="segment">
-			  	<a href="/logout" class="ui button basic">Logout</a>
+                  <a href="/logout" class="ui button basic">Logout</a>
+                  <div class="ui blue divider"></div>
+                  <h3>About Me</h3>
+                  <p>
+                      <strong>Location</strong>: <%= currentUser.location %><br>
+                      <strong>Interests</strong>: <%= currentUser.interests %><br>
+                      <strong>Top Five Favorite Authors</strong>: <%= currentUser.topFiveAuthors %><br>
+                  </p>
 			  	<% if (currentUser.local.email) { %>
 			  	<h3>Local</h3>
                     <p>
@@ -42,4 +52,4 @@
     </div>
 </div>
 
-<% include partials/footer %>
+<% include ../partials/footer %>
