@@ -2,6 +2,8 @@ var express = require('express'),
 	router	= express(),
 	flash 	= require('connect-flash'),
 	Profile = require('../models/user'),
+	multer	= require('multer'),
+    upload  = multer({ dest: 'uploads/' }),
 	User 	= require('../models/user.js');
 
 router.get('/', isLoggedIn, function(req, res){
@@ -36,6 +38,19 @@ router.put('/:id', isLoggedIn, function(req, res){
         }
     })
 });
+
+// router.post('/avatar', upload.single('avatar'), function(req, res) {
+//     try {
+//         const col = await loadCollection(COLLECTION_NAME, db);
+//         const data = col.insert(req.file);
+
+//         db.saveDatabase();
+//         res.send({ id: data.$loki, fileName: data.filename, originalName: data.originalname });
+//     } catch (err) {
+//         res.sendStatus(400);
+//     }
+
+// });
 
 // MIDDLEWARE
 function isLoggedIn(req, res, next){

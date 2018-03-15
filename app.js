@@ -11,6 +11,7 @@ var bodyParser 			= require('body-parser'),
 	passport			= require('passport'),
 	LocalStrategy		= require('passport-local'),
 	morgan 				= require('morgan'),
+	multer				= require('multer'),
 	flash 				= require('connect-flash');
 
 // ROUTES
