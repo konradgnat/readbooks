@@ -11,25 +11,26 @@ router.get('/', isLoggedIn, function(req, res){
 });
 
 router.get('/:id', function(req, res){
-        console.log('req.params.id', req.params.id);
 	User.findById(req.params.id, function(err, user){
-        console.log('user', user);
 		if(err){
 			console.log(err);
 		} else {
 			res.render('profile/showPublic', {user: user});
 		}
     })
-    console.log('heres get profile post psot');
-    
 });
 
 router.get('/:id/edit', isLoggedIn, function(req, res){
-    res.render('profile/edit');
+    User.findById(req.params.id, function(err, user) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.render('profile/edit', {user: user});
+        }
+    })
 });
 
 router.put('/:id', isLoggedIn, function(req, res){
-	// res.send(req.body);
     User.findByIdAndUpdate(req.params.id, req.body, function(err, updateUser) {
         if (err) {
             console.log(err);

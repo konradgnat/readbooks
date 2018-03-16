@@ -6,7 +6,6 @@
 			<div class="ui raised very padded text container segment">
                 <h1 class="ui header">
                     Edit Profile
-                    <a class="sub header">Edit Profile</a>
                 </h1>
                 <div class="segment">
                     <a href="/logout" class="ui button basic">Logout</a>
@@ -15,15 +14,15 @@
                     <form  class="ui form" action="/profile/<%=currentUser._id%>?_method=PUT" method="POST"> 
                         <div class="field">
                             <label>Location</label>
-                            <input type="text" placeholder="Your location (Optional: city, state, country)" name="location" />
+                            <input type="text" value="<%= user.location %>" name="location" />
                         </div>
                         <div class="field">
                             <label>Interests</label>
-                            <input type="text" placeholder="Your Interests" name="interests" />
+                            <input type="text" value="<%= user.interests %>" name="interests" />
                         </div>
                         <div class="field">
                             <label>Top Five Favorite Authors</label>
-                            <input type="text" placeholder="Your top five favorite authors" name="topFiveAuthors" />
+                            <input type="text" value="<%= user.topFiveAuthors %>" name="topFiveAuthors" />
                         </div>
                         <% if (currentUser.local.email) { %>
                         <h3>Local</h3>
