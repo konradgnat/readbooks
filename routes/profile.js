@@ -6,6 +6,37 @@ var express = require('express'),
     upload  = multer({ dest: 'uploads/' }),
 	User 	= require('../models/user.js');
 
+
+
+var fs = require('fs');
+var mongoose = require('mongoose');
+
+var upload = multer({ dest: 'uploads/' }).single('avatar');
+
+// var Item = mongoose.Schema(
+//     { img: 
+//         { data: Buffer, contentType: String }
+//     }
+// );
+// var Item = mongoose.model('Clothes', Item);
+
+router.post('/api/photo', function(req, res){
+    upload(req, res, function(err) {
+        if (err) {
+            return res.send("Error uploading file.");
+        }
+        console.log('got the photo here!!!!', req.file);
+        var newItem = new Item();
+        newItem.img.data = fs.readFileSync(req.file.path)
+        newItem.img.contentType = req.file.mimetype;
+        newItem.save();
+    });
+});
+
+
+
+   
+
 router.get('/', isLoggedIn, function(req, res){
     res.render('profile/show');
 });
@@ -26,6 +57,7 @@ router.get('/:id/edit', isLoggedIn, function(req, res){
             console.log(err);
         } else {
             res.render('profile/edit', {user: user});
+            // res.send(user);
         }
     })
 });
@@ -39,19 +71,6 @@ router.put('/:id', isLoggedIn, function(req, res){
         }
     })
 });
-
-// router.post('/avatar', upload.single('avatar'), function(req, res) {
-//     try {
-//         const col = await loadCollection(COLLECTION_NAME, db);
-//         const data = col.insert(req.file);
-
-//         db.saveDatabase();
-//         res.send({ id: data.$loki, fileName: data.filename, originalName: data.originalname });
-//     } catch (err) {
-//         res.sendStatus(400);
-//     }
-
-// });
 
 // MIDDLEWARE
 function isLoggedIn(req, res, next){

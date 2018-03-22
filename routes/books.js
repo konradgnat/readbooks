@@ -18,7 +18,6 @@ router.get('/new', isLoggedIn, function(req, res){
 	res.render('books/new');
 })
 router.post('/', isLoggedIn, function(req, res){
-	console.log(req);
 	var title = req.body.title,
 		description = req.body.description,
 		author = req.body.author,
@@ -87,7 +86,6 @@ router.delete('/:id', checkPostOwnership, function(req, res){
 
 // MIDDLEWARE
 function checkPostOwnership(req, res, next){
-	console.log(req.user);
     if(req.isAuthenticated()){
         Book.findById(req.params.id, function(err, foundBook){
             if(err){

@@ -58,6 +58,12 @@ app.use(function(req, res, next){
     next();
 })
 
+// upload images
+// app.use(multer({
+// 		dest: './uploads/',
+// 	}
+// ).single('avatar'));
+
 app.use(methodOverride("_method"));
 seedDB();
 

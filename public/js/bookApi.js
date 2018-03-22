@@ -43,7 +43,6 @@ function handleResponse(response) {
 		author,
 		thumbnail,
 		date;
-	console.log(response);
 	if(response.totalItems === 0){
 		document.getElementById("content").innerHTML = 'Nothing found';
 		return null;
