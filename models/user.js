@@ -6,7 +6,10 @@ var userSchema	= mongoose.Schema({
 	location		: String,
 	interests		: String,
 	topFiveAuthors	: String,
-	avatar			: { data: Buffer, contentType: String },
+	avatar			: {
+		data: Buffer,
+		contentType: String
+	},
 	local		: {
 		email		: String,
 		password	: String

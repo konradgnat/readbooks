@@ -11,7 +11,8 @@
                     <a href="/logout" class="ui button basic">Logout</a>
                     <div class="ui blue divider"></div>
                     <h3>About Me</h3>
-                    <form  class="ui form" action="/profile/<%=currentUser._id%>?_method=PUT" method="POST"> 
+                    <form class="ui form" action="/profile/<%=currentUser._id%>?_method=PUT" method="POST"
+                           encytype="form/multi-part">
                         <div class="field">
                             <label>Location</label>
                             <input type="text" value="<%= user.location %>" name="location" />
