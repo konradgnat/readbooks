@@ -11,10 +11,6 @@
                     <a href="/logout" class="ui button basic">Logout</a>
                     <div class="ui blue divider"></div>
                     <h3>About Me</h3>
-                    <form class="ui form" action="/profile/api/photo" method="POST"  enctype="multipart/form-data">
-                        <input type="file" name="avatar" accept="image/*">
-                        <input type="submit" value="Upload photo">
-                    </form>
                     <form  class="ui form" action="/profile/<%=currentUser._id%>?_method=PUT" method="POST"> 
                         <div class="field">
                             <label>Location</label>
@@ -27,6 +23,9 @@
                         <div class="field">
                             <label>Top Five Favorite Authors</label>
                             <input type="text" value="<%= user.topFiveAuthors %>" name="topFiveAuthors" />
+                        </div>
+                        <div class="field">
+                            <input type="file" name="avatar" accept="image/*">
                         </div>
                         <% if (currentUser.local.email) { %>
                         <h3>Local</h3>

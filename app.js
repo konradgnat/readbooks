@@ -21,7 +21,7 @@ var indexRoutes 	= require('./routes/index'),
 	profileRoutes	= require('./routes/profile');
 
 // Production or dev?
-var production = true;
+var production = false;
 
 // CONNECT DATABASE
 if (production) {
@@ -56,13 +56,13 @@ app.use(flash());
 app.use(function(req, res, next){
     res.locals.currentUser = req.user;
     next();
-})
+});
 
 // upload images
-// app.use(multer({
-// 		dest: './uploads/',
-// 	}
-// ).single('avatar'));
+app.use(multer({
+		dest: './uploads/',
+	}
+).single('avatar'));
 
 app.use(methodOverride("_method"));
 seedDB();
