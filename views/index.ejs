@@ -26,7 +26,10 @@
       <div class="content">
         <div class="header"><%=book.title%></div>
       <div class="meta">
-        <span>read by: <a href="/profile/<%=book.postedBy.id%>"><%=book.postedBy.username%></a></span>
+          <% if (book.postedBy.avatar) { %>
+            <img src="/<%= book.postedBy.avatar %>" class="ui avatar image">
+          <% } %>
+        <span> - <a href="/profile/<%=book.postedBy.id%>"><%=book.postedBy.username%></a></span>
       </div>
     <% if(book.thoughts){ %>
       <p><%=book.thoughts.substring(0, 100);%>...</p>

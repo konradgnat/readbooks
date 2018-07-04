@@ -12,6 +12,9 @@
                   <a href="/logout" class="ui button basic">Logout</a>
                   <div class="ui blue divider"></div>
                   <h3>About Me</h3>
+                  <% if (currentUser.avatar) { %>
+                     <img src="/<%= currentUser.avatar %>" class="ui small image" >
+                  <% } %>
                   <p>
                       <strong>Location</strong>: <%= currentUser.location %><br>
                       <strong>Interests</strong>: <%= currentUser.interests %><br>

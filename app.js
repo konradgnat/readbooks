@@ -4,12 +4,8 @@ var bodyParser 			= require('body-parser'),
 	session 			= require('express-session'),
 	methodOverride		= require('method-override'),
 	app					= express(),
-	Book 				= require('./models/book'),
-	Comment				= require('./models/comment'),
 	seedDB				= require('./seeds'),
-	User				= require('./models/user'),
 	passport			= require('passport'),
-	LocalStrategy		= require('passport-local'),
 	morgan 				= require('morgan'),
 	multer				= require('multer'),
 	flash 				= require('connect-flash');
@@ -37,11 +33,13 @@ if (production) {
 require('./config/passport')(passport); // pass passport for configuration
 
 app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/uploads'));
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 
 app.set("view engine", "ejs");
+
 
 app.use(session({
   secret: 'omtaretutaretoresoha',
@@ -57,12 +55,6 @@ app.use(function(req, res, next){
     res.locals.currentUser = req.user;
     next();
 });
-
-// upload images
-app.use(multer({
-		dest: './uploads/',
-	}
-).single('avatar'));
 
 app.use(methodOverride("_method"));
 seedDB();

@@ -1,7 +1,6 @@
 var express = require('express'),
     router	= express(),
     flash 	= require('connect-flash'),
-    Profile = require('../models/user'),
     multer	= require('multer'),
     User 	= require('../models/user.js'),
     fs = require('fs'),
@@ -40,25 +39,9 @@ router.get('/:id/edit', isLoggedIn, function(req, res){
     })
 });
 
-router.put('/:id', isLoggedIn,  function(req, res) {
+router.put('/:id', isLoggedIn, uploadAvatar, function(req, res) {
 
-    var storage = multer.diskStorage({
-      destination: __dirname+'/uploads'
-    });
-    var upload = multer({ storage: storage }).any()
-
-    upload(req, res, function(err) {
-      if (err) {
-        console.log(err);
-        return res.end('error uploading file');
-      } else {
-        console.log('inside upload', req.files);
-
-      }
-    });
-
-    // req.body.fileName = req.fileName;
-    console.log('inside put, req: ', req.file, req.body);
+    req.body.avatar = req.imageName;
 
     User.findByIdAndUpdate(req.params.id, req.body, function(err, updateUser) {
         if (err) {
@@ -70,59 +53,31 @@ router.put('/:id', isLoggedIn,  function(req, res) {
 });
 
 // MIDDLEWARE
+function uploadAvatar(req, res, next) {
+    var imageName;
+    var uploadStorage = multer.diskStorage({
+      destination: function (req, file, cb) {
+          cb(null, 'uploads/');
+      },
+      filename: function (req, file, cb) {
+          imageName = file.originalname;
+          imageName = Date.now() + '_' + imageName;
+          cb(null, imageName);
+      }
+    });
 
-// function uploadAvatar(req, res, next) {
-//     console.log('inside upa');
-//     var imageName;
-//     var uploadStorage = multer.diskStorage({
-//       destination: function (req, file, cb) {
-//           console.log('inside dest');
-//           cb(null, './uploads');
-//       },
-//       filename: function (req, file, cb) {
-//         console.log('inside filename');
-//
-//           imageName = file.originalname;
-//           // imageName += Date.now();
-//           cb(null, imageName);
-//       }
-//     });
-//
-//     var uploader = multer({storage: uploadStorage});
-//
-//     var uploadFile = upload.single('avatar');
-//
-//     uploadFile(req, res, function(err) {
-//         console.log('uploadFile');
-//         req.imageName = imageName;
-//         req.uploadError = err;
-//         next();
-//     })
-// }
-//
-// function middleware(req, res, next) {
-//   var imageName;
-//   var uploadStorage = multer.diskStorage({
-//     destination: function (req, file, cb) {
-//       cb(null, './uploads');
-//     },
-//     filename: function (req, file, cb) {
-//       imageName = file.originalname;
-//       imageName += Date.now();
-//       cb(null, imageName);
-//     }
-//   });
-//
-//   var uploader = multer({storage: uploadStorage});
-//
-//   var uploadFile = upload.single('avatar');
-//
-//   uploadFile(req, res, function (err) {
-//     req.imageName = imageName;
-//     req.uploadError = err;
-//     next();
-//   })
-// }
+    var upload = multer({storage: uploadStorage});
+
+    var uploadFile = upload.single('avatar');
+
+    uploadFile(req, res, function(err) {
+        console.log('uploadFile');
+        req.imageName = imageName;
+        req.uploadError = err;
+        next();
+    })
+}
+
 
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()){
