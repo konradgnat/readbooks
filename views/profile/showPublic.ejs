@@ -5,12 +5,15 @@
 	    <div class="ui text container">
 			<div class="ui raised very padded text container segment">
                 <h1 class="ui header">
-                        <%= user.username %> Profile
+                    <%= user.username %> Profile
+                    <%= user %>
                 </h1>
-                <button class="ui green button">
-                    <i class="user icon"></i>
-                    Follow
-                </button>
+                <form method="POST" action="/profile/<%= user.id %>/follow">
+                    <button class="ui green button" type="submit">
+                        <i class="user icon"></i>
+                        Follow
+                    </button>
+                </form>
                 <button class="ui green button">
                     <i class="mail outline icon"></i>
                     Send Message

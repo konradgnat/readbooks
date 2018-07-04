@@ -7,6 +7,10 @@ var userSchema	= mongoose.Schema({
 	interests		: String,
 	topFiveAuthors	: String,
 	avatar			: String,
+  followers : [{
+    type: mongoose.Schema.Types.ObjectId,
+		ref: 'Follower'
+  }],
 	local		: {
 		email		: String,
 		password	: String

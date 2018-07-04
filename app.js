@@ -17,7 +17,7 @@ var indexRoutes 	= require('./routes/index'),
 	profileRoutes	= require('./routes/profile');
 
 // Production or dev?
-var production = true;
+var production = false;
 
 // CONNECT DATABASE
 if (production) {
