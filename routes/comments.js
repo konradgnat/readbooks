@@ -1,7 +1,7 @@
 var express = require('express'),
-	router = express.Router({mergeParams:true});
-	Comment 	= require('../models/comment'),
-	Book 		= require('../models/book');
+	  router = express.Router({mergeParams:true});
+		Comment = require('../models/comment'),
+		Book = require('../models/book');
 
 
 // ADD COMMENT

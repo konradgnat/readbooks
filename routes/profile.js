@@ -63,7 +63,7 @@ router.post('/:id/follow', isLoggedIn, function(req, res) {
           user.followers.push(newFoll);
           user.save(function(err,news){
             console.log("Tried to save user...");
-          })
+          });
           console.log('user.followers, newFoll ', user.followers, newFoll, user._id, user.username);
           res.redirect('/profile/' + req.params.id);
         }

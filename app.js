@@ -1,23 +1,23 @@
 var bodyParser 			= require('body-parser'),
-	mongoose			= require('mongoose'),
-	express				= require('express'),
-	session 			= require('express-session'),
-	methodOverride		= require('method-override'),
-	app					= express(),
-	seedDB				= require('./seeds'),
-	passport			= require('passport'),
-	morgan 				= require('morgan'),
-	multer				= require('multer'),
-	flash 				= require('connect-flash');
+		mongoose			= require('mongoose'),
+		express				= require('express'),
+		session 			= require('express-session'),
+		methodOverride		= require('method-override'),
+		app					= express(),
+		seedDB				= require('./seeds'),
+		passport			= require('passport'),
+		morgan 				= require('morgan'),
+		multer				= require('multer'),
+		flash 				= require('connect-flash');
 
 // ROUTES
 var indexRoutes 	= require('./routes/index'),
-	bookRoutes		= require('./routes/books'),
-	commentRoutes	= require('./routes/comments'),
-	profileRoutes	= require('./routes/profile');
+		bookRoutes		= require('./routes/books'),
+		commentRoutes	= require('./routes/comments'),
+		profileRoutes	= require('./routes/profile');
 
 // Production or dev?
-var production = false;
+var production = true;
 
 // CONNECT DATABASE
 if (production) {

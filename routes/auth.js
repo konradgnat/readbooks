@@ -2,7 +2,7 @@ var express = require('express'),
 	router	= express.Router(),
 	flash 	= require('connect-flash');
 
-module.exports = function(app, passport){
+module.exports = function(app, passport) {
 
 	// route for fb authentication and login
 	router.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
