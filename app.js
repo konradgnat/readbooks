@@ -17,7 +17,7 @@ var indexRoutes 	= require('./routes/index'),
 		profileRoutes	= require('./routes/profile');
 
 // Production or dev?
-var production = false;
+var production = true;
 
 mongoose.Promise = global.Promise;
 // CONNECT DATABASE
