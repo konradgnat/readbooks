@@ -47,24 +47,20 @@ router.put('/:id', isLoggedIn, uploadAvatar, function (req, res) {
 });
 
 router.post('/:id/follow', isLoggedIn, function(req, res) {
-  console.log('req.body, req.user: ', req.body, req.user, req.params.id, req.user._id);
 
   User.findById(req.params.id, function(err, user) {
     if (err) {
       console.log(err);
     } else {
-      var follower = {username: req.user.username, followerId: req.user._id, avatar: req.user.avatar};
+      var follower = { username: req.user.username, followerId: req.user._id, avatar: req.user.avatar };
       Follower.create(follower, function(err, newFoll) {
         if (err) {
           console.log(err);
         } else {
           newFoll.avatar = 'avatarplaceholder';
           newFoll.save();
-          user.followers.push(newFoll);
-          user.save(function(err,news){
-            console.log("Tried to save user...");
-          });
-          console.log('user.followers, newFoll ', user.followers, newFoll, user._id, user.username);
+          user.followers = user.followers.concat(newFoll);
+          user.save();
           res.redirect('/profile/' + req.params.id);
         }
       });

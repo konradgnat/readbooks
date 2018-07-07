@@ -17,16 +17,17 @@ var indexRoutes 	= require('./routes/index'),
 		profileRoutes	= require('./routes/profile');
 
 // Production or dev?
-var production = true;
+var production = false;
 
+mongoose.Promise = global.Promise;
 // CONNECT DATABASE
 if (production) {
-	mongoose.connect("mongodb://bookreader:lovesMuir@ds157971.mlab.com:57971/booksread")
+	mongoose.connect("mongodb://bookreader:lovesMuir@ds157971.mlab.com:57971/booksread", { useMongoClient: true })
 	.then(() =>  console.log('mongodb connection succesful'))
 	.catch((err) => console.error(err));
 } else {
-	mongoose.connect("mongodb://localhost/booksread")
-	.then(() =>  console.log('mongodb connection succesful'))
+	mongoose.connect("mongodb://localhost/booksread", { useMongoClient: true })
+	.then(() =>  console.log('local mongodb connection succesful'))
 	.catch((err) => console.error(err));
 }
 

@@ -26,8 +26,8 @@ var data = [
 	"author" : "Butcher,S.H..", 
 	"publishedDate" : "2000", 
 	"description" : "", 
-	"thoughts" : "I have read The Odyssey three times. The first was not really a read but more of a listen in the true oral tradition. ", 
-	"comments" : [ ], "postedBy" : { "id" : ("59e033bab6d54d54eb3e0bd4"), "username" : "JohnDoe" , 
+	"thoughts" : "I deeply love the Odyssey. I have read The Odyssey three times. The first was not really a read but more of a listen in the true oral tradition. ",
+	"comments" : [ ("594f3df8283ea656955e973e"), ("594def761dbcf8287a6866b3", ("594f3df8283ea656955e973e")) ], "postedBy" : { "id" : ("59e033bab6d54d54eb3e0bd4"), "username" : "JohnDoe" ,
 	"email" : "JohnDoe@gmail.com", "avatar" : "bean.jpeg"},
 	"__v" : 0 
 	}
@@ -48,7 +48,16 @@ var userData = [
   "avatar" : "bean.jpeg",
 	"local" : { "password" : "$2a$08$sVzi4db/nbqdizQt7w/4pe6hCLab/rGWJCY/Vti2locLHGvt2VXj6", "email" : "JohnDoe@gmail.com" },
 	"__v" : 0 
-}];
+},
+  { "_id" : ("5b40f331c9d8d36f212ae0a6"), "username" : "k", "local" : { "password" : "$2a$08$MQ7b7HJsHQCfZ/CXbf.wpeg9V5XSHUSeR/URDmVaIYvgokkEArGSO", "email" : "k" }, "followers" : [ ], "__v" : 0 }
+
+];
+
+const commentData = [
+	{ "_id" : "594dee3c1dbcf8287a6866b2", "text" : "how did it end", "__v" : 0, "author" : { "id" : "5a481d884f95a82f953691ef", "username" : "HomerSimpson" } },
+	{ "_id" : "594def761dbcf8287a6866b3", "text" : "do'h", "__v" : 0, "author" : { "id" : "5a481d884f95a82f953691ef", "username" : "HomerSimpson" } },
+	{ "_id" : "594f3df8283ea656955e973e", "text" : "These violent delights have violent ends.", "__v" : 0, "author" : { "id" : "5949d4806bc1df3be17b0b42", "username" : "Dolores"  } },
+];
 
 function seedDB(){
 	Book.remove({}, function(err){
@@ -90,6 +99,22 @@ function seedDB(){
 						console.log(err);
 					} else {
 						console.log("User created");
+					}
+				})
+			})
+		}
+	});
+	Comment.remove({}, function(err) {
+		if (err) {
+			console.log(err);
+		} else {
+			console.log('removed comments');
+			commentData.forEach(function(seed) {
+				Comment.create(seed, function (err, comment) {
+					if (err) {
+						console.log(err);
+					} else {
+						console.log('Comment created');
 					}
 				})
 			})
