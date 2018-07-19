@@ -2,15 +2,13 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ExploreContainer from './containers/ExploreContainer.js';
 
 class Search extends React.Component {
 
   render() {
     return (
-      <div>
-        <h3>Find interesting reads</h3>
-        <input type="text"/>
-      </div>
+      <ExploreContainer />
     )
   }
 }
