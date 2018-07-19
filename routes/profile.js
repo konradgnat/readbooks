@@ -1,11 +1,11 @@
-var express = require('express'),
-  router = express(),
-  flash = require('connect-flash'),
-  multer = require('multer'),
-  User = require('../models/user.js'),
-  Follower = require('../models/follower.js'),
-  fs = require('fs'),
-  mongoose = require('mongoose');
+let express = require('express'),
+    router = express(),
+    flash = require('connect-flash'),
+    multer = require('multer'),
+    User = require('../models/user.js'),
+    Follower = require('../models/follower.js'),
+    fs = require('fs'),
+    mongoose = require('mongoose');
 
 router.get('/', isLoggedIn, function (req, res) {
   res.render('profile/show');
@@ -52,7 +52,7 @@ router.post('/:id/follow', isLoggedIn, function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      var follower = { username: req.user.username, followerId: req.user._id, avatar: req.user.avatar };
+      let follower = { username: req.user.username, followerId: req.user._id, avatar: req.user.avatar };
       Follower.create(follower, function(err, newFoll) {
         if (err) {
           console.log(err);
@@ -70,8 +70,8 @@ router.post('/:id/follow', isLoggedIn, function(req, res) {
 
 // MIDDLEWARE
 function uploadAvatar(req, res, next) {
-  var imageName;
-  var uploadStorage = multer.diskStorage({
+  let imageName;
+  let uploadStorage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, 'uploads/');
     },
@@ -82,9 +82,9 @@ function uploadAvatar(req, res, next) {
     }
   });
 
-  var upload = multer({storage: uploadStorage});
+  let upload = multer({storage: uploadStorage});
 
-  var uploadFile = upload.single('avatar');
+  let uploadFile = upload.single('avatar');
 
   uploadFile(req, res, function (err) {
     console.log('uploadFile');

@@ -14,7 +14,8 @@ let bodyParser 				= require('body-parser'),
 let indexRoutes 	= require('./routes/index'),
 		bookRoutes		= require('./routes/books'),
 		commentRoutes	= require('./routes/comments'),
-		profileRoutes	= require('./routes/profile');
+  	profileRoutes	= require('./routes/profile');
+		exploreRoutes	= require('./routes/explore');
 
 // Production or dev?
 let production = true;
@@ -63,6 +64,7 @@ seedDB();
 app.use('/', indexRoutes);
 app.use('/books',  bookRoutes);
 app.use('/profile',  profileRoutes);
+app.use('/explore',  exploreRoutes);
 app.use('/books/:id/comments', commentRoutes);
 
 
