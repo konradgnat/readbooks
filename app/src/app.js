@@ -3,16 +3,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class Feed extends React.Component {
-
+class Search extends React.Component {
 
   render() {
     return (
-      <h1>
-        Hello World
-      </h1>
+      <div>
+        <h3>Find interesting reads</h3>
+        <input type="text"/>
+      </div>
     )
   }
 }
 
-ReactDOM.render(<Feed/>, document.getElementById('app_root'));
+ReactDOM.render(<Search/>, document.getElementById('search_root'));
