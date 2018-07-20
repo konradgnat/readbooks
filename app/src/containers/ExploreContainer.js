@@ -1,6 +1,6 @@
 import React from 'react';
-import ExploreSearch from '../components/ExploreSearch';
-import ExploreFeed from '../components/ExploreFeed';
+import ExploreSearch from '../components/ExploreSearch/ExploreSearch';
+import ExploreFeed from '../components/ExploreFeed/ExploreFeed';
 
 class ExploreContainer extends React.Component {
 
