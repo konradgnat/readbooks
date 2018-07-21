@@ -77,6 +77,11 @@ input[type="submit"].delete:hover {
 	padding: .92857143em 1.14285714em;
 	display: inline-block;
 	border-right: 1px solid rgba(34,36,38,.1);
+	color: #000000;
+}
+.menu_nav__item:hover {
+	background: #000000;
+	color: #ffffff;
 }
 .menu_nav__item:nth-child(1) {
 	border-left: 1px solid rgba(34,36,38,.1);

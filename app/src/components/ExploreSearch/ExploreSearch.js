@@ -9,14 +9,14 @@ class ExploreSearch extends React.Component<Props, {keyword: ?string}> {
 
   constructor(props: Props) {
     super(props);
-    (this: any).handleChange = this.handleChange.bind(this);
+    // (this: any).handleChange = this.handleChange.bind(this);
 
     this.state = {
       keyword: ''
     };
   }
 
-  handleChange(event: SyntheticInputEvent<HTMLInputElement>) {
+  handleChange = (event: SyntheticInputEvent<HTMLInputElement>) => {
     this.setState({ keyword: event.target.value });
   };
 
