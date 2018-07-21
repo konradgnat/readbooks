@@ -1,6 +1,7 @@
 [ignore]
 
 [include]
+./app
 
 [libs]
 
