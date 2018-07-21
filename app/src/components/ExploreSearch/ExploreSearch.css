@@ -14,3 +14,34 @@
     flex-direction: column;
     align-items: center;
 }
+
+.autocomplete {
+    width: 300px;
+    height: auto;
+    border: solid 1px grey;
+}
+
+.autoCompContainer {
+    position: relative;
+    width:300px;
+    margin: 0 auto;
+}
+.autoCompList {
+    background-color: #ffffff;
+    margin: 0;
+    padding: 4px 4px;
+    list-style: none;
+    width: 300px;
+    overflow: hidden;
+    height: auto;
+    border: solid 1px grey;
+    position: absolute;
+    top: 0;
+}
+
+.autoCompListItem {
+    padding: 4px 3px;
+    height: 24px;
+    overflow: hidden;
+    line-height: 16px;
+}
