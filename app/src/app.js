@@ -1,10 +1,14 @@
+// @flow
+
 'use strict';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ExploreContainer from './containers/ExploreContainer.js';
 
-class Search extends React.Component {
+type Props = {};
+
+class Search extends React.Component<Props> {
 
   render() {
     return (
@@ -13,4 +17,8 @@ class Search extends React.Component {
   }
 }
 
-ReactDOM.render(<Search/>, document.getElementById('search_root'));
+const root = document.getElementById('search_root');
+
+if (root !== null) {
+  ReactDOM.render( <Search/>, root);
+}

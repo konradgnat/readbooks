@@ -1,7 +1,11 @@
+// @flow
+
 import React from 'react';
 import style from './ExploreSearch.css';
 
-class ExploreSearch extends React.Component {
+type Props = {};
+
+class ExploreSearch extends React.Component<Props> {
 
   render() {
     return (

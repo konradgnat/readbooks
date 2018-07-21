@@ -4,7 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "dev": "webpack --watch --mode development",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -33,14 +35,17 @@
     "passport-twitter": "^1.0.4"
   },
   "engines": {
-    "node": "4.8.4"
+    "node": ">=4.8.4"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-env": "^1.7.0",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^1.0.0",
+    "flow-bin": "^0.77.0",
+    "jest": "^23.4.1",
     "path": "^0.12.7",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",

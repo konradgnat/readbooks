@@ -1,7 +1,10 @@
+// @flow
+
 import React from 'react';
 
+type Props = {};
 
-class ExploreFeed extends React.Component {
+class ExploreFeed extends React.Component<Props>  {
 
   render() {
     return (

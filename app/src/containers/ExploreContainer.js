@@ -1,8 +1,12 @@
+// @flow
+
 import React from 'react';
 import ExploreSearch from '../components/ExploreSearch/ExploreSearch';
 import ExploreFeed from '../components/ExploreFeed/ExploreFeed';
 
-class ExploreContainer extends React.Component {
+type Props = {};
+
+class ExploreContainer extends React.Component<Props> {
 
   render() {
     return (
