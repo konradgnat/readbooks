@@ -44,7 +44,12 @@ class ExploreSearch extends React.Component<Props, State> {
     if (this.state.list.length !== 0) {
       console.log(this.state.list);
       const autoCompList = this.state.list.map(item => {
-        return <li className={ style.autoCompListItem } key={item.id}>{item.volumeInfo.title}</li>;
+        let title = item.volumeInfo.title;
+        if (title.length > 34) {
+          title = title.slice(0,34);
+          title = title.split(' ').slice(0, -1).join(' ') + ' ...';
+        }
+        return <li className={ style.autoCompListItem } key={item.id}>{title}</li>;
       });
 
       return (

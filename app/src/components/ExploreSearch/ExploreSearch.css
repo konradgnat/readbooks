@@ -29,7 +29,7 @@
 .autoCompList {
     background-color: #ffffff;
     margin: 0;
-    padding: 4px 4px;
+    padding: 0;
     list-style: none;
     width: 300px;
     overflow: hidden;
@@ -40,8 +40,13 @@
 }
 
 .autoCompListItem {
-    padding: 4px 3px;
+    padding: 4px 8px;
     height: 24px;
     overflow: hidden;
     line-height: 16px;
+}
+
+.autoCompListItem:hover {
+    background-color: lightcyan;
+    cursor: pointer;
 }
