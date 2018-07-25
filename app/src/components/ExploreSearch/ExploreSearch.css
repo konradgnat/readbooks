@@ -37,6 +37,7 @@
     border: solid 1px grey;
     position: absolute;
     top: 0;
+    display: block!important;
 }
 
 .autoCompListItem {

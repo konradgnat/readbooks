@@ -20,6 +20,7 @@ class ExploreSearch extends React.Component<Props, State> {
       list: []
     };
     (this: any).handleChange = this.handleChange.bind(this);
+    (this: any).handleAutoCompClick = this.handleAutoCompClick.bind(this);
   }
 
   handleChange(event: SyntheticInputEvent<HTMLInputElement>) {
@@ -39,6 +40,10 @@ class ExploreSearch extends React.Component<Props, State> {
     console.log(this.state.list);
   };
 
+  handleAutoCompClick(event) {
+    console.log(event.target);
+  }
+
   renderAutocomplete() {
     console.log(this.state.list);
     if (this.state.list.length !== 0) {
@@ -49,14 +54,14 @@ class ExploreSearch extends React.Component<Props, State> {
           title = title.slice(0,34);
           title = title.split(' ').slice(0, -1).join(' ') + ' ...';
         }
-        return <li className={ style.autoCompListItem } key={item.id}>{title}</li>;
+        return <option onClick={ this.handleAutoCompClick } className={ style.autoCompListItem } key={item.id}>{title}</option>;
       });
 
       return (
         <div className={ style.autoCompContainer }>
-          <ul className={ style.autoCompList }>
+          <datalist id="query" className={ style.autoCompList }>
             { autoCompList }
-          </ul>
+          </datalist>
         </div>
       )
     }
@@ -68,7 +73,7 @@ class ExploreSearch extends React.Component<Props, State> {
     return (
       <div className={ style.search_container }>
         <h3>Find interesting reads</h3>
-        <input onInput={this.handleChange} className={ style.search_input } type="text"/>
+        <input list="query" onInput={this.handleChange} className={ style.search_input } type="text"/>
         { this.renderAutocomplete() }
       </div>
     )
