@@ -3,6 +3,7 @@
 import React from 'react';
 import style from './ExploreSearch.css';
 import apiCaller from '../../util/apiCaller';
+import AgAutocomplete from './AgAutocomplete.js';
 
 type Props = {};
 type State = {
@@ -75,6 +76,11 @@ class ExploreSearch extends React.Component<Props, State> {
         <h3>Find interesting reads</h3>
         <input list="query" onInput={this.handleChange} className={ style.search_input } type="text"/>
         { this.renderAutocomplete() }
+        
+        <AgAutocomplete apiKey="6be0576ff61c053d5f9a3225e2a90f76"
+                        appId="latency" displayKey="name" indices={[{index: 'contacts'}]}
+                        inputId="input-search"
+        />
       </div>
     )
   }
