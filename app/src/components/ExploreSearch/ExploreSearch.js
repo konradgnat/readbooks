@@ -1,69 +1,53 @@
 
 import React from 'react';
-import style from './ExploreSearch.css';
-import apiCaller from '../../util/apiCaller';
+import styles from './ExploreSearch.css';
 import Autocomplete from '../Autocomplete/Autocomplete';
 
 type Props = {};
 type State = {
   query: ?string,
-  list: ?Array<mixed>
 }
 
 class ExploreSearch extends React.Component<Props, State> {
 
   onKeyDown(event: Event) {
-    this.setState({ query: event.target.value }, () => {
-      if (this.state.query.trim() === '') {
-        this.setState({ list: [] });
+    let currentIndex = this.state.currentIndex;
+    switch(event.key) {
+      case 'ArrowDown':
+      case 'ArrowRight':
+        currentIndex++;
+        break;
+      case 'ArrowUp':
+      case 'ArrowLeft':
+        currentIndex--;
+        break;
+      case 'Escape':
+        this.setState({open: false});
+        break;
+      case 'Enter':
+        this.setState({value: this.suggestions[currentIndex].volumeInfo.title, open: false})
 
-        return;
-      }
-
-      apiCaller(this.state.query)
-        .then((res) => {
-          if (!this.state.query.trim()) return;
-          this.setState({ list: res.items || [] });
-        })
-    });
-    console.log(this.state.list);
+    }
+    if (currentIndex < -1) currentIndex = -1;
+    this.setState({currentIndex: currentIndex});
   };
 
   handleAutoCompClick(event: Event) {
     console.log(event.target);
   }
 
+  suggestions = [];
+
+  onSuggestionClick = hit => {
+    this.setState({ value: hit, open: false });
+  };
+
+  onSuggestions = hits => {
+    this.suggestions = hits;
+    if (!this.state.open) this.setState({open: true});
+  };
+
   updateQuery = event => this.setState({ query: event.target.value, value: event.target.value });
-
-  renderAutocomplete() {
-    console.log(this.state.list);
-    if (this.state.list.length !== 0) {
-      console.log(this.state.list);
-      const autoCompList = this.state.list.map(item => {
-        let title = item.volumeInfo.title;
-        if (title.length > 34) {
-          title = title.slice(0,34);
-          title = title.split(' ').slice(0, -1).join(' ') + ' ...';
-        }
-
-        return (
-          <li onClick={ this.handleAutoCompClick } className={ style.autoCompListItem } key={item.id}>
-            {title}
-          </li>
-        );
-      });
-
-      return (
-        <div className={ style.autoCompContainer }>
-          <ul id="query" className={ style.autoCompList }>
-            { autoCompList }
-          </ul>
-        </div>
-      )
-    }
-
-    return null;
-  }
 
   constructor(props: Props) {
     super(props);
@@ -71,7 +55,8 @@ class ExploreSearch extends React.Component<Props, State> {
     this.state = {
       query: '',
       value: '',
-      list: []
+      open: true,
+      currentIndex: -1
     };
 
     this.onKeyDown = this.onKeyDown.bind(this);
@@ -81,10 +66,28 @@ class ExploreSearch extends React.Component<Props, State> {
 
   render() {
     return (
-      <div className={ style.search_container }>
+      <div className={styles.search_container}>
         <h3>Find interesting reads</h3>
-        <input list="query" onKeyDown={ this.onKeyDown } onChange={ this.updateQuery } className={ style.search_input } type="text"/>
-        <Autocomplete query={ this.state.query } />
+        <div className={styles.titleSearchWrapper}>
+          <label htmlFor="titleSearch" className={styles.titleSearchLabel}>Search By Title:</label>
+          <div className={styles.autoCompWrapper}>
+            <input id="titleSearch"
+                   value={this.state.value}
+                   onKeyDown={this.onKeyDown}
+                   onChange={this.updateQuery}
+                   className={styles.searchInput}
+                   type="text"
+                   autoComplete="off"
+            />
+            <Autocomplete currentIndex={this.state.currentIndex}
+                          query={this.state.query}
+                          onClick={this.onSuggestionClick}
+                          onSuggestions={this.onSuggestions}
+                          open={this.state.open}
+            />
+          </div>
+          <input type="submit" value="submit" className={styles.titleSearchSubmit}/>
+        </div>
       </div>
     )
   }

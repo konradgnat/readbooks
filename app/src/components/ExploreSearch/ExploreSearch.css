@@ -1,11 +1,10 @@
 
-.search_input {
+.searchInput {
     margin: 0 auto;
-    width: 300px;
-    border-radius: 4px;
+    width: 100%;
     border: solid 1px grey;
-
     padding: 10px 20px;
+    border-radius: 4px 0 0 4px;
 }
 
 .search_container {
@@ -26,28 +25,47 @@
     width:300px;
     margin: 0 auto;
 }
-.autoCompList {
-    background-color: #ffffff;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    width: 300px;
-    overflow: hidden;
-    height: auto;
+.titleSearchWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+}
+.titleSearchLabel {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    width: 20%;
+}
+.titleSearchSubmit {
+    width: 20%;
     border: solid 1px grey;
-    position: absolute;
-    top: 0;
-    display: block!important;
+    border-radius: 0 4px 4px 0;
+}
+.autoCompWrapper {
+    width: 65%;
+    position: relative;
 }
 
-.autoCompListItem {
-    padding: 4px 8px;
-    height: 24px;
-    overflow: hidden;
-    line-height: 16px;
-}
-
-.autoCompListItem:hover {
-    background-color: lightcyan;
-    cursor: pointer;
+@media screen and (max-width: 800px) {
+    .titleSearchWrapper {
+        flex-direction: column;
+    }
+    .titleSearchLabel {
+        width: 100%;
+        height: 36px;
+        text-align: center;
+    }
+    .autoCompWrapper {
+        width: 100%;
+    }
+    .searchInput {
+        border-radius: 4px 4px 4px 4px;
+    }
+    .titleSearchSubmit {
+        width: 125px;
+        height: 40px;
+        margin: 20px auto;
+        border-radius: 4px 4px 4px 4px;
+    }
 }
