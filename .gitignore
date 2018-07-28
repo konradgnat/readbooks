@@ -7,3 +7,5 @@ npm-debug.log
 config/auth.js
 
 ./scratch.js
+
+public/js/bundle-build.js

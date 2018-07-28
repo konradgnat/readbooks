@@ -1,37 +1,39 @@
-// @flow
 
 import React from 'react';
 import style from './ExploreSearch.css';
 import apiCaller from '../../util/apiCaller';
+import Autocomplete from '../Autocomplete/Autocomplete';
 
 type Props = {};
 type State = {
-  keyword: ?string,
+  query: ?string,
   list: ?Array<mixed>
 }
 
 class ExploreSearch extends React.Component<Props, State> {
 
-  handleChange(event: SyntheticInputEvent<HTMLInputElement>) {
-    this.setState({ keyword: event.target.value }, () => {
-      if (this.state.keyword.trim() === '') {
+  onKeyDown(event: Event) {
+    this.setState({ query: event.target.value }, () => {
+      if (this.state.query.trim() === '') {
         this.setState({ list: [] });
 
         return;
       }
 
-      apiCaller(this.state.keyword)
+      apiCaller(this.state.query)
         .then((res) => {
-          if (!this.state.keyword.trim()) return;
+          if (!this.state.query.trim()) return;
           this.setState({ list: res.items || [] });
         })
     });
     console.log(this.state.list);
   };
 
-  handleAutoCompClick(event) {
+  handleAutoCompClick(event: Event) {
     console.log(event.target);
   }
+
+  updateQuery = event => this.setState({ query: event.target.value, value: event.target.value });
 
   renderAutocomplete() {
     console.log(this.state.list);
@@ -43,7 +45,12 @@ class ExploreSearch extends React.Component<Props, State> {
           title = title.slice(0,34);
           title = title.split(' ').slice(0, -1).join(' ') + ' ...';
         }
-        return <li onClick={ this.handleAutoCompClick } className={ style.autoCompListItem } key={item.id}>{title}</li>;
+
+        return (
+          <li onClick={ this.handleAutoCompClick } className={ style.autoCompListItem } key={item.id}>
+            {title}
+          </li>
+        );
       });
 
       return (
@@ -62,11 +69,13 @@ class ExploreSearch extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      keyword: '',
+      query: '',
+      value: '',
       list: []
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.onKeyDown = this.onKeyDown.bind(this);
+    this.updateQuery = this.updateQuery.bind(this);
     this.handleAutoCompClick = this.handleAutoCompClick.bind(this);
   }
 
@@ -74,8 +83,8 @@ class ExploreSearch extends React.Component<Props, State> {
     return (
       <div className={ style.search_container }>
         <h3>Find interesting reads</h3>
-        <input list="query" onInput={this.handleChange} className={ style.search_input } type="text"/>
-        { this.renderAutocomplete() }
+        <input list="query" onKeyDown={ this.onKeyDown } onChange={ this.updateQuery } className={ style.search_input } type="text"/>
+        <Autocomplete query={ this.state.query } />
       </div>
     )
   }
