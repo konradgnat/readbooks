@@ -10,36 +10,34 @@ type State = {
 
 class ExploreSearch extends React.Component<Props, State> {
 
+  suggestions = [];
+
   onKeyDown(event: Event) {
     let currentIndex = this.state.currentIndex;
     switch(event.key) {
       case 'ArrowDown':
-      case 'ArrowRight':
-        currentIndex++;
+        if (currentIndex < this.suggestions.length-1) this.setState({currentIndex: ++currentIndex});
+        if (!this.state.open) this.setState({open: true});
         break;
       case 'ArrowUp':
-      case 'ArrowLeft':
-        currentIndex--;
+        if (currentIndex > -1) this.setState({currentIndex: --currentIndex});
+        else this.setState({open:false});
         break;
       case 'Escape':
-        this.setState({open: false});
+        this.setState({open: false, currentIndex: -1 });
         break;
       case 'Enter':
-        this.setState({value: this.suggestions[currentIndex].volumeInfo.title, open: false})
+        this.setState({value: this.suggestions[currentIndex].volumeInfo.title, open: false, currentIndex: -1 })
 
     }
-    if (currentIndex < -1) currentIndex = -1;
-    this.setState({currentIndex: currentIndex});
   };
 
   handleAutoCompClick(event: Event) {
     console.log(event.target);
   }
 
-  suggestions = [];
-
   onSuggestionClick = hit => {
-    this.setState({ value: hit, open: false });
+    this.setState({ value: hit, open: false, currentIndex: -1 });
   };
 
   onSuggestions = hits => {
@@ -55,7 +53,7 @@ class ExploreSearch extends React.Component<Props, State> {
     this.state = {
       query: '',
       value: '',
-      open: true,
+      open: false,
       currentIndex: -1
     };
 

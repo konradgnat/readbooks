@@ -13,7 +13,6 @@ class Autocomplete extends React.Component {
     super(props);
     this.state = {
       hits: [],
-      selected: null
     };
     console.log(styles);
   }
@@ -62,7 +61,7 @@ class Autocomplete extends React.Component {
 
   render() {
     const style = {};
-    if (!this.props.open) {
+    if (!this.props.open || this.state.hits.length === 0) {
       style.display = 'none';
     }
     return (
