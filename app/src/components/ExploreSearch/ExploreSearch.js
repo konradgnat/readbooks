@@ -23,17 +23,25 @@ class ExploreSearch extends React.Component<Props, State> {
       case 'ArrowDown':
         if (currentIndex < this.suggestions.length-1) this.setState({currentIndex: ++currentIndex});
         if (!this.state.open) this.setState({open: true});
+        event.preventDefault();
         break;
       case 'ArrowUp':
         if (currentIndex > -1) this.setState({currentIndex: --currentIndex});
         else this.setState({open:false});
+        event.preventDefault();
         break;
       case 'Escape':
         this.setState({open: false, currentIndex: -1 });
+        event.preventDefault();
         break;
       case 'Enter':
-        this.setState({value: this.suggestions[currentIndex].volumeInfo.title, open: false, currentIndex: -1 })
-
+        if (this.suggestions.length > 0 && currentIndex >= 0) {
+          this.setState({value: this.suggestions[currentIndex].volumeInfo.title, open: false, currentIndex: -1 });
+          event.preventDefault();
+        }
+        break;
+      default:
+        return;
     }
   };
 
