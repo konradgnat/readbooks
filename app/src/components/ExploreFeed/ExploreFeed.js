@@ -9,7 +9,7 @@ class ExploreFeed extends React.Component<Props>  {
   render() {
     return (
       <div>
-        results feed
+        {/*results feed WIP*/}
       </div>
     )
   }
