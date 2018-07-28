@@ -1,23 +1,35 @@
+// @flow
 
-
-import React from 'react';
+import * as React from 'react';
 import apiCaller from '../../util/apiCaller';
 import styles from './Autocomplete.css';
 import classNames from 'classnames/bind';
+import type { TitleResults } from '../../types/BooksAPI';
 
-class Autocomplete extends React.Component {
+type Props = {
+  currentIndex: number,
+  query: string,
+  onClick: (hit: string) => void,
+  onSuggestions: (hits: Array<TitleResults>) => void,
+  open: boolean
+}
+
+type State = {
+  hits: Array<TitleResults>
+}
+
+class Autocomplete extends React.Component<Props, State> {
 
   cx = classNames.bind(styles);
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.state = {
       hits: [],
     };
-    console.log(styles);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: Props) {
     if (this.props.query !== prevProps.query) {
 
       if (this.props.query.trim() === '') {
@@ -34,7 +46,7 @@ class Autocomplete extends React.Component {
     }
   }
 
-  renderHit = hit => {
+  renderHit = (hit: TitleResults) => {
     let isSelected = false;
     if (this.props.currentIndex > -1) isSelected = this.state.hits[this.props.currentIndex].id === hit.id;
     let className = this.cx({
@@ -61,7 +73,7 @@ class Autocomplete extends React.Component {
 
   render() {
     const style = {};
-    if (!this.props.open || this.state.hits.length === 0) {
+    if (!this.props.open || !this.state.hits || (this.state.hits && this.state.hits.length === 0)) {
       style.display = 'none';
     }
     return (

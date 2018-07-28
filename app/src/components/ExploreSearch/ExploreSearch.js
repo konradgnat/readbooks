@@ -1,18 +1,23 @@
+// @flow
 
 import React from 'react';
 import styles from './ExploreSearch.css';
 import Autocomplete from '../Autocomplete/Autocomplete';
+import type { TitleResults } from '../../types/BooksAPI';
 
 type Props = {};
 type State = {
-  query: ?string,
+  query: string,
+  value: string,
+  currentIndex: number,
+  open: boolean
 }
 
 class ExploreSearch extends React.Component<Props, State> {
 
   suggestions = [];
 
-  onKeyDown(event: Event) {
+  onKeyDown = (event: KeyboardEvent) => {
     let currentIndex = this.state.currentIndex;
     switch(event.key) {
       case 'ArrowDown':
@@ -32,20 +37,16 @@ class ExploreSearch extends React.Component<Props, State> {
     }
   };
 
-  handleAutoCompClick(event: Event) {
-    console.log(event.target);
-  }
-
-  onSuggestionClick = hit => {
+  onSuggestionClick = (hit: string) => {
     this.setState({ value: hit, open: false, currentIndex: -1 });
   };
 
-  onSuggestions = hits => {
+  onSuggestions = (hits: Array<TitleResults>) => {
     this.suggestions = hits;
     if (!this.state.open) this.setState({open: true});
   };
 
-  updateQuery = event => this.setState({ query: event.target.value, value: event.target.value });
+  updateQuery = (event: SyntheticInputEvent<HTMLInputElement>) => this.setState({ query: event.target.value, value: event.target.value });
 
   constructor(props: Props) {
     super(props);
@@ -59,7 +60,6 @@ class ExploreSearch extends React.Component<Props, State> {
 
     this.onKeyDown = this.onKeyDown.bind(this);
     this.updateQuery = this.updateQuery.bind(this);
-    this.handleAutoCompClick = this.handleAutoCompClick.bind(this);
   }
 
   render() {
