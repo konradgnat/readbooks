@@ -1,10 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import apiCaller from '../../util/apiCaller';
+import apiCaller from '../../../../util/apiCaller';
 import styles from './Autocomplete.css';
 import classNames from 'classnames/bind';
-import type { TitleResults } from '../../types/BooksAPI';
+import type { TitleResults } from '../../../../types/BooksAPI';
 
 type Props = {
   currentIndex: number,
@@ -53,11 +53,7 @@ class Autocomplete extends React.Component<Props, State> {
       suggestion: true,
       selected: isSelected
     });
-    let title = hit.volumeInfo.title;
-    if (title.length > 34) {
-      title = title.slice(0,34);
-      title = title.split(' ').slice(0, -1).join(' ') + ' ...';
-    }
+    const title = hit.volumeInfo.title;
 
     return (
       <div key={hit.id}

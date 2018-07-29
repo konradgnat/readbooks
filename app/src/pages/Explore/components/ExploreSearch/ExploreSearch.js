@@ -3,7 +3,7 @@
 import React from 'react';
 import styles from './ExploreSearch.css';
 import Autocomplete from '../Autocomplete/Autocomplete';
-import type { TitleResults } from '../../types/BooksAPI';
+import type { TitleResults } from '../../../../types/BooksAPI';
 
 type Props = {};
 type State = {
@@ -21,12 +21,12 @@ class ExploreSearch extends React.Component<Props, State> {
     let currentIndex = this.state.currentIndex;
     switch(event.key) {
       case 'ArrowDown':
-        if (currentIndex < this.suggestions.length-1) this.setState({currentIndex: ++currentIndex});
+        if (currentIndex < this.suggestions.length - 1) this.setState({currentIndex: currentIndex + 1});
         if (!this.state.open) this.setState({open: true});
         event.preventDefault();
         break;
       case 'ArrowUp':
-        if (currentIndex > -1) this.setState({currentIndex: --currentIndex});
+        if (currentIndex > -1) this.setState({currentIndex: currentIndex - 1});
         else this.setState({open:false});
         event.preventDefault();
         break;
@@ -52,9 +52,12 @@ class ExploreSearch extends React.Component<Props, State> {
   onSuggestions = (hits: Array<TitleResults>) => {
     this.suggestions = hits;
     if (!this.state.open) this.setState({open: true});
+    this.setState({ currentIndex: -1 });
   };
 
-  updateQuery = (event: SyntheticInputEvent<HTMLInputElement>) => this.setState({ query: event.target.value, value: event.target.value });
+  updateQuery = (event: SyntheticInputEvent<HTMLInputElement>) => {
+    return this.setState({ query: event.target.value, value: event.target.value });
+  };
 
   constructor(props: Props) {
     super(props);
@@ -65,9 +68,6 @@ class ExploreSearch extends React.Component<Props, State> {
       open: false,
       currentIndex: -1
     };
-
-    this.onKeyDown = this.onKeyDown.bind(this);
-    this.updateQuery = this.updateQuery.bind(this);
   }
 
   render() {
@@ -77,19 +77,21 @@ class ExploreSearch extends React.Component<Props, State> {
         <div className={styles.titleSearchWrapper}>
           <label htmlFor="titleSearch" className={styles.titleSearchLabel}>Search By Title:</label>
           <div className={styles.autoCompWrapper}>
-            <input id="titleSearch"
-                   value={this.state.value}
-                   onKeyDown={this.onKeyDown}
-                   onChange={this.updateQuery}
-                   className={styles.searchInput}
-                   type="text"
-                   autoComplete="off"
+            <input
+              id="titleSearch"
+              value={this.state.value}
+              onKeyDown={this.onKeyDown}
+              onChange={this.updateQuery}
+              className={styles.searchInput}
+              type="search"
+              autoComplete="off"
             />
-            <Autocomplete currentIndex={this.state.currentIndex}
-                          query={this.state.query}
-                          onClick={this.onSuggestionClick}
-                          onSuggestions={this.onSuggestions}
-                          open={this.state.open}
+            <Autocomplete
+              currentIndex={this.state.currentIndex}
+              query={this.state.query}
+              onClick={this.onSuggestionClick}
+              onSuggestions={this.onSuggestions}
+              open={this.state.open}
             />
           </div>
           <input type="submit" value="submit" className={styles.titleSearchSubmit}/>

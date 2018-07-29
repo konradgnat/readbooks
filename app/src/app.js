@@ -4,7 +4,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ExploreContainer from './containers/ExploreContainer.js';
+import ExploreContainer from './pages/Explore/containers/ExploreContainer.js';
 
 type Props = {};
 
