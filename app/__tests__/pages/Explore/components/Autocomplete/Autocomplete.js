@@ -47,4 +47,20 @@ describe('Autocomplete', () => {
     expect(wrapper.state('hits')).toEqual(hits);
     expect(onSuggestions).toHaveBeenCalledWith(hits);
   });
+
+  it('should not search when the query trims to empty string', async () => {
+    const onSuggestions = jest.fn();
+    const wrapper = mount(
+      <Autocomplete
+        currentIndex={-1}
+        query={''}
+        onClick={jest.fn()}
+        onSuggestions={onSuggestions}
+        open={false}
+      />
+    );
+    wrapper.setProps({ query: '    '});
+    expect(wrapper.state('hits')).toEqual([]);
+    expect(onSuggestions).toHaveBeenCalledWith([]);
+  })
 });
