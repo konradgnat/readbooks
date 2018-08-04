@@ -22,14 +22,14 @@ class Autocomplete extends React.Component<Props, State> {
 
   cx = classNames.bind(styles);
 
-  constructor(props: Props) {
+  constructor(props: Props): void {
     super(props);
     this.state = {
       hits: [],
     };
   }
 
-  componentDidUpdate(prevProps: Props) {
+  componentDidUpdate(prevProps: Props): void {
     if (this.props.query !== prevProps.query) {
 
       if (this.props.query.trim() === '') {
@@ -46,7 +46,7 @@ class Autocomplete extends React.Component<Props, State> {
     }
   }
 
-  renderHit = (hit: TitleResults) => {
+  renderHit = (hit: TitleResults): React.Element<'div'> => {
     let isSelected = false;
     if (this.props.currentIndex > -1) isSelected = this.state.hits[this.props.currentIndex].id === hit.id;
     let className = this.cx({

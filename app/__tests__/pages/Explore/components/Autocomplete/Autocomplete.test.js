@@ -62,5 +62,28 @@ describe('Autocomplete', () => {
     wrapper.setProps({ query: '    '});
     expect(wrapper.state('hits')).toEqual([]);
     expect(onSuggestions).toHaveBeenCalledWith([]);
-  })
+  });
+
+  it('should render list when query is entered', async () => {
+    const mockAPI = apiCaller.mockImplementation(() => Promise.resolve({ items: hits }));
+    const onSuggestions = jest.fn();
+    const wrapper = mount(
+      <Autocomplete
+        currentIndex={-1}
+        query={''}
+        onClick={jest.fn()}
+        onSuggestions={onSuggestions}
+        open={false}
+      />
+    );
+    wrapper.setProps({ query: 'new query' });
+    await mockAPI();
+
+    // expect(wrapper.at(0).key()).toEqual(hits[0].id);
+    // expect(wrapper.instance().renderHit()).toHaveBeenCalled();
+    console.log(wrapper.at(0).key());
+    console.log(wrapper);
+    console.log(wrapper.state());
+
+  });
 });

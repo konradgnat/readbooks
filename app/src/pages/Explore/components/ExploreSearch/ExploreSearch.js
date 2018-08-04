@@ -17,7 +17,7 @@ class ExploreSearch extends React.Component<Props, State> {
 
   suggestions = [];
 
-  onKeyDown = (event: KeyboardEvent) => {
+  onKeyDown = (event: KeyboardEvent): void => {
     let currentIndex = this.state.currentIndex;
     switch(event.key) {
       case 'ArrowDown':
@@ -45,17 +45,17 @@ class ExploreSearch extends React.Component<Props, State> {
     }
   };
 
-  onSuggestionClick = (hit: string) => {
+  onSuggestionClick = (hit: string): void => {
     this.setState({ value: hit, open: false, currentIndex: -1 });
   };
 
-  onSuggestions = (hits: Array<TitleResults>) => {
+  onSuggestions = (hits: Array<TitleResults>): void => {
     this.suggestions = hits;
     if (!this.state.open) this.setState({open: true});
     this.setState({ currentIndex: -1 });
   };
 
-  updateQuery = (event: SyntheticInputEvent<HTMLInputElement>) => {
+  updateQuery = (event: SyntheticInputEvent<HTMLInputElement>): void => {
     return this.setState({ query: event.target.value, value: event.target.value });
   };
 
