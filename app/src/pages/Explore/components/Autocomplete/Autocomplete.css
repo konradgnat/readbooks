@@ -24,4 +24,5 @@
     overflow: hidden;
     height: auto;
     border: solid 1px grey;
+    z-index: 99;
 }

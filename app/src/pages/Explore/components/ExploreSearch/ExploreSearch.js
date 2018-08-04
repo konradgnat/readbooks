@@ -5,7 +5,9 @@ import styles from './ExploreSearch.css';
 import Autocomplete from '../Autocomplete/Autocomplete';
 import type { TitleResults } from '../../../../types/BooksAPI';
 
-type Props = {};
+type Props = {
+  handleSearch: (query: string) => void
+};
 type State = {
   query: string,
   value: string,
@@ -38,6 +40,8 @@ class ExploreSearch extends React.Component<Props, State> {
         if (this.suggestions.length > 0 && currentIndex >= 0) {
           this.setState({value: this.suggestions[currentIndex].volumeInfo.title, open: false, currentIndex: -1 });
           event.preventDefault();
+        } else {
+          this.performSearch(null);
         }
         break;
       default:
@@ -57,6 +61,11 @@ class ExploreSearch extends React.Component<Props, State> {
 
   updateQuery = (event: SyntheticInputEvent<HTMLInputElement>): void => {
     return this.setState({ query: event.target.value, value: event.target.value });
+  };
+
+  performSearch = (event: SyntheticInputEvent<HTMLInputElement> | null): void => {
+    this.props.handleSearch(this.state.query);
+    if (event) event.preventDefault();
   };
 
   constructor(props: Props) {
@@ -94,7 +103,7 @@ class ExploreSearch extends React.Component<Props, State> {
               open={this.state.open}
             />
           </div>
-          <input type="submit" value="submit" className={styles.titleSearchSubmit}/>
+          <input onClick={this.performSearch} type="submit" value="submit" className={styles.titleSearchSubmit}/>
         </div>
       </div>
     )

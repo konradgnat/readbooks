@@ -1,0 +1,16 @@
+.feedWrapper {
+    margin-top: 60px;
+}
+
+.feedItem {
+    overflow: auto;
+    min-width: 80px;
+}
+
+.feedItem:hover {
+    cursor: pointer;
+}
+
+/*.feedItem .content .ui.tiny.image {*/
+    /*min-height: 80px;*/
+/*}*/

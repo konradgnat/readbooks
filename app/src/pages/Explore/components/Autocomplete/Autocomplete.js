@@ -20,6 +20,8 @@ type State = {
 
 class Autocomplete extends React.Component<Props, State> {
 
+  node = null;
+
   cx = classNames.bind(styles);
 
   constructor(props: Props): void {
@@ -27,6 +29,10 @@ class Autocomplete extends React.Component<Props, State> {
     this.state = {
       hits: [],
     };
+  }
+
+  componentDidMount() {
+    document.addEventListener('mousedown', this.handleClick, false);
   }
 
   componentDidUpdate(prevProps: Props): void {
@@ -45,6 +51,19 @@ class Autocomplete extends React.Component<Props, State> {
         })
     }
   }
+
+  /*
+  *
+  */
+  handleClick = (e: SyntheticMouseEvent<T>): void => {
+    if (this.node.contains(e.target)) {
+
+      return;
+    }
+
+    this.setState({ hits: [] });
+    this.props.onSuggestions([]);
+  };
 
   renderHit = (hit: TitleResults): React.Element<'div'> => {
     let isSelected = false;
@@ -73,7 +92,7 @@ class Autocomplete extends React.Component<Props, State> {
       style.display = 'none';
     }
     return (
-      <div role="list" className={styles.autoCompList} style={style}>
+      <div ref={node => this.node = node} role="list" className={styles.autoCompList} style={style}>
         {this.state.hits.map(this.renderHit)}
       </div>
     )
