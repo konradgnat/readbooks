@@ -64,7 +64,27 @@ describe('Autocomplete', () => {
     expect(onSuggestions).toHaveBeenCalledWith([]);
   });
 
-  it('should render list when query is entered', async () => {
+  it('should call renderHit for each hit when query is entered', async () => {
+    const mockAPI = apiCaller.mockImplementation(() => Promise.resolve({ items: hits }));
+    const onSuggestions = jest.fn();
+    const mockRenderHit = jest.fn();
+    const wrapper = mount(
+      <Autocomplete
+        currentIndex={-1}
+        query={''}
+        onClick={jest.fn()}
+        onSuggestions={onSuggestions}
+        open={false}
+      />
+    );
+    wrapper.instance().renderHit = mockRenderHit;
+    wrapper.setProps({ query: 'new query' });
+    await mockAPI();
+
+    expect(mockRenderHit).toHaveBeenCalledTimes(2);
+  });
+
+  it('should render an item for each hit when query is entered', async () => {
     const mockAPI = apiCaller.mockImplementation(() => Promise.resolve({ items: hits }));
     const onSuggestions = jest.fn();
     const wrapper = mount(
@@ -79,11 +99,7 @@ describe('Autocomplete', () => {
     wrapper.setProps({ query: 'new query' });
     await mockAPI();
 
-    // expect(wrapper.at(0).key()).toEqual(hits[0].id);
-    // expect(wrapper.instance().renderHit()).toHaveBeenCalled();
-    console.log(wrapper.at(0).key());
-    console.log(wrapper);
-    console.log(wrapper.state());
-
+    expect(wrapper.find('div')).toHaveLength(1);
+    expect(wrapper.state('hits')).toEqual(hits);
   });
 });
