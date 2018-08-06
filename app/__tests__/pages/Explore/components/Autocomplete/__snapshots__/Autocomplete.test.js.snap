@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Autocomplete renders correctly 1`] = `
+<div
+  className="autoCompList"
+  role="list"
+  style={
+    Object {
+      "display": "none",
+    }
+  }
+/>
+`;

@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExploreSearch renders correctly 1`] = `
+<div
+  className="search_container"
+>
+  <h3>
+    Find interesting reads
+  </h3>
+  <div
+    className="titleSearchWrapper"
+  >
+    <label
+      className="titleSearchLabel"
+      htmlFor="titleSearch"
+    >
+      Search By Title:
+    </label>
+    <div
+      className="autoCompWrapper"
+    >
+      <input
+        autoComplete="off"
+        className="searchInput"
+        id="titleSearch"
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        type="search"
+        value=""
+      />
+      <Autocomplete
+        currentIndex={-1}
+        onClick={[Function]}
+        onSuggestions={[Function]}
+        open={false}
+        query=""
+      />
+    </div>
+    <input
+      className="titleSearchSubmit"
+      type="submit"
+      value="submit"
+    />
+  </div>
+</div>
+`;
