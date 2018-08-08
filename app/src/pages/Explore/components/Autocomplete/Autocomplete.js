@@ -52,11 +52,8 @@ class Autocomplete extends React.Component<Props, State> {
     }
   }
 
-  /*
-  *
-  */
-  handleClick = (e: SyntheticMouseEvent<T>): void => {
-    if (this.node.contains(e.target)) {
+  handleClick = (e: MouseEvent): void => {
+    if (this.node && e.target instanceof Node && this.node.contains(e.target)) {
 
       return;
     }
