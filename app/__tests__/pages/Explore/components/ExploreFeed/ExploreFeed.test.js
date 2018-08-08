@@ -3,13 +3,6 @@ import ExploreFeed from '../../../../../src/pages/Explore/components/ExploreFeed
 import { shallow } from 'enzyme';
 
 describe('ExploreFeed', () => {
-
-  it('renders correctly without any results', () => {
-    const wrapper = shallow(<ExploreFeed/>);
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('renders correctly with result array', () => {
     const hits = [
       {
         id: "_uTRAwAAQBAJ",
@@ -38,8 +31,9 @@ describe('ExploreFeed', () => {
         }
       }
     ];
-    const wrapper = mount(<ExploreFeed searchHits={hits}/>);
-    // wrapper.setProps({ searchHits: hits });
+
+  it('renders correctly without results', () => {
+    const wrapper = shallow(<ExploreFeed searchHits={hits} />);
     expect(wrapper).toMatchSnapshot();
   });
 });

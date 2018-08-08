@@ -1,3 +1,78 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ExploreFeed renders correctly 1`] = `<div />`;
+exports[`ExploreFeed renders correctly without any results 1`] = `
+<div
+  className="feedWrapper"
+>
+  <div
+    className="feedItem ui segment"
+    key="_uTRAwAAQBAJ"
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="ui tiny left floated image"
+      >
+        <img
+          alt=""
+          src="http://books.google.com/books/content?id=9gUJAQAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api"
+        />
+      </div>
+      <div
+        className="header"
+      >
+        Practical Modern JavaScript
+      </div>
+      <div
+        className="meta"
+      >
+        1995-12-01
+      </div>
+      <div
+        className="description"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "Many webmasters don't have time to learn a high level programming language, ",
+          }
+        }
+      />
+    </div>
+  </div>
+  <div
+    className="feedItem ui segment"
+    key="vmE4nBg4mpc"
+  >
+    <div
+      className="content"
+    >
+      <div
+        className="ui tiny left floated image"
+      >
+        <img
+          alt=""
+          src="http://image.com"
+        />
+      </div>
+      <div
+        className="header"
+      >
+        Functional JavaScript
+      </div>
+      <div
+        className="meta"
+      >
+        2009-12-01
+      </div>
+      <div
+        className="description"
+        dangerouslySetInnerHTML={
+          Object {
+            "__html": "Lorem ipsum",
+          }
+        }
+      />
+    </div>
+  </div>
+</div>
+`;
