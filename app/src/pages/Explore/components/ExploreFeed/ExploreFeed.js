@@ -46,6 +46,7 @@ class ExploreFeed extends React.Component<Props>  {
   };
 
   render() {
+    console.log(this.props.searchHits);
 
     return (
       <div className={styles.feedWrapper}>
