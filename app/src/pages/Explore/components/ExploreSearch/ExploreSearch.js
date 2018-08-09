@@ -64,6 +64,7 @@ class ExploreSearch extends React.Component<Props, State> {
   };
 
   performSearch = (event: SyntheticInputEvent<HTMLInputElement> | null): void => {
+    this.setState({open: false});
     this.props.handleSearch(this.state.query);
     if (event) event.preventDefault();
   };

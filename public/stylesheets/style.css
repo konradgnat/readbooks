@@ -122,3 +122,11 @@ input[type="submit"].delete:hover {
 		float:none;
 	}
 }
+
+a {
+	color: #000000;
+}
+
+a:hover {
+	color: #000000;
+}
