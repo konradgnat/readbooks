@@ -20,6 +20,7 @@ class ExploreFeed extends React.Component<Props>  {
   }
 
   renderSearchHit = (hit: TitleResults): React.Element<'div'> => {
+
     let feedItemClassNames = this.cx({
       feedItem: true,
       ui: true,
@@ -29,6 +30,9 @@ class ExploreFeed extends React.Component<Props>  {
       pathname: '/explore/' + hit.id,
       state: hit
     };
+
+    console.log(hit);
+
 
     return(
       <div key={hit.id} className={feedItemClassNames}>
