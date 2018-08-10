@@ -20,18 +20,21 @@ export default class ExploreDetail extends React.Component<Props> {
     }
 
     return (
-      <div id="main-title">
-        <div className="content">
-          <h1 className="ui header">{this.props.location.state.volumeInfo.title}</h1>
-          <div className="meta">
-            <div>
+      <div className="segment">
+        <div className="ui items">
+          <div className="ui item">
+            <div className="ui tiny-image">
               <img src={this.props.location.state.volumeInfo.imageLinks ? this.props.location.state.volumeInfo.imageLinks.smallThumbnail : '/images/no_results.svg'} alt=""/>
-              <div className={styles.detailMeta}>
-                <span className="author">Authors: {authors}</span>
-                <span className="date">Published: {this.props.location.state.volumeInfo.publishedDate}</span>
-
-              </div>
             </div>
+            <div className={styles.detailContent}>
+              <div className="content">
+                <h1 className="ui header">{this.props.location.state.volumeInfo.title}</h1>
+                <div className="meta">
+                  <span className={styles.detailMeta}>Authors: {authors}</span>
+                  <span className={styles.detailMeta}>Published: {this.props.location.state.volumeInfo.publishedDate}</span>
+                </div>
+            </div>
+          </div>
           </div>
         </div>
         <h4 className="ui header">Description</h4>

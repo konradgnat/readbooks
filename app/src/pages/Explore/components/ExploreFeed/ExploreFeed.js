@@ -31,9 +31,6 @@ class ExploreFeed extends React.Component<Props>  {
       state: hit
     };
 
-    console.log(hit);
-
-
     return(
       <div key={hit.id} className={feedItemClassNames}>
         <Link to={detail}>

@@ -7,10 +7,11 @@ jest.mock('../../../../../src/util/apiCaller', () => jest.fn());
 
 describe('Autocomplete', () => {
 
-  it('renders correctly', () => {
+  it('renders matching snapshot', () => {
     const wrapper = shallow(<Autocomplete/>);
     expect(wrapper).toMatchSnapshot();
   });
+
   let hits;
   beforeEach(() => {
     hits = [
