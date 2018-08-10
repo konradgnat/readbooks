@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ExploreDetail should render and match snapshot 1`] = `
+<div
+  className="segment"
+>
+  <div
+    className="ui items"
+  >
+    <div
+      className="ui item"
+    >
+      <div
+        className="ui tiny-image"
+      >
+        <img
+          alt=""
+          src="http://books.google.com/books/content?id=9gUJAQAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api"
+        />
+      </div>
+      <div
+        className="detailContent"
+      >
+        <div
+          className="content"
+        >
+          <h1
+            className="ui header"
+          >
+            Practical Modern JavaScript
+          </h1>
+          <div
+            className="meta"
+          >
+            <span
+              className="detailMeta"
+            >
+              Authors: 
+              author first, author second
+            </span>
+            <span
+              className="detailMeta"
+            >
+              Published: 
+              1995-12-01
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h4
+    className="ui header"
+  >
+    Description
+  </h4>
+  <p />
+</div>
+`;
