@@ -3,6 +3,16 @@ var mongoose = require('mongoose'),
 	User	= require('./models/user');
 
 var data = [
+  { "_id" : ("5b7087c4a7999d98430d29cb"),
+    "thumbnail" : "http://books.google.com/books/content?id=e2YCuxBjkq0C&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+    "title" : "Program Or be Programmed", "author" : "Douglas Rushkoff", "publishedDate" : "2010",
+    "description" : "The debate over whether the Net is good or bad for us fills the airwaves and the blogosphere. But for all the heat of claim and counter-claim, the argument is essentially beside the point: It\'s here; it\'s everywhere. The real question is, do we direct technology, or do we let ourselves be directed by it and those who have mastered it? 'Choose the former,' writes Rushkoff, 'and you gain access to the control panel of civilization. Choose the latter, and it could be the last real choice you get to make.' In ten chapters, composed of ten 'commands' accompanied by original illustrations from comic artist Leland Purvis, Rushkoff provides cyber enthusiasts and technophobes alike with the guidelines to navigate this new universe. In this spirited, accessible poetics of new media, Rushkoff picks up where Marshall McLuhan left off, helping readers come to recognize programming as the new literacy of the digital age--and as a template through which to see beyond social conventions and power structures that have vexed us for centuries. This is a friendly little book with a big and actionable message.",
+  "thoughts" : "The debate over whether the Net is good or bad for us fills the airwaves and the blogosphere. But for all the heat of claim and counter-claim, the argument is essentially beside the point: it’s here; it’s everywhere.   ",
+    "comments" : [ ("59e034dfb6d54d54eb3e0bda"),
+      ("59e034eab6d54d54eb3e0bdb") ],
+    "postedBy" : { "id" : ("59e033bab6d54d54eb3e0bd4"), "username" : "JohnDoe", "avatar" : "bean.jpeg" ,
+      "email" : "JohnDoe@gmail.com" }, "__v" : 2
+  },
 	{ "_id" : ("59e034d6b6d54d54eb3e0bd9"), 
 	"thumbnail" : "http://books.google.com/books/content?id=sQYqRCIhFAMC&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api", 
 	"title" : "The Power of Now", "author" : "Eckhart Tolle", "publishedDate" : "2010-10-06", 
