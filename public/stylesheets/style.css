@@ -1,6 +1,9 @@
 #main-title {
 	margin-top: 100px;
 }
+.hero_text {
+	text-align: left;
+}
 .book_main h1 {
 	margin-top: 0px!important;
 }

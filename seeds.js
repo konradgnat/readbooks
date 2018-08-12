@@ -17,7 +17,7 @@ var data = [
 	"thumbnail" : "http://books.google.com/books/content?id=vxbUjwEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api", 
 	"title" : "Secrets of the JavaScript Ninja", "author" : "John Resig", "publishedDate" : "2016-03", 
 	"description" : "More than ever, the web is a universal platform for all types of applications, and JavaScript is the language of the web. For anyone serious about web development, it's not enough to be a decent JavaScript coder. They need to be ninja-stealthy, efficient, and ready for anything. Secrets of the JavaScript Ninja, Second Edition dives below the surface and helps readers understand the deceptively-complex world of JavaScript and browser-based application development. It skips the basics, and dives into core JavaScript concepts such as functions, closures, objects, prototypes, promises, and so on. With examples, illustrations, and insightful explanations, readers will benefit from the collective wisdom of seasoned experts John Resig, Bear Bibeault, and Josip Maras. Purchase of the print book includes a free eBook in PDF, Kindle, and ePub formats from Manning Publications.", 
-	"thoughts" : "Since JavaScript is the most popular language on GitHub, it is reasonable to assume that at some point any decent programmer will use it.", 
+	"thoughts" : "JavaScript is the only language that I’m aware of that people feel they don’t need to learn before they start using it.",
 	"comments" : [ ("59e0345bb6d54d54eb3e0bd7"), ("59e03470b6d54d54eb3e0bd8") ], "postedBy" : { "id" : ("59e033bab6d54d54eb3e0bd4"), "username" : "JohnDoe" , "email" : "JohnDoe@gmail.com", "avatar" : "bean.jpeg" }, "__v" : 2
 },{ 
 	"_id" : ("59e033d7b6d54d54eb3e0bd5"), 
@@ -35,7 +35,7 @@ var data = [
 
 var userData = [
 	{ "_id" : ("5a481d884f95a82f953691ef"), 
-	"username" : "HomerSimpson",
+	"username" : "StephenKing",
 		"avatar" : "chuck.jpeg",
 	"local" : { "password" : "$2a$08$sVzi4db/nbqdizQt7w/4pe6hCLab/rGWJCY/Vti2locLHGvt2VXj6", "email" : "HomerJS@gmail.com" },
 	 "__v" : 0 
@@ -43,7 +43,7 @@ var userData = [
 	{ "_id" : ("59e033bab6d54d54eb3e0bd4"), 
 	"username" : "JohnDoe",
 	"location" : "San Francisco",
-	"interests" : "Flying, computers and reading",
+	"interests" : "Computers and reading",
 	"topFiveAuthors" : "J. Steinbeck, Dashielle Hammet, Louis Borges, Gabriel Garcia Marquez, Carl Sandburg",
   "avatar" : "bean.jpeg",
 	"local" : { "password" : "$2a$08$sVzi4db/nbqdizQt7w/4pe6hCLab/rGWJCY/Vti2locLHGvt2VXj6", "email" : "JohnDoe@gmail.com" },
@@ -54,9 +54,9 @@ var userData = [
 ];
 
 const commentData = [
-	{ "_id" : "594dee3c1dbcf8287a6866b2", "text" : "how did it end", "__v" : 0, "author" : { "id" : "5a481d884f95a82f953691ef", "username" : "HomerSimpson" } },
+	{ "_id" : "594dee3c1dbcf8287a6866b2", "text" : "Books are a uniquely portable magic.", "__v" : 0, "author" : { "id" : "5a481d884f95a82f953691ef", "username" : "Stephen King" } },
 	{ "_id" : "594def761dbcf8287a6866b3", "text" : "do'h", "__v" : 0, "author" : { "id" : "5a481d884f95a82f953691ef", "username" : "HomerSimpson" } },
-	{ "_id" : "594f3df8283ea656955e973e", "text" : "These violent delights have violent ends.", "__v" : 0, "author" : { "id" : "5949d4806bc1df3be17b0b42", "username" : "Dolores"  } },
+	{ "_id" : "594f3df8283ea656955e973e", "text" : "Read, read, read. Read everything -- trash, classics, good and bad, and see how they do it. Just like a carpenter who works as an apprentice and studies the master. Read! You'll absorb it. Then write. If it's good, you'll find out. If it's not, throw it out of the window.", "__v" : 0, "author" : { "id" : "5949d4806bc1df3be17b0b42", "username" : "William Faulkner"  } },
 ];
 
 function seedDB(){
