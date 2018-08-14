@@ -16,7 +16,6 @@ class ExploreFeed extends React.Component<Props>  {
 
   constructor(props: Props) {
     super(props);
-
   }
 
   renderSearchHit = (hit: TitleResults): React.Element<'div'> => {

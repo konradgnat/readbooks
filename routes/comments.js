@@ -12,6 +12,10 @@ router.post('/', isLoggedIn, function(req, res){
 		} else {
 			Comment.create(req.body.comment, function(err, newComment){
 				if(err){
+          // A good place to up the "finished-ness" of the project could be to
+          // deliver some error messaging to the user. Especially if you can tell why
+          // something errored. Actionable feedback is great, but not always
+          // possible.. sometimes just "oops, try again" is all we can do.
 					console.log(err);
 				} else {
 					newComment.author.id = req.user._id;

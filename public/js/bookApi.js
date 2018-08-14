@@ -8,8 +8,19 @@ search_input.addEventListener('keydown', function(e){
 })
 
 function bookSelected(node) {
-	var id = parseInt(node.id);
-	node.setAttribute('onclick', '""');
+  // There's a lot going on in this function.
+  // If we could break it into smaller function calls with descriptive names,
+  // it would be easier to read, and to reason about.
+  // Even if you're the only one working on a project, making it readable
+  // for "other developers" also includes future you.
+  //
+  // This can also make the functionality more composeable. Say there's a new
+  // feature that gets added eventually that needs to do one of the same steps
+  // as here, say updating the input tags values. You'll have a function that
+  // can be reused.
+  //
+  var id = parseInt(node.id);
+  node.setAttribute('onclick', '""');
 	document.getElementById('content').innerHTML = '';
 	var descFull = node.getElementsByClassName('descFull')[0];
 	descFull.style.display = 'block';
@@ -63,7 +74,7 @@ function handleResponse(response) {
 		book.author = item.volumeInfo.authors ? item.volumeInfo.authors[0] : '';
 		book.thumbnail = item.volumeInfo.imageLinks ? item.volumeInfo.imageLinks.smallThumbnail : '/images/no_results.svg';
 		booksArr.push(book);
-		
+
 		var itemHTML = '<div class="item" id="' + i
 			+ '"" onclick="bookSelected(this)"><a class="ui tiny image"><img src="'
 			+ book.thumbnail
@@ -81,5 +92,5 @@ function handleResponse(response) {
 			sectionHTML += itemHTML;
 	}
 	document.getElementById("content").innerHTML = sectionHTML;
-	
+
 }
