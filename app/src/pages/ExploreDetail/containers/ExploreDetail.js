@@ -29,7 +29,7 @@ export default class ExploreDetail extends React.Component<Props> {
         <div className="ui items">
           <div className="ui item">
             <div className="ui tiny-image">
-              <img src={imageUrl} alt=""/>
+              <img src={imageUrl} className={styles.detailImage} alt=""/>
             </div>
             <div className={styles.detailContent}>
               <div className="content">

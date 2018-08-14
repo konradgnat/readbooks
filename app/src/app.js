@@ -7,6 +7,7 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ExploreContainer from './pages/Explore/containers/Explore.js';
 import ExploreDetail from './pages/ExploreDetail/containers/ExploreDetail.js';
+import Profile from './pages/Profile/containers/Profile.js';
 
 type Props = {};
 
@@ -19,6 +20,7 @@ class Search extends React.Component<Props> {
         <Switch>
           <Route path="/explore/:id" component={ExploreDetail} />
           <Route path="/explore" component={ExploreContainer} />
+          <Route path="/profile" component={Profile} />
         </Switch>
       </BrowserRouter>
     )

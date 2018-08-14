@@ -8,7 +8,7 @@ let express = require('express'),
     mongoose = require('mongoose');
 
 router.get('/', isLoggedIn, function (req, res) {
-  res.render('profile/show');
+  res.render('app/main');
 });
 
 router.get('/:id', function (req, res) {

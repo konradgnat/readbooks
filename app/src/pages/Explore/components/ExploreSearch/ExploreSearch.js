@@ -85,7 +85,7 @@ class ExploreSearch extends React.Component<Props, State> {
       <div className={styles.search_container}>
         <h3>Find interesting reads</h3>
         <div className={styles.titleSearchWrapper}>
-          <label htmlFor="titleSearch" className={styles.titleSearchLabel}>Search By Title:</label>
+          <label htmlFor="titleSearch" className={styles.titleSearchLabel}>Search:</label>
           <div className={styles.autoCompWrapper}>
             <input
               id="titleSearch"

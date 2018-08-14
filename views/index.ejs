@@ -31,7 +31,7 @@
           <% } %>
         <span> - <a href="/profile/<%=book.postedBy.id%>"><%=book.postedBy.username%></a></span>
       </div>
-    <% if(book.thoughts){ %>
+    <% if(book.thoughts) { %>
       <p><%=book.thoughts.substring(0, 100);%>...</p>
       <%}%>
     <a href="/books/<%=book._id%>">read more</a>
