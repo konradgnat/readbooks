@@ -7,8 +7,13 @@ let express = require('express'),
     fs = require('fs'),
     mongoose = require('mongoose');
 
-router.get('/', isLoggedIn, function (req, res) {
-  res.render('app/main');
+// router.get('/', isLoggedIn, function (req, res) {
+router.get('/', function (req, res) {
+  const props = {
+    name: 'developer'
+  };
+
+  res.render('app/main', { props: props });
 });
 
 router.get('/:id', function (req, res) {
@@ -28,7 +33,6 @@ router.get('/:id/edit', isLoggedIn, function (req, res) {
       console.log(err);
     } else {
       res.render('profile/edit', {user: user});
-      // res.send(user);
     }
   })
 });
@@ -93,7 +97,6 @@ function uploadAvatar(req, res, next) {
     next();
   })
 }
-
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
