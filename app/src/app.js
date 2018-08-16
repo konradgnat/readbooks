@@ -20,7 +20,7 @@ class Search extends React.Component<Props> {
         <Switch>
           <Route path="/explore/:id" component={ExploreDetail} />
           <Route path="/explore" component={ExploreContainer} />
-          <Route path="/profile" component={Profile} />
+          <Route path="/profile" component={Profile} props={window.props} />
         </Switch>
       </BrowserRouter>
     )
@@ -30,5 +30,5 @@ class Search extends React.Component<Props> {
 const root = document.getElementById('search_root');
 
 if (root !== null) {
-  ReactDOM.render( <Search/>, root);
+  ReactDOM.render( <Search />, root);
 }
