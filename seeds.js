@@ -59,7 +59,7 @@ var userData = [
 	"local" : { "password" : "$2a$08$sVzi4db/nbqdizQt7w/4pe6hCLab/rGWJCY/Vti2locLHGvt2VXj6", "email" : "JohnDoe@gmail.com" },
 	"__v" : 0 
 },
-  { "_id" : ("5b40f331c9d8d36f212ae0a6"), "username" : "k", "local" : { "password" : "$2a$08$MQ7b7HJsHQCfZ/CXbf.wpeg9V5XSHUSeR/URDmVaIYvgokkEArGSO", "email" : "k" }, "followers" : [ ], "__v" : 0 }
+  { "_id" : ("5b40f331c9d8d36f212ae0a6"), "username" : "tt", "local" : { "password" : "$2a$08$uUUan3w7H1Wp6e7WG8VANuVxdZdXO5EGwxz0T/.5trxCLnP486qu2'", "email" : "tt" }, "followers" : [ ], "__v" : 0 }
 
 ];
 

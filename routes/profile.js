@@ -9,8 +9,6 @@ let express = require('express'),
 
 // router.get('/', isLoggedIn, function (req, res) {
 router.get('/', function (req, res) {
-  console.log(res.locals.currentUser);
-
   res.render('app/main', { appData: res.locals.currentUser });
 });
 

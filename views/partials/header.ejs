@@ -23,11 +23,10 @@
       <a href="/register" class="menu_nav__item">Sign Up</a>
       <%} else { %>
         <a href="/books/new" class="menu_nav__item">Add Book</a>
-        <a href="/profile" class="menu_nav__item">Profile</a>
-        <a href="/logout" class="menu_nav__item">Logout</a>
+
       <%}%>
       <% if (currentUser) {%>
-        <div class="menu_nav__item menu_nav__item--profile">
+        <div class="menu_nav__item menu_nav__item--profile" onclick="expandUserMenu()">
           Signed is as 
         <%if(currentUser.username){%>
           <%=currentUser.username%>
@@ -39,7 +38,14 @@
           <%=currentUser.google.name%>
         <% } else {%>
           <%= user %>
-        <% } %>   
+        <% } %>
+          <div id="userMenu" class="menu_nav__profile_menu">
+            <ul>
+              <li><a href="/profile" class="menu_nav__item">View Profile</a></li>
+              <li><a href="/profile/edit" class="menu_nav__item">Edit Profile</a></li>
+              <li><a href="/logout" class="menu_nav__item">Logout</a></li>
+            </ul>
+          </div>
         </div>
       <%}%>
       <div id="menu_button" class="menu_nav__button" onclick="expandMenu()">

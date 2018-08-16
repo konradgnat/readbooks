@@ -80,13 +80,9 @@ module.exports	= function(passport){
 				} else {
 					// if there is no user with that email, create new user
 					var newUser	= new User();
-					console.log("req = ");
-					console.log(req);
-					console.log("req.user = ");
-					console.log(req.user);
 					newUser.username =req.body.username;
 					newUser.local.email	= email;
-					newUser.local.password= newUser.generateHash(password);
+					newUser.local.password = newUser.generateHash(password);
 
 					// save the user
 					newUser.save(function(err){
