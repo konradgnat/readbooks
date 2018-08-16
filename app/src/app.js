@@ -20,7 +20,7 @@ class Search extends React.Component<Props> {
         <Switch>
           <Route path="/explore/:id" component={ExploreDetail} />
           <Route path="/explore" component={ExploreContainer} />
-          <Route path="/profile" component={Profile} props={window.props} />
+          <Route path="/profile" render={() => <Profile appData={window.appData} />} />
         </Switch>
       </BrowserRouter>
     )

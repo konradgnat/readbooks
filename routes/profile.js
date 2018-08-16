@@ -9,11 +9,9 @@ let express = require('express'),
 
 // router.get('/', isLoggedIn, function (req, res) {
 router.get('/', function (req, res) {
-  const props = {
-    name: 'developer'
-  };
+  console.log(res.locals.currentUser);
 
-  res.render('app/main', { props: props });
+  res.render('app/main', { appData: res.locals.currentUser });
 });
 
 router.get('/:id', function (req, res) {
