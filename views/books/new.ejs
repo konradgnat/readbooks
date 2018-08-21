@@ -1,27 +1,31 @@
 <% include ../partials/header %>
 
 
-<div id="main-title" class="ui raised very padded text container segment">
-  <h1 class="ui header">Add New Book</h1>
-  <div class="search_bar ui icon input">
-    <input id="in" type="text" placeholder="Search by title...">
-    <i class="circular search link icon" onclick="searchByTitle()"></i>
-  </div>
-  <div id="content" class="ui divided items">
+<div class="ui grid">
+  <div class="row">
+    <div id="main-title" class="ui raised very padded text centered twelve wide column segment">
+      <h1 class="ui centered header">Add New Book</h1>
+      <div class="search_bar ui icon input">
+        <input id="in" type="text" placeholder="Search by title...">
+        <i class="circular search link icon" onclick="searchByTitle()"></i>
+      </div>
+      <div id="content" class="ui divided items">
 
-  </div>
-  <form class="ui form" action="/books" method="POST">
-    <input type="hidden" name="thumbnail">
-    <input type="hidden" name="title">
-    <input type="hidden" name="publishedDate">
-    <input type="hidden" name="author">
-    <input type="hidden" name="description">
-    <div id="new_form" class="ui divided items book_entry"></div>
-    <button id="form_submit" type="submit" class="ui tiny green basic button" style="display:none;">Add Book</button>
-</form>
-<script src="https://apis.google.com/js/api.js"></script>
+      </div>
+      <form class="ui form" action="/books" method="POST">
+        <input type="hidden" name="thumbnail">
+        <input type="hidden" name="title">
+        <input type="hidden" name="publishedDate">
+        <input type="hidden" name="author">
+        <input type="hidden" name="description">
+        <div id="new_form" class="ui divided items book_entry"></div>
+        <button id="form_submit" type="submit" class="ui tiny green basic button" style="display:none;">Add Book</button>
+    </form>
+    <script src="https://apis.google.com/js/api.js"></script>
 
-<script src="../../js/bookApi.js"></script>
+    <script src="../../js/bookApi.js"></script>
+    </div>
+  </div>
 </div>
 
 <% include ../partials/footer %>

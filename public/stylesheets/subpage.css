@@ -3,4 +3,10 @@ textarea {
 }
 .search_bar {
 	width: 100%;
+	max-width: 500px;
+	margin: 80px auto 40px;
+	display: block!important;
+}
+.search_bar input {
+	width: 100%;
 }
