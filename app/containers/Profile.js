@@ -4,9 +4,7 @@ export default class Profile extends React.Component<Props> {
 
   render() {
     const user = this.props.appData;
-    const avatar = (
-      user.avatar ? (<img src={'/' + user.avatar} className="ui small image"/>) : ''
-    );
+    const avatar = user.avatar ? '/' + user.avatar : '/images/avatar-placeholder.jpg';
     return (
       <div className="segment">
         <a href="/" className="ui right floated mini primary button basic">Edit</a>
@@ -14,13 +12,13 @@ export default class Profile extends React.Component<Props> {
 
         <div class="ui grid">
           <div class="three wide column">
-            {avatar}
+            <img src={avatar} className="ui small image"/>
           </div>
           <div class="twelve wide column">
             <h1 className="ui header">
               {user.username}
             </h1>
-          </div>s
+          </div>
         </div>
 
         <div className="ui blue divider"></div>
