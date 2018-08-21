@@ -1,10 +1,10 @@
 // @flow
 
 import * as React from 'react';
-import apiCaller from '../../../../util/apiCaller';
+import apiCaller from 'util/apiCaller';
 import styles from './Autocomplete.css';
 import classNames from 'classnames/bind';
-import type { TitleResults } from '../../../../types/BooksAPI';
+import type { TitleResults } from 'types/BooksAPI';
 
 type Props = {
   currentIndex: number,

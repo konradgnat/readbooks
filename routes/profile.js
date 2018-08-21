@@ -7,7 +7,6 @@ let express = require('express'),
     fs = require('fs'),
     mongoose = require('mongoose');
 
-// router.get('/', isLoggedIn, function (req, res) {
 router.get('/', function (req, res) {
   res.render('app/main', { appData: res.locals.currentUser });
 });

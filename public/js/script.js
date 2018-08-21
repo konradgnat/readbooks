@@ -16,4 +16,14 @@ function expandUserMenu() {
   } else {
     userMenu.className = 'menu_nav__profile_menu';
   }
+  console.log(userMenu.className);
+
+  // document.addEventListener('click', function(event) {
+  //   if (event.target.closest('#userMenu')) {
+  //     console.log('here');
+  //     return;
+  //   }
+  //   userMenu.className = 'menu_nav__profile_menu';
+  // })
 }
+

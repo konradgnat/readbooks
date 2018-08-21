@@ -2,8 +2,8 @@
 
 import React from 'react';
 import styles from './ExploreSearch.css';
-import Autocomplete from '../Autocomplete/Autocomplete';
-import type { TitleResults } from '../../../../types/BooksAPI';
+import Autocomplete from './Autocomplete';
+import type { TitleResults } from 'types/BooksAPI';
 
 type Props = {
   handleSearch: (query: string) => void

@@ -1,5 +1,5 @@
 import React from 'react';
-import ExploreSearch from '../../../../../src/pages/Explore/components/ExploreSearch/ExploreSearch';
+import ExploreSearch from '../../components/ExploreSearch';
 import { shallow } from 'enzyme';
 
 describe('ExploreSearch', () => {

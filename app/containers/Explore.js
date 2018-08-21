@@ -1,10 +1,10 @@
 // @flow
 
 import React from 'react';
-import ExploreSearch from '../components/ExploreSearch/ExploreSearch';
-import ExploreFeed from '../components/ExploreFeed/ExploreFeed';
-import apiCaller from '../../../util/apiCaller';
-import type { TitleResults } from '../../../types/BooksAPI';
+import ExploreSearch from '../components/ExploreSearch';
+import ExploreFeed from '../components/ExploreFeed';
+import apiCaller from '../util/apiCaller';
+import type { TitleResults } from '../types/BooksAPI';
 
 type Props = {};
 

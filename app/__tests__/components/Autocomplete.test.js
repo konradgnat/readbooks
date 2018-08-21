@@ -1,7 +1,7 @@
 import React from 'react';
-import Autocomplete from '../../../../../src/pages/Explore/components/Autocomplete/Autocomplete';
+import Autocomplete from '../../components/Autocomplete';
 import { shallow, mount } from 'enzyme';
-import apiCaller from '../../../../../src/util/apiCaller';
+import apiCaller from '../../util/apiCaller';
 
 jest.mock('../../../../../src/util/apiCaller', () => jest.fn());
 
