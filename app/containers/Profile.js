@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Tab from '../components/Tab';
 
 export default class Profile extends React.Component<Props> {
 
@@ -45,6 +46,7 @@ export default class Profile extends React.Component<Props> {
         <div className="ui bottom attached tab segment active" data-tab="third">
           Third
         </div>
+        <Tab />
       </div>
     )
   }
