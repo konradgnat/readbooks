@@ -6,7 +6,11 @@ var userSchema	= mongoose.Schema({
 	location		: String,
 	interests		: String,
 	topFiveAuthors	: String,
-	avatar			: String,
+  avatar			: String,
+  bookList		: [{
+		id: String,
+		title: String
+  }],
   followers : [{
     type: mongoose.Schema.Types.ObjectId,
 		ref: 'Follower'

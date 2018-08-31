@@ -1,11 +1,14 @@
 import * as React from 'react';
-import PostsTab from '../components/PostsTab';
+import Posts from '../components/Posts';
+import BooksList from '../components/BooksList';
+import Following from '../components/Following';
+import Followers from '../components/Followers';
 
 export const tabs = [
-  {id: 'posts', label: 'Posts', active: true, content: <PostsTab/>},
-  {id: 'readingList', label: 'Reading List', active: false, content: <PostsTab/>},
-  {id: 'following', label: 'Following', active: false, content: <PostsTab/>},
-  {id: 'followers', label: 'Followers', active: false, content: <PostsTab/>},
+  {id: 'posts', label: 'Posts', content: <Posts/>},
+  {id: 'booksList', label: 'Books List', content: <BooksList/>},
+  {id: 'following', label: 'Following', content: <Following/>},
+  {id: 'followers', label: 'Followers', content: <Followers/>},
 ];
 
 export default class Profile extends React.Component<Props> {
@@ -18,28 +21,28 @@ export default class Profile extends React.Component<Props> {
   }
 
   changeTab = (tabId) => {
-    let updatedTab = this.state.tabs.map(t => {
-      Object.assign({}, t, {active: t.id === tabId})
-    });
     this.setState({
-      tabs: updatedTab
+      activeTab: tabId
     })
   };
 
   render() {
     const user = this.props.appData,
       avatar = user.avatar ? '/' + user.avatar : '/images/avatar-placeholder.jpg',
-      tabButtons = [],
-      tabContent = [];
+      tabButtons = [];
+    let tabContent = null;
+
     tabs.forEach((tab) => {
-      let active = tab.active ? 'active' : '';
+      let active = '';
+      if (this.state.activeTab === tab.id) {
+        active = 'active';
+        tabContent = <div key={tab.id} className={`ui bottom attached tab segment ${active}`}>{tab.content}</div>;
+      }
       tabButtons.push(
         <a key={tab.id} className={`item ${active}`} data-tab={tab.id} onClick={() => this.changeTab(tab.id)}>{tab.label}</a>
       );
-      tabContent.push(
-        <div key={tab.id} className={`ui bottom attached tab segment ${active}`}>{tab.content}</div>
-      )
     });
+
     return (
       <div className="segment">
         <a href="/" className="ui right floated mini primary button basic">Edit</a>
@@ -57,14 +60,12 @@ export default class Profile extends React.Component<Props> {
         </div>
 
         <div className="ui blue divider"></div>
-
         <p>
           <strong>Bio:</strong> {user.bio}<br/>
           <strong>Five Favorite Authors:</strong> {user.topFiveAuthors}<br/>
         </p>
 
         <div className="ui blue divider"></div>
-
         <div className="ui top attached tabular menu">
           {tabButtons}
         </div>
