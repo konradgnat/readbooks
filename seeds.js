@@ -36,7 +36,7 @@ var data = [
 	"author" : "Butcher,S.H..", 
 	"publishedDate" : "2000", 
 	"description" : "", 
-	"thoughts" : "I deeply love the Odyssey. I have read The Odyssey three times. The first was not really a read but more of a listen in the true oral tradition. ",
+	"thoughts" : "The poem mainly focuses on the Greek hero Odysseus (known as Ulysses in Roman myths), king of Ithaca, and his journey home after the fall of Troy. It takes Odysseus ten years to reach Ithaca after the ten-year Trojan War.[3] In his absence, it is assumed Odysseus has died, and his wife Penelope and son Telemachus must deal with a group of unruly suitors, the Mnesteres (Greek: Μνηστῆρες) or Proci, who compete for Penelope's hand in marriage. ",
 	"comments" : [ ("594f3df8283ea656955e973e"), ("594def761dbcf8287a6866b3", ("594f3df8283ea656955e973e")) ], "postedBy" : { "id" : ("59e033bab6d54d54eb3e0bd4"), "username" : "JohnDoe" ,
 	"email" : "JohnDoe@gmail.com", "avatar" : "bean.jpeg"},
 	"__v" : 0 

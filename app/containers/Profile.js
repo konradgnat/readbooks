@@ -1,12 +1,12 @@
 import * as React from 'react';
 import Posts from '../components/Posts';
-import BooksList from '../components/BooksList';
+import ReadingList from '../components/ReadingList';
 import Following from '../components/Following';
 import Followers from '../components/Followers';
 
 export const tabs = [
   {id: 'posts', label: 'Posts', content: <Posts/>},
-  {id: 'booksList', label: 'Books List', content: <BooksList/>},
+  {id: 'readingList', label: 'Reading List', content: <ReadingList/>},
   {id: 'following', label: 'Following', content: <Following/>},
   {id: 'followers', label: 'Followers', content: <Followers/>},
 ];
