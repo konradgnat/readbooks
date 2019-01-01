@@ -1,8 +1,8 @@
-var express = require('express'),
-	  router = express.Router({mergeParams:true});
-		Comment = require('../models/comment'),
-		Book = require('../models/book');
-
+const express = require('express');
+const router = express.Router({mergeParams:true});
+const Comment = require('../models/comment');
+const Book = require('../models/book');
+const isLoggedIn = require('../services/middleWare').isLoggedIn;
 
 // ADD COMMENT
 router.post('/', isLoggedIn, function(req, res){
@@ -55,13 +55,5 @@ router.delete('/:comment_id', function(req, res) {
 		}
 	});
 });
-
-// MIDDLEWARE
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect("/login");
-};
 
 module.exports = router;

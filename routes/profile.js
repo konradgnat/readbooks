@@ -1,11 +1,12 @@
-let express = require('express'),
-    router = express(),
-    flash = require('connect-flash'),
-    multer = require('multer'),
-    User = require('../models/user.js'),
-    Follower = require('../models/follower.js'),
-    fs = require('fs'),
-    mongoose = require('mongoose');
+const express = require('express');
+const router = express();
+const flash = require('connect-flash');
+const multer = require('multer');
+const User = require('../models/user.js');
+const Follower = require('../models/follower.js');
+const fs = require('fs');
+const mongoose = require('mongoose');
+const isLoggedIn = require('../services/middleWare').isLoggedIn;
 
 router.get('/', isLoggedIn, function (req, res) {
   res.render('profile/show');
@@ -92,14 +93,6 @@ function uploadAvatar(req, res, next) {
     req.uploadError = err;
     next();
   })
-}
-
-
-function isLoggedIn(req, res, next) {
-  if (req.isAuthenticated()) {
-    return next();
-  }
-  res.redirect("/login");
 }
 
 module.exports = router;

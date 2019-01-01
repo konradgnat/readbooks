@@ -12,7 +12,7 @@ var userSchema	= mongoose.Schema({
 		ref: 'Follower'
   }],
 	local		: {
-		email		: String,
+		email		  : String,
 		password	: String
 	},
 	facebook	: {
