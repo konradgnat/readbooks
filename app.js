@@ -1,4 +1,4 @@
-let bodyParser 				= require('body-parser'),
+const bodyParser 				= require('body-parser'),
 		mongoose					= require('mongoose'),
 		express						= require('express'),
 		session 					= require('express-session'),
@@ -8,10 +8,11 @@ let bodyParser 				= require('body-parser'),
 		passport					= require('passport'),
 		morgan 						= require('morgan'),
 		multer						= require('multer'),
-		flash 						= require('connect-flash');
+		flash 						= require('connect-flash'),
+		keys							= require('./config/keys');
 
 // ROUTES
-let indexRoutes 	= require('./routes/index'),
+const indexRoutes 	= require('./routes/index'),
 		bookRoutes		= require('./routes/books'),
 		commentRoutes	= require('./routes/comments'),
   	profileRoutes	= require('./routes/profile');
@@ -23,7 +24,7 @@ let production = true;
 mongoose.Promise = global.Promise;
 // CONNECT DATABASE
 if (production) {
-	mongoose.connect("mongodb://bookreader:lovesMuir@ds157971.mlab.com:57971/booksread", { useMongoClient: true })
+	mongoose.connect(keys.mongoURI, { useMongoClient: true })
 	.then(() =>  console.log('mongodb connection succesful'))
 	.catch((err) => console.error(err));
 } else {
@@ -32,7 +33,7 @@ if (production) {
 	.catch((err) => console.error(err));
 }
 
-require('./config/passport')(passport); // pass passport for configuration
+require('./services/passport')(passport); // pass passport for configuration
 
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/uploads'));
@@ -44,7 +45,7 @@ app.set("view engine", "ejs");
 
 
 app.use(session({
-  secret: 'omtaretutaretoresoha',
+  secret: keys.cookieKey,
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false }

@@ -2,8 +2,8 @@ var LocalStrategy		= require('passport-local').Strategy,
 	FacebookStrategy 	= require('passport-facebook').Strategy,
 	TwitterStrategy 	= require('passport-twitter').Strategy,
 	GoogleStrategy		= require('passport-google-oauth').OAuth2Strategy,
-	User				= require('../models/user'),
-	configAuth 			= require('../models/auth');
+	User							= require('../models/user'),
+	keys 							= require('../config/keys');
 
 module.exports	= function(passport){
 	
@@ -104,12 +104,11 @@ module.exports	= function(passport){
 // ======================================
 
 	passport.use(new FacebookStrategy({
-		clientID		: configAuth.facebookAuth.clientID,
-		clientSecret 	: configAuth.facebookAuth.clientSecret,
-		callbackURL		: configAuth.facebookAuth.callbackURL,
+		clientID		: keys.facebookClientID,
+		clientSecret 	: keys.facebookClientSecret,
+		callbackURL		: keys.facebookCallbackURL,
 		profileFields	: ["emails", "displayName", "name"],
         passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
-
     },
 	// facebook will send back the token and profile
 	function(req, token, refreshToken, profile, done){
@@ -179,9 +178,9 @@ module.exports	= function(passport){
 // ======================================
 
 	passport.use(new TwitterStrategy({
-		consumerKey		: configAuth.twitterAuth.consumerKey,
-		consumerSecret 	: configAuth.twitterAuth.consumerSecret,
-		callbackURL		: configAuth.twitterAuth.callbackURL,
+		consumerKey		: keys.twitterConsumerKey,
+		consumerSecret 	: keys.twitterConsumerSecret,
+		callbackURL		: keys.twitterCallbackURL,
 		passReqToCallback : true
 	},
 	// twitter will send back the token and profile
@@ -249,9 +248,9 @@ module.exports	= function(passport){
 // ======================================
     passport.use(new GoogleStrategy({
 
-        clientID        : configAuth.googleAuth.clientID,
-        clientSecret    : configAuth.googleAuth.clientSecret,
-        callbackURL     : configAuth.googleAuth.callbackURL,
+        clientID        : keys.googleClientID,
+        clientSecret    : keys.googleClientSecret,
+        callbackURL     : keys.googleCallbackURL,
         passReqToCallback : true 
 
     },

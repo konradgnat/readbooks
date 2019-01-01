@@ -5,6 +5,7 @@ npm-debug.log
 .idea
 
 config/auth.js
+config/dev.js
 
 ./scratch.js
 
