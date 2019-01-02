@@ -68,8 +68,8 @@ app.use('/profile',  profileRoutes);
 app.use('/explore',  exploreRoutes);
 app.use('/books/:id/comments', commentRoutes);
 
-
+const PORT = process.env.PORT || 8083;
 // app.listen(process.env.PORT, process.env.IP);
-app.listen(process.env.PORT || 8080, function(){
-	console.log("server on 8080");
+app.listen(PORT, function(){
+	console.log(`server on ${PORT})`);
 });
