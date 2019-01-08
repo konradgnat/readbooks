@@ -11,4 +11,5 @@ notes.txt
 
 uploads/*
 yarn-error.log
-
+public/js/bundle-build.js
+ecosystem.config.js
