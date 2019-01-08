@@ -240,7 +240,8 @@ module.exports = function (passport) {
       clientID: keys.googleClientID,
       clientSecret: keys.googleClientSecret,
       callbackURL: keys.googleCallbackURL,
-      passReqToCallback: true
+      passReqToCallback: true,
+      proxy: true
     },
     // google will send back the token and profile
     function (req, token, refreshToken, profile, done) {
