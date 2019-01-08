@@ -1,0 +1,12 @@
+.feedWrapper {
+    margin-top: 60px;
+}
+
+.feedItem {
+    overflow: auto;
+    min-width: 80px;
+}
+
+.feedItem:hover {
+    cursor: pointer;
+}

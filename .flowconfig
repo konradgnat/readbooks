@@ -6,7 +6,7 @@
 [libs]
 
 [lints]
-
+module.name_mapper='^*' ->'<PROJECT_ROOT>/app'
 [options]
 
 [strict]

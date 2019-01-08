@@ -11,34 +11,35 @@
       <a href="/register" class="ui inverted button">Sign Up</a>
     </div>
   </div>
-<%} else { %>
-  <div>Welcome back</div>
-<% } %>  
-<div id="main-title" class="ui raised very padded text container segment">
-  <h1 class="ui header"> </h1>
-  <div class="ui divided items">
-  <% books.forEach(function(book){ %>
-    <div class="item book_cards">
-      <div class="ui tiny image">
-        <img class="book_thumbnail" src="<%=book.thumbnail%>">
+<%} %>
 
+<div class="ui grid">
+  <div class="row">
+    <div id="main-title" class="ui raised very padded text centered container segment">
+      <h1 class="ui header"> </h1>
+      <div class="ui divided items">
+        <% books.forEach(function(book){ %>
+        <div class="item book_cards">
+          <div class="ui tiny image">
+            <img class="book_thumbnail" src="<%=book.thumbnail%>">
+          </div>
+          <div class="content">
+            <div class="header"><%=book.title%></div>
+            <div class="meta">
+                <% if (book.postedBy.avatar) { %>
+              <img src="/<%= book.postedBy.avatar %>" class="ui avatar image">
+                <% } %>
+              <span> - <a href="/profile/<%=book.postedBy.id%>"><%=book.postedBy.username%></a></span>
+            </div>
+              <% if(book.thoughts) { %>
+            <p><%=book.thoughts.substring(0, 100);%>...</p>
+              <%}%>
+            <a href="/books/<%=book._id%>">read more</a>
+          </div>
+        </div>
+        <%})%>
       </div>
-      <div class="content">
-        <div class="header"><%=book.title%></div>
-      <div class="meta">
-          <% if (book.postedBy.avatar) { %>
-            <img src="/<%= book.postedBy.avatar %>" class="ui avatar image">
-          <% } %>
-        <span> - <a href="/profile/<%=book.postedBy.id%>"><%=book.postedBy.username%></a></span>
-      </div>
-    <% if(book.thoughts){ %>
-      <p><%=book.thoughts.substring(0, 100);%>...</p>
-      <%}%>
-    <a href="/books/<%=book._id%>">read more</a>
     </div>
-  </div>
-  <%})%>
-    
   </div>
 </div>
 <% include partials/footer %>

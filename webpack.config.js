@@ -1,10 +1,13 @@
-const path = require("path");
+const path = require('path');
 
 module.exports = {
-  entry: "./app/src/app.js",
+  entry: './app/app.js',
   output: {
-    path: path.resolve(__dirname, "public/js"),
-    filename: "bundle-build.js"
+    path: path.resolve(__dirname, 'public/js'),
+    filename: 'bundle-build.js'
+  },
+  resolve: {
+    modules: [path.resolve(__dirname, 'app'), 'node_modules']
   },
   module: {
     rules: [
@@ -12,21 +15,21 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader"
+          loader: 'babel-loader'
         }
       },
       {
         test: /\.css$/,
         use: [
           {
-            loader: "style-loader"
+            loader: 'style-loader'
           },
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               modules: true,
               importLoaders: 1,
-              localIndentName: "[name]_[local]_[hash:base64]",
+              localIndentName: '[name]_[local]_[hash:base64]',
               sourceMap: true,
               minimize: true
             }
