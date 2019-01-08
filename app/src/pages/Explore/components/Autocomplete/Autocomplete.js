@@ -1,10 +1,10 @@
 // @flow
 
-import * as React from 'react';
-import apiCaller from '../../../../util/apiCaller';
-import styles from './Autocomplete.css';
-import classNames from 'classnames/bind';
-import type { TitleResults } from '../../../../types/BooksAPI';
+import * as React from "react";
+import apiCaller from "../../../../util/apiCaller";
+import styles from "./Autocomplete.css";
+import classNames from "classnames/bind";
+import type { TitleResults } from "../../../../types/BooksAPI";
 
 type Props = {
   currentIndex: number,
@@ -12,14 +12,13 @@ type Props = {
   onClick: (hit: string) => void,
   onSuggestions: (hits: Array<TitleResults>) => void,
   open: boolean
-}
+};
 
 type State = {
   hits: Array<TitleResults>
-}
+};
 
 class Autocomplete extends React.Component<Props, State> {
-
   node = null;
 
   cx = classNames.bind(styles);
@@ -27,34 +26,31 @@ class Autocomplete extends React.Component<Props, State> {
   constructor(props: Props): void {
     super(props);
     this.state = {
-      hits: [],
+      hits: []
     };
   }
 
   componentDidMount() {
-    document.addEventListener('mousedown', this.handleClick, false);
+    document.addEventListener("mousedown", this.handleClick, false);
   }
 
   componentDidUpdate(prevProps: Props): void {
     if (this.props.query !== prevProps.query) {
-
-      if (this.props.query.trim() === '') {
+      if (this.props.query.trim() === "") {
         this.setState({ hits: [] });
         this.props.onSuggestions([]);
         return;
       }
 
-      apiCaller(this.props.query)
-        .then((res) => {
-          this.setState({ hits: res.items || [] });
-          this.props.onSuggestions(res.items);
-        })
+      apiCaller(this.props.query).then(res => {
+        this.setState({ hits: res.items || [] });
+        this.props.onSuggestions(res.items);
+      });
     }
   }
 
   handleClick = (e: MouseEvent): void => {
     if (this.node && e.target instanceof Node && this.node.contains(e.target)) {
-
       return;
     }
 
@@ -62,9 +58,10 @@ class Autocomplete extends React.Component<Props, State> {
     this.props.onSuggestions([]);
   };
 
-  renderHit = (hit: TitleResults): React.Element<'div'> => {
+  renderHit = (hit: TitleResults): React.Element<"div"> => {
     let isSelected = false;
-    if (this.props.currentIndex > -1) isSelected = this.state.hits[this.props.currentIndex].id === hit.id;
+    if (this.props.currentIndex > -1)
+      isSelected = this.state.hits[this.props.currentIndex].id === hit.id;
     let className = this.cx({
       suggestion: true,
       selected: isSelected
@@ -72,27 +69,37 @@ class Autocomplete extends React.Component<Props, State> {
     const title = hit.volumeInfo.title;
 
     return (
-      <div key={hit.id}
-           role="option"
-           onClick={() => this.props.onClick(hit.volumeInfo.title)}
-           aria-selected={isSelected}
-           className={className}
+      <div
+        key={hit.id}
+        role="option"
+        onClick={() => this.props.onClick(hit.volumeInfo.title)}
+        aria-selected={isSelected}
+        className={className}
       >
         {title}
       </div>
-    )
+    );
   };
 
   render() {
     const style = {};
-    if (!this.props.open || !this.state.hits || (this.state.hits && this.state.hits.length === 0)) {
-      style.display = 'none';
+    if (
+      !this.props.open ||
+      !this.state.hits ||
+      (this.state.hits && this.state.hits.length === 0)
+    ) {
+      style.display = "none";
     }
     return (
-      <div ref={node => this.node = node} role="list" className={styles.autoCompList} style={style}>
+      <div
+        ref={node => (this.node = node)}
+        role="list"
+        className={styles.autoCompList}
+        style={style}
+      >
         {this.state.hits.map(this.renderHit)}
       </div>
-    )
+    );
   }
 }
 

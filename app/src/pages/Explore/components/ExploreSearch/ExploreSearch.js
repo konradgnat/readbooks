@@ -1,9 +1,9 @@
 // @flow
 
-import React from 'react';
-import styles from './ExploreSearch.css';
-import Autocomplete from '../Autocomplete/Autocomplete';
-import type { TitleResults } from '../../../../types/BooksAPI';
+import React from "react";
+import styles from "./ExploreSearch.css";
+import Autocomplete from "../Autocomplete/Autocomplete";
+import type { TitleResults } from "../../../../types/BooksAPI";
 
 type Props = {
   handleSearch: (query: string) => void
@@ -13,32 +13,37 @@ type State = {
   value: string,
   currentIndex: number,
   open: boolean
-}
+};
 
 class ExploreSearch extends React.Component<Props, State> {
-
   suggestions = [];
 
   onKeyDown = (event: KeyboardEvent): void => {
     let currentIndex = this.state.currentIndex;
-    switch(event.key) {
-      case 'ArrowDown':
-        if (currentIndex < this.suggestions.length - 1) this.setState({currentIndex: currentIndex + 1});
-        if (!this.state.open) this.setState({open: true});
+    switch (event.key) {
+      case "ArrowDown":
+        if (currentIndex < this.suggestions.length - 1)
+          this.setState({ currentIndex: currentIndex + 1 });
+        if (!this.state.open) this.setState({ open: true });
         event.preventDefault();
         break;
-      case 'ArrowUp':
-        if (currentIndex > -1) this.setState({currentIndex: currentIndex - 1});
-        else this.setState({open:false});
+      case "ArrowUp":
+        if (currentIndex > -1)
+          this.setState({ currentIndex: currentIndex - 1 });
+        else this.setState({ open: false });
         event.preventDefault();
         break;
-      case 'Escape':
-        this.setState({open: false, currentIndex: -1 });
+      case "Escape":
+        this.setState({ open: false, currentIndex: -1 });
         event.preventDefault();
         break;
-      case 'Enter':
+      case "Enter":
         if (this.suggestions.length > 0 && currentIndex >= 0) {
-          this.setState({value: this.suggestions[currentIndex].volumeInfo.title, open: false, currentIndex: -1 });
+          this.setState({
+            value: this.suggestions[currentIndex].volumeInfo.title,
+            open: false,
+            currentIndex: -1
+          });
           event.preventDefault();
         } else {
           this.performSearch(null);
@@ -55,16 +60,21 @@ class ExploreSearch extends React.Component<Props, State> {
 
   onSuggestions = (hits: Array<TitleResults>): void => {
     this.suggestions = hits;
-    if (!this.state.open) this.setState({open: true});
+    if (!this.state.open) this.setState({ open: true });
     this.setState({ currentIndex: -1 });
   };
 
   updateQuery = (event: SyntheticInputEvent<HTMLInputElement>): void => {
-    return this.setState({ query: event.target.value, value: event.target.value });
+    return this.setState({
+      query: event.target.value,
+      value: event.target.value
+    });
   };
 
-  performSearch = (event: SyntheticInputEvent<HTMLInputElement> | null): void => {
-    this.setState({open: false});
+  performSearch = (
+    event: SyntheticInputEvent<HTMLInputElement> | null
+  ): void => {
+    this.setState({ open: false });
     this.props.handleSearch(this.state.query);
     if (event) event.preventDefault();
   };
@@ -73,8 +83,8 @@ class ExploreSearch extends React.Component<Props, State> {
     super(props);
 
     this.state = {
-      query: '',
-      value: '',
+      query: "",
+      value: "",
       open: false,
       currentIndex: -1
     };
@@ -85,7 +95,9 @@ class ExploreSearch extends React.Component<Props, State> {
       <div className={styles.search_container}>
         <h3>Find interesting reads</h3>
         <div className={styles.titleSearchWrapper}>
-          <label htmlFor="titleSearch" className={styles.titleSearchLabel}>Search By Title:</label>
+          <label htmlFor="titleSearch" className={styles.titleSearchLabel}>
+            Search By Title:
+          </label>
           <div className={styles.autoCompWrapper}>
             <input
               id="titleSearch"
@@ -104,10 +116,15 @@ class ExploreSearch extends React.Component<Props, State> {
               open={this.state.open}
             />
           </div>
-          <input onClick={this.performSearch} type="submit" value="submit" className={styles.titleSearchSubmit}/>
+          <input
+            onClick={this.performSearch}
+            type="submit"
+            value="submit"
+            className={styles.titleSearchSubmit}
+          />
         </div>
       </div>
-    )
+    );
   }
 }
 

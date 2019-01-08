@@ -14,4 +14,4 @@ export type TitleResults = {
   searchInfo: {
     textSnippet: string
   }
-}
+};
