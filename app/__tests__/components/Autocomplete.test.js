@@ -6,9 +6,8 @@ import apiCaller from '../../util/apiCaller';
 jest.mock('../../../../../src/util/apiCaller', () => jest.fn());
 
 describe('Autocomplete', () => {
-
   it('renders matching snapshot', () => {
-    const wrapper = shallow(<Autocomplete/>);
+    const wrapper = shallow(<Autocomplete />);
     expect(wrapper).toMatchSnapshot();
   });
 
@@ -31,7 +30,9 @@ describe('Autocomplete', () => {
   });
 
   it('should search and display list when new query is entered', async () => {
-    const mockAPI = apiCaller.mockImplementation(() => Promise.resolve({ items: hits }));
+    const mockAPI = apiCaller.mockImplementation(() =>
+      Promise.resolve({ items: hits })
+    );
     const onSuggestions = jest.fn();
     const wrapper = mount(
       <Autocomplete
@@ -60,13 +61,15 @@ describe('Autocomplete', () => {
         open={false}
       />
     );
-    wrapper.setProps({ query: '    '});
+    wrapper.setProps({ query: '    ' });
     expect(wrapper.state('hits')).toEqual([]);
     expect(onSuggestions).toHaveBeenCalledWith([]);
   });
 
   it('should call renderHit for each hit when query is entered', async () => {
-    const mockAPI = apiCaller.mockImplementation(() => Promise.resolve({ items: hits }));
+    const mockAPI = apiCaller.mockImplementation(() =>
+      Promise.resolve({ items: hits })
+    );
     const onSuggestions = jest.fn();
     const mockRenderHit = jest.fn();
     const wrapper = mount(
@@ -86,7 +89,9 @@ describe('Autocomplete', () => {
   });
 
   it('should render an item for each hit when query is entered', async () => {
-    const mockAPI = apiCaller.mockImplementation(() => Promise.resolve({ items: hits }));
+    const mockAPI = apiCaller.mockImplementation(() =>
+      Promise.resolve({ items: hits })
+    );
     const onSuggestions = jest.fn();
     const wrapper = mount(
       <Autocomplete

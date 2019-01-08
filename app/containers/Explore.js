@@ -11,17 +11,13 @@ type Props = {};
 type State = {
   searchHits: Array<TitleResults>,
   query: string
-
 };
 
 class ExploreContainer extends React.Component<Props, State> {
-
   handleSearch = (query: string): void => {
-
-    apiCaller(query)
-      .then((res) => {
-        this.setState({ searchHits: res.items || [] });
-      })
+    apiCaller(query).then(res => {
+      this.setState({ searchHits: res.items || [] });
+    });
   };
 
   constructor(props: Props) {
@@ -29,7 +25,7 @@ class ExploreContainer extends React.Component<Props, State> {
     this.state = {
       searchHits: [],
       query: ''
-    }
+    };
   }
 
   render() {
@@ -38,7 +34,7 @@ class ExploreContainer extends React.Component<Props, State> {
         <ExploreSearch handleSearch={this.handleSearch} />
         <ExploreFeed searchHits={this.state.searchHits} />
       </div>
-    )
+    );
   }
 }
 

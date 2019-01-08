@@ -1,6 +1,5 @@
 // @flow
-import * as React from 'react';
-
+import * as React from "react";
 
 export default class Posts extends React.Component<> {
   render() {
@@ -8,6 +7,6 @@ export default class Posts extends React.Component<> {
       <div>
         <h1>Posts Tab here</h1>
       </div>
-    )
+    );
   }
 }

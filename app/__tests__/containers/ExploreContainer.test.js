@@ -5,13 +5,11 @@ import renderer from 'react-test-renderer';
 
 describe('ExploreContainer', () => {
   it('should render without throwing', () => {
-    shallow(<ExploreContainer/>);
+    shallow(<ExploreContainer />);
   });
 
   it('renders correctly', () => {
-    const tree = renderer
-      .create(<ExploreContainer/>)
-      .toJSON();
+    const tree = renderer.create(<ExploreContainer />).toJSON();
     expect(tree).toMatchSnapshot();
-  })
+  });
 });
