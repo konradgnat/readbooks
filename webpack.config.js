@@ -1,6 +1,7 @@
 const path = require('path');
+const WebpackShellPlugin = require('webpack-shell-plugin');
 
-module.exports = {
+const config = {
   entry: './app/app.js',
   output: {
     path: path.resolve(__dirname, 'public/js'),
@@ -37,5 +38,16 @@ module.exports = {
         ]
       }
     ]
-  }
+  },
+  plugins: []
 };
+
+if (process.env.NODE_ENV !== 'production') {
+  config.plugins.push(
+    new WebpackShellPlugin({
+      onBuildEnd: ['nodemon app.js -- watch build']
+    })
+  );
+}
+
+module.exports = config;

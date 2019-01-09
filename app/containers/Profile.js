@@ -4,7 +4,7 @@ import ReadingList from '../components/ReadingList';
 import Following from '../components/Following';
 import Followers from '../components/Followers';
 
-export const tabs = [
+export const TABS_STRUCTURE = [
   { id: 'posts', label: 'Posts', content: <Posts /> },
   { id: 'readingList', label: 'Reading List', content: <ReadingList /> },
   { id: 'following', label: 'Following', content: <Following /> },
@@ -15,7 +15,7 @@ export default class Profile extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      tabs: tabs,
+      tabs: TABS_STRUCTURE,
       activeTab: 'posts'
     };
   }
@@ -34,7 +34,7 @@ export default class Profile extends React.Component<Props> {
       tabButtons = [];
     let tabContent = null;
 
-    tabs.forEach(tab => {
+    TABS_STRUCTURE.forEach(tab => {
       let active = '';
       if (this.state.activeTab === tab.id) {
         active = 'active';
@@ -61,18 +61,21 @@ export default class Profile extends React.Component<Props> {
 
     return (
       <div className="segment">
-        <a href="/" className="ui right floated mini primary button basic">
+        <a
+          href={`/profile/${this.props.appData._id}/edit`}
+          className="ui right floated mini primary button basic"
+        >
           Edit
         </a>
         <a href="/logout" className="ui right floated mini button basic">
           Logout
         </a>
 
-        <div class="ui grid">
-          <div class="three wide column">
+        <div className="ui grid">
+          <div className="three wide column">
             <img src={avatar} className="ui small image" />
           </div>
-          <div class="twelve wide column">
+          <div className="twelve wide column">
             <h1 className="ui header">{user.username}</h1>
           </div>
         </div>

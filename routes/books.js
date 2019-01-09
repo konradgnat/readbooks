@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Book = require('../models/book.js');
+const User = require('../models/user.js');
 const isLoggedIn = require('../services/middleWare').isLoggedIn;
 
 router.get('/', function(req, res) {
@@ -18,30 +19,31 @@ router.get('/new', isLoggedIn, function(req, res) {
   res.render('books/new');
 });
 
+/*
+ * Creates new book and assigns book id to user
+ */
 router.post('/', isLoggedIn, function(req, res) {
-  var title = req.body.title,
-    description = req.body.description,
-    author = req.body.author,
-    publishedDate = req.body.publishedDate,
-    thumbnail = req.body.thumbnail,
-    thoughts = req.body.thoughts,
-    postedBy = {
+  const email = req.user.local.email
+    ? req.user.local.email
+    : req.user.facebook.name;
+
+  const newBook = {
+    thumbnail: req.body.thumbnail,
+    title: req.body.title,
+    author: req.body.author,
+    publishedDate: req.body.publishedDate,
+    description: req.body.description,
+    thoughts: req.body.thoughts,
+    postedBy: {
       id: req.user._id,
       username: req.user.username,
-      email: req.user.local.email
-        ? req.user.local.email
-        : req.user.facebook.name,
+      email,
       avatar: req.user.avatar
-    },
-    newBook = {
-      thumbnail: thumbnail,
-      title: title,
-      author: author,
-      publishedDate: publishedDate,
-      description: description,
-      thoughts: thoughts,
-      postedBy: postedBy
-    };
+    }
+  };
+
+  User.findOneAndUpdate({ _id: req.user._id }, { $push: { books: newBook } });
+
   Book.create(newBook, function(err) {
     if (err) {
       console.log(err);

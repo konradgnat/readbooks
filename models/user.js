@@ -13,6 +13,12 @@ var userSchema = mongoose.Schema({
       ref: 'Follower'
     }
   ],
+  books: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Book'
+    }
+  ],
   local: {
     email: String,
     password: String
