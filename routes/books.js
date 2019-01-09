@@ -42,8 +42,6 @@ router.post('/', isLoggedIn, function(req, res) {
     }
   };
 
-  User.findOneAndUpdate({ _id: req.user._id }, { $push: { books: newBook } });
-
   Book.create(newBook, function(err) {
     if (err) {
       console.log(err);

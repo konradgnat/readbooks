@@ -1,7 +1,10 @@
 // @flow
 import * as React from 'react';
+import axios from 'axios';
 
 export default class Posts extends React.Component<> {
+  componentDidMount() {}
+
   render() {
     return (
       <div>

@@ -1,7 +1,7 @@
-var mongoose = require('mongoose'),
-  bcrypt = require('bcrypt-nodejs');
+const mongoose = require('mongoose');
+const bcrypt = require('bcrypt-nodejs');
 
-var userSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
   username: String,
   location: String,
   interests: String,
@@ -11,12 +11,6 @@ var userSchema = mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Follower'
-    }
-  ],
-  books: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Book'
     }
   ],
   local: {
