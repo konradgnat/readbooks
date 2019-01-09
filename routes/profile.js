@@ -8,6 +8,9 @@ const fs = require('fs');
 const mongoose = require('mongoose');
 const isLoggedIn = require('../services/middleWare').isLoggedIn;
 
+/**
+ * Gets current user appData object
+ */
 router.get('/', isLoggedIn, function(req, res) {
   res.render('app/main', { appData: res.locals.currentUser });
 });

@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const Book = require('../models/book.js');
-const User = require('../models/user.js');
+const checkPostOwnership = require('../services/middleware').checkPostOwnership;
 const isLoggedIn = require('../services/middleWare').isLoggedIn;
 
+/**
+ * Gets all books
+ */
 router.get('/', function(req, res) {
   Book.find({}, function(err, books) {
     if (err) {
@@ -14,12 +17,14 @@ router.get('/', function(req, res) {
   });
 });
 
-// ADD NEW BOOK
+/**
+ * Adds new book
+ */
 router.get('/new', isLoggedIn, function(req, res) {
   res.render('books/new');
 });
 
-/*
+/**
  * Creates new book and assigns book id to user
  */
 router.post('/', isLoggedIn, function(req, res) {
@@ -51,7 +56,9 @@ router.post('/', isLoggedIn, function(req, res) {
   });
 });
 
-// SHOW INDIVIDUAL BOOK
+/**
+ * Shows individual book by :id
+ */
 router.get('/:id', function(req, res) {
   Book.findById(req.params.id)
     .populate('comments')
@@ -64,7 +71,9 @@ router.get('/:id', function(req, res) {
     });
 });
 
-// EDIT BOOK
+/**
+ * Edits individual book by :id
+ */
 router.get('/:id/edit', checkPostOwnership, function(req, res) {
   Book.findById(req.params.id, function(err, foundBook) {
     if (err) {
@@ -75,12 +84,11 @@ router.get('/:id/edit', checkPostOwnership, function(req, res) {
   });
 });
 
-// UPDATE BOOK
+/**
+ * Shows individual book by :id
+ */
 router.put('/:id', checkPostOwnership, function(req, res) {
-  Book.findByIdAndUpdate(req.params.id, req.body.book, function(
-    err,
-    updatedBook
-  ) {
+  Book.findByIdAndUpdate(req.params.id, req.body.book, function(err) {
     if (err) {
       console.log(err);
     } else {
@@ -89,7 +97,9 @@ router.put('/:id', checkPostOwnership, function(req, res) {
   });
 });
 
-// DESTROY BOOK
+/**
+ * Deletes individual book by :id
+ */
 router.delete('/:id', checkPostOwnership, function(req, res) {
   Book.findByIdAndRemove(req.params.id, function(err) {
     if (err) {
@@ -99,24 +109,5 @@ router.delete('/:id', checkPostOwnership, function(req, res) {
     }
   });
 });
-
-// MIDDLEWARE
-function checkPostOwnership(req, res, next) {
-  if (req.isAuthenticated()) {
-    Book.findById(req.params.id, function(err, foundBook) {
-      if (err) {
-        res.redirect('back');
-      } else {
-        if (foundBook.postedBy.id.equals(req.user._id)) {
-          next();
-        } else {
-          res.redirect('back');
-        }
-      }
-    });
-  } else {
-    res.redirect('back');
-  }
-}
 
 module.exports = router;
