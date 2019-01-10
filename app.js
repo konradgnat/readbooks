@@ -12,11 +12,11 @@ const bodyParser = require('body-parser'),
   keys = require('./config/keys');
 
 // ROUTES
-const indexRoutes = require('./routes/index'),
-  bookRoutes = require('./routes/books'),
-  commentRoutes = require('./routes/comments'),
-  profileRoutes = require('./routes/profile');
-exploreRoutes = require('./routes/explore');
+const indexRoutes = require('./routes/index');
+const bookRoutes = require('./routes/books');
+const commentRoutes = require('./routes/comments');
+const profileRoutes = require('./routes/profile');
+const exploreRoutes = require('./routes/explore');
 
 // Production or dev?
 let production = true;

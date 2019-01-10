@@ -35,6 +35,7 @@
       <h4 class="ui header">Description</h4>
       <p><%=book.description%></p>
       <h4 class="ui header">Readers thoughts</h4>
+      <!-- if current user is same as author of comment, show edit button -->
       <p><%=book.thoughts%></p>
             <% if(currentUser && book.postedBy.id.equals(currentUser._id)) { %>
           <a href="/books/<%=book.id%>/edit" class="ui tiny blue basic button">edit post</a>
@@ -46,6 +47,7 @@
 
       <div class="ui comments">
         <% book.comments.forEach(function(comment){
+          // format publish date
           var d = comment._id.getTimestamp();
           var datestring = (d.getMonth()+1) + "-" + d.getDate() + "-" + d.getFullYear() + " " +
           d.getHours() + ":" + d.getMinutes(); %>

@@ -5,9 +5,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import ExploreContainer from './containers/Explore.js';
-import ExploreDetail from './containers/ExploreDetail.js';
-import Profile from './containers/Profile.js';
+import ExploreContainer from './Explore.js';
+import ExploreDetail from './ExploreDetail.js';
+import Profile from './Profile.js';
 
 type Props = {};
 
