@@ -14,9 +14,6 @@ router.get(
 // handle the callback after fb has authenticated user
 router.get(
   '/facebook/callback',
-  // function(req, res){
-  // res.render('login', {message: req.flash('loginMessage') });
-
   passport.authenticate('facebook', {
     successRedirect: '/books',
     failureRedirect: '/books'
@@ -52,5 +49,13 @@ router.get(
     failureRedirect: '/books'
   })
 );
+
+/**
+ * Gets current user if one exits
+ * @type {router}
+ */
+router.get('/current_user', (req, res) => {
+  res.send(req.user);
+});
 
 module.exports = router;

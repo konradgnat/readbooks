@@ -5,7 +5,7 @@ const config = {
   entry: './app/index.js',
   output: {
     path: path.resolve(__dirname, 'public/js'),
-    filename: 'bundle-build.js'
+    filename: 'build.js'
   },
   resolve: {
     modules: [path.resolve(__dirname, 'app'), 'node_modules']
