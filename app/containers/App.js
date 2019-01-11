@@ -3,7 +3,7 @@
 'use strict';
 
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import ExploreContainer from './Explore.js';
 import ExploreDetail from './ExploreDetail.js';
 import Profile from './Profile.js';
@@ -20,14 +20,11 @@ class App extends React.Component<Props> {
   render() {
     return (
       <BrowserRouter>
-        <Switch>
+        <div>
           <Route path="/explore/:id" component={ExploreDetail} />
           <Route path="/explore" component={ExploreContainer} />
-          <Route
-            path="/profile"
-            render={() => <Profile appData={window.appData} />}
-          />
-        </Switch>
+          <Route path="/profile" component={Profile} />
+        </div>
       </BrowserRouter>
     );
   }

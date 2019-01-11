@@ -3,6 +3,8 @@ import Posts from '../components/Posts';
 import ReadingList from '../components/ReadingList';
 import Following from '../components/Following';
 import Followers from '../components/Followers';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 export const TABS_STRUCTURE = [
   { id: 'posts', label: 'Posts', content: <Posts /> },
@@ -11,7 +13,7 @@ export const TABS_STRUCTURE = [
   { id: 'followers', label: 'Followers', content: <Followers /> }
 ];
 
-export default class Profile extends React.Component<Props> {
+class Profile extends React.Component<Props> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -27,11 +29,12 @@ export default class Profile extends React.Component<Props> {
   };
 
   render() {
-    const user = this.props.appData,
-      avatar = user.avatar
-        ? '/' + user.avatar
-        : '/images/avatar-placeholder.jpg',
-      tabButtons = [];
+    if (!this.props.auth) return <h3>Loading...</h3>;
+    const user = this.props.auth;
+    const avatar = user.avatar
+      ? '/' + user.avatar
+      : '/images/avatar-placeholder.jpg';
+    const tabButtons = [];
     let tabContent = null;
 
     TABS_STRUCTURE.forEach(tab => {
@@ -62,7 +65,7 @@ export default class Profile extends React.Component<Props> {
     return (
       <div className="segment">
         <a
-          href={`/profile/${this.props.appData._id}/edit`}
+          href={`/profile/${this.props.auth._id}/edit`}
           className="ui right floated mini primary button basic"
         >
           Edit
@@ -95,3 +98,13 @@ export default class Profile extends React.Component<Props> {
     );
   }
 }
+
+function mapStateToProps(state) {
+  console.log('map here', state);
+  return { auth: state.auth };
+}
+
+export default connect(
+  mapStateToProps,
+  actions
+)(Profile);
