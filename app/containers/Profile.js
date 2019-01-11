@@ -29,7 +29,10 @@ class Profile extends React.Component<Props> {
   };
 
   render() {
-    if (!this.props.auth) return <h3>Loading...</h3>;
+    if (!this.props.auth) {
+      return <h3>Loading...</h3>;
+    }
+
     const user = this.props.auth;
     const avatar = user.avatar
       ? '/' + user.avatar
@@ -100,7 +103,6 @@ class Profile extends React.Component<Props> {
 }
 
 function mapStateToProps(state) {
-  console.log('map here', state);
   return { auth: state.auth };
 }
 

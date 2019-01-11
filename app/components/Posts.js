@@ -1,20 +1,45 @@
 // @flow
 import * as React from 'react';
-import axios from 'axios';
+import * as actions from '../actions';
+import { connect } from 'react-redux';
+import styles from './Posts.css';
 
-export default class Posts extends React.Component<> {
+class Posts extends React.Component<> {
   componentDidMount() {
-    console.log(' Posts render ');
-    axios.get('/books/user/59e033bab6d54d54eb3e0bd4').then(res => {
-      console.log('res = ', res);
+    if (!this.props.auth) return;
+
+    this.props.fetchPosts(this.props.auth._id);
+  }
+
+  renderPosts() {
+    return this.props.posts.map(post => {
+      return (
+        <div className={'item ' + styles.profile__post}>
+          <div className="ui tiny image">
+            <img
+              className={'book_thumbnail ' + styles.profile__img}
+              src={post.thumbnail}
+            />
+          </div>
+          <div className="content">
+            <div className="header">{post.title}</div>
+            <div>{post.thoughts.substring(0, 100) + '...'}</div>
+            <a href={`/books/${post._id}`}>read more</a>
+          </div>
+        </div>
+      );
     });
   }
 
   render() {
-    return (
-      <div>
-        <h1>Posts Tab here</h1>
-      </div>
-    );
+    return <div>{this.renderPosts()}</div>;
   }
 }
+
+function mapStateToProps(state) {
+  return { posts: state.posts, auth: state.auth };
+}
+export default connect(
+  mapStateToProps,
+  actions
+)(Posts);

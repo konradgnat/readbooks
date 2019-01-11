@@ -21,17 +21,19 @@ router.get('/', function(req, res) {
  * Gets all book posts made by a user
  */
 router.get('/user/:id', (req, res) => {
-  console.log('hello server here', req.body);
-  const id = '59e033bab6d54d54eb3e0bd4';
+  if (!req.params.id) {
+    res.send('error - user id missing');
+  }
+
   Book.find(
     {
-      'postedBy.id': id
+      'postedBy.id': req.params.id
     },
     function(err, books) {
       if (err) {
         console.log(err);
       } else {
-        console.log('result: ', books);
+        res.send(books);
       }
     }
   );
