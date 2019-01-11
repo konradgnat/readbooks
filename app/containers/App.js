@@ -21,8 +21,8 @@ class App extends React.Component<Props> {
     return (
       <BrowserRouter>
         <div>
-          <Route path="/explore/:id" component={ExploreDetail} />
-          <Route path="/explore" component={ExploreContainer} />
+          <Route exact path="/explore/:id" component={ExploreDetail} />
+          <Route exact path="/explore" component={ExploreContainer} />
           <Route path="/profile" component={Profile} />
         </div>
       </BrowserRouter>

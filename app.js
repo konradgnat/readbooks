@@ -4,7 +4,7 @@ const express = require('express');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const app = express();
-const seedDB = require('./seeds');
+const seedDB = require('./services/seeds');
 const passport = require('passport');
 const morgan = require('morgan');
 const multer = require('multer');
@@ -70,7 +70,9 @@ app.use(function(req, res, next) {
 });
 
 app.use(methodOverride('_method'));
-seedDB();
+
+// Seeds database with dummy data for development purposes
+// seedDB();
 
 app.use('/', indexRoutes);
 app.use('/books', bookRoutes);

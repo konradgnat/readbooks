@@ -15,7 +15,7 @@ class Posts extends React.Component<> {
     return this.props.posts.map(post => {
       return (
         <div className={'item ' + styles.profile__post}>
-          <div className="ui tiny image">
+          <div className={'ui tiny image ' + styles.profile__img_wrapper}>
             <img
               className={'book_thumbnail ' + styles.profile__img}
               src={post.thumbnail}

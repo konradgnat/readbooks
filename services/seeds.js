@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
-const Book = require('./models/book');
-const User = require('./models/user');
-const Comment = require('./models/comment');
+const Book = require('../models/book');
+const User = require('../models/user');
+const Comment = require('../models/comment');
 
 var data = [
   {
