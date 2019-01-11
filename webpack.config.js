@@ -2,7 +2,7 @@ const path = require('path');
 const WebpackShellPlugin = require('webpack-shell-plugin');
 
 const config = {
-  entry: './app/app.js',
+  entry: './app/index.js',
   output: {
     path: path.resolve(__dirname, 'public/js'),
     filename: 'bundle-build.js'

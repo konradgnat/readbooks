@@ -1,9 +1,9 @@
-var LocalStrategy = require("passport-local").Strategy,
-  FacebookStrategy = require("passport-facebook").Strategy,
-  TwitterStrategy = require("passport-twitter").Strategy,
-  GoogleStrategy = require("passport-google-oauth").OAuth2Strategy,
-  User = require("../models/user"),
-  keys = require("../config/keys");
+const LocalStrategy = require('passport-local').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
+const TwitterStrategy = require('passport-twitter').Strategy;
+const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+const User = require('../models/user');
+const keys = require('../config/keys');
 
 // TODO: Feature: Linking accounts -> need to have login route available, manage duplicate user info
 
@@ -25,33 +25,33 @@ module.exports = function(passport) {
   // ==================================================================================================================
 
   passport.use(
-    "local-login",
+    'local-login',
     new LocalStrategy(
       {
         // override default username with email
-        usernameField: "email",
-        passwordField: "password",
+        usernameField: 'email',
+        passwordField: 'password',
         passReqToCallback: true // allows pass back entire request to callback
       },
       function(req, email, password, done) {
         // callback with email and password from form
         // find user with same email as form
-        User.findOne({ "local.email": email }, function(err, user) {
+        User.findOne({ 'local.email': email }, function(err, user) {
           if (err) return done(err);
 
           if (!user)
             return done(
               null,
               false,
-              req.flash("loginMessage", "No user found.")
+              req.flash('loginMessage', 'No user found.')
             );
           if (!user.validPassword(password))
             return done(
               null,
               false,
-              req.flash("loginMessage", "Wrong password.")
+              req.flash('loginMessage', 'Wrong password.')
             );
-          console.log("login success");
+          console.log('login success');
           return done(null, user);
         });
       }
@@ -63,13 +63,13 @@ module.exports = function(passport) {
   // ==================================================================================================================
 
   passport.use(
-    "local-signup",
+    'local-signup',
     new LocalStrategy(
       {
         // override default local strategy username with email
 
-        usernameField: "email",
-        passwordField: "password",
+        usernameField: 'email',
+        passwordField: 'password',
         passReqToCallback: true // allows us to pass back the entire request to the callback
       },
       function(req, email, password, done) {
@@ -77,13 +77,13 @@ module.exports = function(passport) {
         process.nextTick(function() {
           // find a user with same email as form
           // check if user already exists
-          User.findOne({ "local.email": email }, function(err, user) {
+          User.findOne({ 'local.email': email }, function(err, user) {
             if (err) return done(err);
             if (user) {
               return done(
                 null,
                 false,
-                req.flash("signupMessage", "That email is already taken.")
+                req.flash('signupMessage', 'That email is already taken.')
               );
             }
             if (req.user) {
@@ -123,7 +123,7 @@ module.exports = function(passport) {
         clientID: keys.facebookClientID,
         clientSecret: keys.facebookClientSecret,
         callbackURL: keys.facebookCallbackURL,
-        profileFields: ["emails", "displayName", "name"],
+        profileFields: ['emails', 'displayName', 'name'],
         passReqToCallback: true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
       },
       // facebook will send back the token and profile
@@ -131,14 +131,14 @@ module.exports = function(passport) {
         // asynchronous
         process.nextTick(function() {
           if (!req.user) {
-            User.findOne({ "facebook.id": profile.id }, function(err, user) {
+            User.findOne({ 'facebook.id': profile.id }, function(err, user) {
               if (err) return done(err);
               if (user) {
                 // if there is a user id already but not token
                 if (!user.facebook.token) {
                   user.facebook.token = token;
                   user.facebook.name =
-                    profile.name.givenName + " " + profile.name.familyName;
+                    profile.name.givenName + ' ' + profile.name.familyName;
                   user.facebook.email = profile.emails[0].value;
 
                   user.save(function(err) {
@@ -153,7 +153,7 @@ module.exports = function(passport) {
                 newUser.facebook.id = profile.id;
                 newUser.facebook.token = token;
                 newUser.facebook.name =
-                  profile.name.givenName + " " + profile.name.familyName;
+                  profile.name.givenName + ' ' + profile.name.familyName;
                 newUser.facebook.email = profile.emails[0].value;
                 // save user to db
                 newUser.save(function(err) {
@@ -169,7 +169,7 @@ module.exports = function(passport) {
             user.facebook.id = profile.id;
             user.facebook.token = token;
             user.facebook.name =
-              profile.name.givenName + " " + profile.name.familyName;
+              profile.name.givenName + ' ' + profile.name.familyName;
             user.facebook.email = profile.emails[0].value;
 
             // save the user
@@ -200,9 +200,9 @@ module.exports = function(passport) {
         // asynchronous
         process.nextTick(function() {
           if (!req.user) {
-            console.log("req.user is not found");
+            console.log('req.user is not found');
             console.log(!req.user);
-            User.findOne({ "twitter.id": profile.id }, function(err, user) {
+            User.findOne({ 'twitter.id': profile.id }, function(err, user) {
               if (err) return done(err);
               if (user) {
                 // if there is a user id already but not token
@@ -265,7 +265,7 @@ module.exports = function(passport) {
       function(req, token, refreshToken, profile, done) {
         process.nextTick(function() {
           if (!req.user) {
-            User.findOne({ "google.id": profile.id }, function(err, user) {
+            User.findOne({ 'google.id': profile.id }, function(err, user) {
               if (err) {
                 return done(err);
               }

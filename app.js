@@ -1,21 +1,22 @@
-const bodyParser = require('body-parser'),
-  mongoose = require('mongoose'),
-  express = require('express'),
-  session = require('express-session'),
-  methodOverride = require('method-override'),
-  app = express(),
-  seedDB = require('./seeds'),
-  passport = require('passport'),
-  morgan = require('morgan'),
-  multer = require('multer'),
-  flash = require('connect-flash'),
-  keys = require('./config/keys');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const express = require('express');
+const session = require('express-session');
+const methodOverride = require('method-override');
+const app = express();
+const seedDB = require('./seeds');
+const passport = require('passport');
+const morgan = require('morgan');
+const multer = require('multer');
+const flash = require('connect-flash');
+const keys = require('./config/keys');
 
 // ROUTES
 const indexRoutes = require('./routes/index');
 const bookRoutes = require('./routes/books');
 const commentRoutes = require('./routes/comments');
 const profileRoutes = require('./routes/profile');
+const authRoutes = require('./routes/auth');
 const exploreRoutes = require('./routes/explore');
 
 // Production or dev?
@@ -74,11 +75,11 @@ seedDB();
 app.use('/', indexRoutes);
 app.use('/books', bookRoutes);
 app.use('/profile', profileRoutes);
+app.use('/auth', authRoutes);
 app.use('/explore', exploreRoutes);
 app.use('/books/:id/comments', commentRoutes);
 
 const PORT = process.env.PORT || 8083;
-// app.listen(process.env.PORT, process.env.IP);
 app.listen(PORT, function() {
   console.log(`server on ${PORT}`);
 });

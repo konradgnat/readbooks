@@ -3,15 +3,20 @@
 'use strict';
 
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ExploreContainer from './Explore.js';
 import ExploreDetail from './ExploreDetail.js';
 import Profile from './Profile.js';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 type Props = {};
 
-class Search extends React.Component<Props> {
+class App extends React.Component<Props> {
+  componentDidMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -28,8 +33,7 @@ class Search extends React.Component<Props> {
   }
 }
 
-const root = document.getElementById('search_root');
-
-if (root !== null) {
-  ReactDOM.render(<Search />, root);
-}
+export default connect(
+  null,
+  actions
+)(App);

@@ -18,7 +18,27 @@ router.get('/', function(req, res) {
 });
 
 /**
- * Adds new book
+ * Gets all book posts made by a user
+ */
+router.get('/user/:id', (req, res) => {
+  console.log('hello server here', req.body);
+  const id = '59e033bab6d54d54eb3e0bd4';
+  Book.find(
+    {
+      'postedBy.id': id
+    },
+    function(err, books) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('result: ', books);
+      }
+    }
+  );
+});
+
+/**
+ * Route for creating a new book post
  */
 router.get('/new', isLoggedIn, function(req, res) {
   res.render('books/new');
@@ -66,6 +86,7 @@ router.get('/:id', function(req, res) {
       if (err) {
         console.log(err);
       } else {
+        console.log('get book/id book = ', book);
         res.render('books/show', { book: book });
       }
     });

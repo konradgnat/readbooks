@@ -1,16 +1,56 @@
-var express = require('express'),
-	router	= express.Router(),
-	flash 	= require('connect-flash');
+const express = require('express');
+const router = express.Router();
+const flash = require('connect-flash');
+const passport = require('passport');
 
-module.exports = function(app, passport) {
+// route for fb authentication and login
+router.get(
+  '/facebook',
+  passport.authenticate('facebook', { scope: 'email' }, 'cross', {
+    session: true
+  })
+);
 
-	// route for fb authentication and login
-	router.get('/auth/facebook', passport.authenticate('facebook', {scope: 'email'}));
+// handle the callback after fb has authenticated user
+router.get(
+  '/facebook/callback',
+  // function(req, res){
+  // res.render('login', {message: req.flash('loginMessage') });
 
-	// handle the callback after fb has authenticated user
-	router.get('/auth/facebook/callback',
-		passport.authenticate('facebook', {
-			successredirect : '/book',
-			failureRedirect : '/book'
-		}));
-}
+  passport.authenticate('facebook', {
+    successRedirect: '/books',
+    failureRedirect: '/books'
+  })
+);
+
+// TWITTER ROUTES
+router.get(
+  '/twitter',
+  passport.authenticate('twitter', 'cross', { session: true })
+);
+
+router.get(
+  '/twitter/callback',
+  passport.authenticate('twitter', {
+    successRedirect: '/books',
+    failureRedirect: '/books'
+  })
+);
+
+// GOOGLE ROUTES
+router.get(
+  '/google',
+  passport.authenticate('google', { scope: ['profile', 'email'] }, 'cross', {
+    session: true
+  })
+);
+
+router.get(
+  '/google/callback',
+  passport.authenticate('google', {
+    successRedirect: '/books',
+    failureRedirect: '/books'
+  })
+);
+
+module.exports = router;

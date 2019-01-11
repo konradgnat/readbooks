@@ -4,6 +4,9 @@ import React from 'react';
 import ExploreSearch from '../components/ExploreSearch';
 import ExploreFeed from '../components/ExploreFeed';
 import apiCaller from '../util/apiCaller';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 import type { TitleResults } from '../types/BooksAPI';
 
 type Props = {};
@@ -29,6 +32,7 @@ class ExploreContainer extends React.Component<Props, State> {
   }
 
   render() {
+    console.log('explore ', this.props, this.state);
     return (
       <div>
         <ExploreSearch handleSearch={this.handleSearch} />
@@ -38,4 +42,7 @@ class ExploreContainer extends React.Component<Props, State> {
   }
 }
 
-export default ExploreContainer;
+export default connect(
+  null,
+  actions
+)(ExploreContainer);
