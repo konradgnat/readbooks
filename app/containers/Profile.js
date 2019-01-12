@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Posts from '../components/Posts';
-import ReadingList from '../components/ReadingList';
 import Following from '../components/Following';
 import Followers from '../components/Followers';
 import { connect } from 'react-redux';
@@ -8,7 +7,6 @@ import * as actions from '../actions';
 
 export const TABS_STRUCTURE = [
   { id: 'posts', label: 'Posts', content: <Posts /> },
-  { id: 'readingList', label: 'Reading List', content: <ReadingList /> },
   { id: 'following', label: 'Following', content: <Following /> },
   { id: 'followers', label: 'Followers', content: <Followers /> }
 ];

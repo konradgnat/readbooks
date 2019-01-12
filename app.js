@@ -24,21 +24,21 @@ let production = true;
 
 mongoose.Promise = global.Promise;
 // CONNECT DATABASE
-if (production) {
+if (process.env.NODE_ENV === 'production') {
+  mongoose
+    .connect(
+      'mongodb://localhost/bihkal',
+      { useMongoClient: true }
+    )
+    .then(() => console.log('local mongodb connection succesful'))
+    .catch(err => console.error(err));
+} else {
   mongoose
     .connect(
       keys.mongoURI,
       { useMongoClient: true }
     )
     .then(() => console.log('mongodb connection succesful'))
-    .catch(err => console.error(err));
-} else {
-  mongoose
-    .connect(
-      'mongodb://localhost/booksread',
-      { useMongoClient: true }
-    )
-    .then(() => console.log('local mongodb connection succesful'))
     .catch(err => console.error(err));
 }
 
