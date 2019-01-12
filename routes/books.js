@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Book = require('../models/book.js');
-const checkPostOwnership = require('../services/middleware').checkPostOwnership;
-const isLoggedIn = require('../services/middleWare').isLoggedIn;
+const { checkPostOwnership, isLoggedIn } = require('../services/middleware');
 
 /**
  * Gets all books
@@ -88,7 +87,6 @@ router.get('/:id', function(req, res) {
       if (err) {
         console.log(err);
       } else {
-        console.log('get book/id book = ', book);
         res.render('books/show', { book: book });
       }
     });
