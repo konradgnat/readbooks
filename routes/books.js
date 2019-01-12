@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Book = require('../models/book.js');
-const { checkPostOwnership, isLoggedIn } = require('../services/middleware');
+const { checkPostOwnership, isLoggedIn } = require('../services/middleWare');
 
 /**
  * Gets all books
