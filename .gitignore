@@ -8,6 +8,7 @@ config/auth.js
 config/dev.js
 
 notes.txt
+notes.md
 
 uploads/*
 yarn-error.log

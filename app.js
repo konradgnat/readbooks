@@ -19,11 +19,8 @@ const profileRoutes = require('./routes/profile');
 const authRoutes = require('./routes/auth');
 const exploreRoutes = require('./routes/explore');
 
-// Production or dev?
-let production = true;
-
-mongoose.Promise = global.Promise;
 // CONNECT DATABASE
+mongoose.Promise = global.Promise;
 if (process.env.NODE_ENV === 'production') {
   mongoose
     .connect(

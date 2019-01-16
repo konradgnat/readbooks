@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import type { TitleResults } from '../types/BooksAPI';
 import styles from './ExploreDetail.css';
 
@@ -11,6 +12,11 @@ type Props = {
 };
 
 export default class ExploreDetail extends React.Component<Props> {
+
+  addBook() {
+
+  }
+
   render() {
     const imageUrl = this.props.location.state.volumeInfo.imageLinks
       ? this.props.location.state.volumeInfo.imageLinks.smallThumbnail
@@ -37,9 +43,9 @@ export default class ExploreDetail extends React.Component<Props> {
             <div className={styles.detailContent}>
               <div className="content">
                 <h1 className="ui header">{title}</h1>
-                <button className="ui mini positive basic button">
+                <Link to="/book/create" className="ui mini positive basic button">
                   Add Book
-                </button>
+                </Link>
                 <div className="meta">
                   <span className={styles.detailMeta}>Authors: {authors}</span>
                   <span className={styles.detailMeta}>
