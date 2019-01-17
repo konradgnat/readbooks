@@ -6,7 +6,7 @@ import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import ExploreContainer from './Explore.js';
 import ExploreDetail from './ExploreDetail.js';
-import CreateBook from '../components/books/CreateBook';
+import BookCreate from '../components/books/BookCreate';
 import Profile from './Profile.js';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
@@ -24,7 +24,7 @@ class App extends React.Component<Props> {
         <div>
           <Route exact path="/explore/:id" component={ExploreDetail} />
           <Route exact path="/explore" component={ExploreContainer} />
-          <Route exact path="/book/create" component={CreateBook} />
+          <Route exact path="/book/create" component={BookCreate} />
           <Route path="/profile" component={Profile} />
         </div>
       </BrowserRouter>
