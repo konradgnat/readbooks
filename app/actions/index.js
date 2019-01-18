@@ -1,5 +1,4 @@
-import { FETCH_USER } from './types';
-import { FETCH_POSTS } from './types';
+import { FETCH_USER, FETCH_POSTS } from './types';
 import axios from 'axios';
 
 export const fetchUser = () => async dispatch => {
@@ -12,4 +11,9 @@ export const fetchPosts = userId => async dispatch => {
   const res = await axios.get(`/books/user/${userId}`);
 
   dispatch({ type: FETCH_POSTS, payload: res.data });
+};
+
+export const createPost = formValues => async(dispatch, getState) => {
+  const userId = getState().auth.id;
+  const response = await axios.post(/books/, { ...formValues, userId })
 };
