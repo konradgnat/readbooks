@@ -32,7 +32,6 @@ class ExploreContainer extends React.Component<Props, State> {
   }
 
   render() {
-    console.log('explore ', this.props, this.state);
     return (
       <div>
         <ExploreSearch handleSearch={this.handleSearch} />

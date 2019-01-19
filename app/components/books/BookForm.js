@@ -6,6 +6,9 @@ class BookForm extends React.Component {
     return (
       <div>
         BookForm
+        <form onSubmit={this.props.onSubmit} action="">
+          <input type="text" name="name"/>
+        </form>
       </div>
     )
   }

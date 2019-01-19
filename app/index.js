@@ -12,7 +12,6 @@ import reducers from './reducers';
 const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
 
 const root = document.getElementById('search_root');
-console.log('root= ', root);
 if (root !== null) {
   ReactDOM.render(
     <Provider store={store}>

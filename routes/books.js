@@ -49,6 +49,8 @@ router.get('/new', isLoggedIn, function(req, res) {
  * Creates new book and assigns book id to user
  */
 router.post('/', isLoggedIn, function(req, res) {
+  console.log(req.body, req.user, 'books post here');
+
   const email = req.user.local.email
     ? req.user.local.email
     : req.user.facebook.name;

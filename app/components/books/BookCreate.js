@@ -1,5 +1,7 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import BookForm from './BookForm';
+import { createPost } from '../../actions';
 
 class BookCreate extends React.Component {
   onSubmit = (formData) => {
@@ -7,6 +9,8 @@ class BookCreate extends React.Component {
   };
 
   render() {
+    console.log(this.props, createPost);
+    this.props.createPost();
 
     return (
       <div>
@@ -17,4 +21,4 @@ class BookCreate extends React.Component {
   }
 }
 
-export default BookCreate;
+export default connect(null, { createPost })(BookCreate);
