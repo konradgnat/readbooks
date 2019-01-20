@@ -4,13 +4,12 @@ import BookForm from './BookForm';
 import { createPost } from '../../actions';
 
 class BookCreate extends React.Component {
-  onSubmit = (formData) => {
-    console.log(formData);
+  onSubmit = (formValues) => {
+    console.log(formValues);
+    this.props.createPost(formValues);
   };
 
   render() {
-    console.log(this.props, createPost);
-    this.props.createPost();
 
     return (
       <div>

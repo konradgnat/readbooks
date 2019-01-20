@@ -15,5 +15,7 @@ export const fetchPosts = userId => async dispatch => {
 
 export const createPost = formValues => async(dispatch, getState) => {
   const userId = getState().auth.id;
-  const response = await axios.post(/books/, { ...formValues, userId })
+  const res = await axios.post('/books', { ...formValues, userId });
+
+  dispatch({ type: FETCH_POSTS, payload: res.data });
 };
