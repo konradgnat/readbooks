@@ -5,7 +5,6 @@ import { createPost } from '../../actions';
 
 class BookCreate extends React.Component {
   onSubmit = (formValues) => {
-    console.log(formValues);
     this.props.createPost(formValues);
   };
 
