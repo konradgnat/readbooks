@@ -1,6 +1,6 @@
 import React from 'react';
 
-class BookForm extends React.Component {
+class PostForm extends React.Component {
   constructor(props) {
     super(props);
 
@@ -19,7 +19,7 @@ class BookForm extends React.Component {
   render() {
     return (
       <div>
-        BookForm
+        PostForm
         <form onSubmit={this.handleSubmit}>
           <input type="text" name="name" value={this.state.name} onChange={this.handleNameChange}/>
           <input type="submit" value="submit" />
@@ -29,4 +29,4 @@ class BookForm extends React.Component {
   }
 }
 
-export default BookForm;
+export default PostForm;

@@ -1,5 +1,5 @@
 import React from 'react';
-import ExploreContainer from '../../containers/Explore';
+import ExploreContainer from '../../containers/explore/Explore';
 import { shallow } from 'enzyme';
 import renderer from 'react-test-renderer';
 

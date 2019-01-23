@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import * as actions from '../actions';
+import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import Post from './Post';
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import Posts from '../components/Posts';
-import Following from '../components/Following';
-import Followers from '../components/Followers';
+import Posts from '../components/profile/Posts';
+import Following from '../components/profile/Following';
+import Followers from '../components/profile/Followers';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import ExploreFeed from '../../components/ExploreFeed';
+import ExploreFeed from '../../components/explore/ExploreFeed';
 import { shallow } from 'enzyme';
 import { hits } from '../../__mocks__/data/exploreSearchHits';
 

@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import type { TitleResults } from '../types/BooksAPI';
+import type { TitleResults } from '../../types/BooksAPI';
 import styles from './ExploreDetail.css';
 
 type Props = {
@@ -33,6 +33,11 @@ export default class ExploreDetail extends React.Component<Props> {
       authors = this.props.location.state.volumeInfo.authors.join(', ');
     }
 
+    const addLink = {
+      pathname: "/post/create",
+      state: this.props.location.state
+    };
+
     return (
       <div className="segment">
         <div className="ui items">
@@ -43,7 +48,7 @@ export default class ExploreDetail extends React.Component<Props> {
             <div className={styles.detailContent}>
               <div className="content">
                 <h1 className="ui header">{title}</h1>
-                <Link to="/book/create" className="ui mini positive basic button">
+                <Link to={addLink} className="ui mini positive basic button">
                   Add Book
                 </Link>
                 <div className="meta">

@@ -4,9 +4,9 @@
 
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import ExploreContainer from './Explore.js';
-import ExploreDetail from './ExploreDetail.js';
-import BookCreate from '../components/books/BookCreate';
+import ExploreContainer from './explore/Explore.js';
+import ExploreDetail from './explore/ExploreDetail.js';
+import PostCreate from '../components/books/PostCreate';
 import Profile from './Profile.js';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
@@ -24,7 +24,7 @@ class App extends React.Component<Props> {
         <div>
           <Route exact path="/explore/:id" component={ExploreDetail} />
           <Route exact path="/explore" component={ExploreContainer} />
-          <Route exact path="/book/create" component={BookCreate} />
+          <Route exact path="/post/create" component={PostCreate} />
           <Route path="/profile" component={Profile} />
         </div>
       </BrowserRouter>
