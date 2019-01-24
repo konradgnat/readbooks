@@ -4,10 +4,10 @@
 
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import ExploreContainer from './explore/Explore.js';
-import ExploreDetail from './explore/ExploreDetail.js';
+import ExploreContainer from './Explore';
+import PostShow from '../components/books/PostShow';
 import PostCreate from '../components/books/PostCreate';
-import Profile from './Profile.js';
+import Profile from './Profile';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
@@ -22,7 +22,7 @@ class App extends React.Component<Props> {
     return (
       <BrowserRouter>
         <div>
-          <Route exact path="/explore/:id" component={ExploreDetail} />
+          <Route exact path="/explore/:id" component={PostShow} />
           <Route exact path="/explore" component={ExploreContainer} />
           <Route exact path="/post/create" component={PostCreate} />
           <Route path="/profile" component={Profile} />
