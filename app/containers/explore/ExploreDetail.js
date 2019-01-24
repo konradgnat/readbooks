@@ -18,18 +18,14 @@ export default class ExploreDetail extends React.Component<Props> {
   }
 
   render() {
-    const imageUrl = this.props.location.state.volumeInfo.imageLinks
-      ? this.props.location.state.volumeInfo.imageLinks.smallThumbnail
-      : '/images/no_results.svg';
-    const title = this.props.location.state
-      ? this.props.location.state.volumeInfo.title
-      : '';
-    const publishedDate = this.props.location.state
-      ? this.props.location.state.volumeInfo.publishedDate
-      : '';
-
+    let title = '';
+    let publishedDate = '';
+    let imageUrl = '/images/no_results.svg';
     let authors = '';
-    if (this.props.location.state.volumeInfo.authors) {
+    if (this.props.location.state) {
+      title = this.props.location.state.volumeInfo.title;
+      publishedDate = this.props.location.state.volumeInfo.publishedDate;
+      imageUrl = this.props.location.state.volumeInfo.imageLinks.smallThumbnail;
       authors = this.props.location.state.volumeInfo.authors.join(', ');
     }
 
