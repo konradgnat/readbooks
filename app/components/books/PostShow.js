@@ -1,9 +1,9 @@
 // @flow
 
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import type { TitleResults } from '../../types/BooksAPI';
 import styles from './PostShow.css';
+import PostCreate from './PostCreate';
 
 type Props = {
   location: {
@@ -12,6 +12,20 @@ type Props = {
 };
 
 export default class PostShow extends React.Component<Props> {
+  state = { showForm: false };
+
+  handleAddBook = () => {
+    this.setState({ showForm: !this.state.showForm });
+    console.log(this.state);
+  };
+
+  renderForm = () => {
+    if (this.state.showForm) {
+      return (
+        <PostCreate />
+      )
+    }
+  };
 
   render() {
     let title = '';
@@ -25,11 +39,6 @@ export default class PostShow extends React.Component<Props> {
       authors = this.props.location.state.volumeInfo.authors.join(', ');
     }
 
-    const addLink = {
-      pathname: "/post/create",
-      state: this.props.location.state
-    };
-
     return (
       <div className="segment">
         <div className="ui items">
@@ -40,9 +49,6 @@ export default class PostShow extends React.Component<Props> {
             <div className={styles.detailContent}>
               <div className="content">
                 <h1 className="ui header">{title}</h1>
-                <Link to={addLink} className="ui mini positive basic button">
-                  Add Book
-                </Link>
                 <div className="meta">
                   <span className={styles.detailMeta}>Authors: {authors}</span>
                   <span className={styles.detailMeta}>
@@ -51,6 +57,14 @@ export default class PostShow extends React.Component<Props> {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        <div className="ui content">
+          <a onClick={this.handleAddBook} className="ui mini positive basic button">
+            Add Book
+          </a>
+          <div className="ui content">
+            {this.renderForm()}
           </div>
         </div>
         <h4 className="ui header">Description</h4>

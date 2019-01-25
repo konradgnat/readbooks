@@ -4,7 +4,7 @@ class PostForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = { name: '' };
+    this.state = { thoughts: '' };
   }
 
   handleSubmit = e => {
@@ -13,7 +13,7 @@ class PostForm extends React.Component {
   };
 
   handleNameChange = e => {
-    this.setState({ name: e.target.value });
+    this.setState({ thoughts: e.target.value });
   };
 
   render() {
@@ -21,7 +21,7 @@ class PostForm extends React.Component {
       <div>
         PostForm
         <form onSubmit={this.handleSubmit}>
-          <input type="text" name="name" value={this.state.name} onChange={this.handleNameChange}/>
+          <textarea row="5" type="text" name="thoughts" value={this.state.name} onChange={this.handleNameChange} className="input" placeholder="250 words min" />
           <input type="submit" value="submit" />
         </form>
       </div>

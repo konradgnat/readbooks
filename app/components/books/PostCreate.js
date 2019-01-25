@@ -21,7 +21,6 @@ class PostCreate extends React.Component {
 
     return (
       <div>
-        <h1 className="ui header center">Create a Book Post</h1>
         <PostForm onSubmit={this.onSubmit} />
       </div>
     )
