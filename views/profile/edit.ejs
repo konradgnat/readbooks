@@ -13,6 +13,10 @@
                     <h3>About Me</h3>
                     <form class="ui form" action="/profile/<%=currentUser._id%>?_method=PUT" method="POST" enctype="multipart/form-data">
                         <div class="field">
+                            <label>Username</label>
+                            <input type="text" value="<%= user.username %>" name="username" />
+                        </div>
+                        <div class="field">
                             <label>Location</label>
                             <input type="text" value="<%= user.location %>" name="location" />
                         </div>
@@ -31,28 +35,24 @@
                         <% if (currentUser.local.email) { %>
                         <h3>Local</h3>
                             <p>
-                                <strong>Username</strong>: <%= currentUser.username %><br>
                                 <strong>email</strong>: <%= currentUser.local.email %><br>
                                 <strong>password</strong>: **********
                             </p>
                         <% } else if (currentUser.facebook.token) { %>
                         <h3>Facebook</h3>
                             <p>
-                                <strong>Username</strong>: <%= currentUser.username %><br>
                                 <strong>email</strong>: <%= currentUser.facebook.email %><br>
                                 <strong>password</strong>: **********
                             </p>
                         <% } else if (currentUser.twitter.token) { %>
                         <h3>Twitter</h3>
                             <p>
-                                <strong>Username</strong>: <%= currentUser.username %><br>
                                 <strong>email</strong>: <%= currentUser.twitter.token %><br>
                                 <strong>password</strong>: **********
                             </p>
                         <% } else if (currentUser.google.token) { %>
                         <h3>Google</h3>
                             <p>
-                                <strong>Username</strong>: <%= currentUser.username %><br>
                                 <strong>email</strong>: <%= currentUser.google.email %><br>
                                 <strong>password</strong>: **********
                             </p>

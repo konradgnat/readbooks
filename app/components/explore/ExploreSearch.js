@@ -56,6 +56,7 @@ class ExploreSearch extends React.Component<Props, State> {
 
   onSuggestionClick = (hit: string): void => {
     this.setState({ value: hit, open: false, currentIndex: -1 });
+    this.performSearch();
   };
 
   onSuggestions = (hits: Array<TitleResults>): void => {
@@ -116,12 +117,13 @@ class ExploreSearch extends React.Component<Props, State> {
               open={this.state.open}
             />
           </div>
-          <input
+          <button
             onClick={this.performSearch}
             type="submit"
-            value="submit"
             className={styles.titleSearchSubmit}
-          />
+          >
+              <i className="circular search link icon"></i>
+          </button>
         </div>
       </div>
     );

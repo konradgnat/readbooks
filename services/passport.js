@@ -155,6 +155,8 @@ module.exports = function(passport) {
                 newUser.facebook.name =
                   profile.name.givenName + ' ' + profile.name.familyName;
                 newUser.facebook.email = profile.emails[0].value;
+                newUser.username =
+                  profile.name.givenName + ' ' + profile.name.familyName;
                 // save user to db
                 newUser.save(function(err) {
                   if (err) throw err;
@@ -220,6 +222,7 @@ module.exports = function(passport) {
               } else {
                 var newUser = new User();
                 // set all twitter information in our user model
+                newUser.username = profile.username;
                 newUser.twitter.id = profile.id;
                 newUser.twitter.token = token;
                 newUser.twitter.username = profile.username;
@@ -290,6 +293,7 @@ module.exports = function(passport) {
               } else {
                 var newUser = new User();
                 // set all google information in our user model
+                newUser.username = profile.displayName;
                 newUser.google.id = profile.id;
                 newUser.google.token = token;
                 newUser.google.name = profile.displayName;
