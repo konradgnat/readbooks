@@ -1,4 +1,4 @@
-import { FETCH_USER, FETCH_POSTS } from './types';
+import { FETCH_USER, FETCH_POSTS, CREATE_POST } from './types';
 import axios from 'axios';
 import history from '../util/history';
 
@@ -16,11 +16,9 @@ export const fetchPosts = userId => async dispatch => {
 
 export const createPost = formValues => async(dispatch, getState) => {
   const userId = getState().auth._id;
-  console.log('action pre', userId, getState().auth);
   const res = await axios.post('/books', { ...formValues, userId });
-  console.log('action post', res.data);
 
-  dispatch({ type: FETCH_POSTS, payload: res.data });
+  dispatch({ type: CREATE_POST, payload: res.data });
 
-  history.push('/');
+  history.push('/profile');
 };

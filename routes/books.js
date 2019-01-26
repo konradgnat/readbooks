@@ -48,8 +48,7 @@ router.get('/new', isLoggedIn, function(req, res) {
 /**
  * Creates new book and assigns book id to user
  */
-router.post('/', isLoggedIn, function(req, res) {
-  console.log(req.body, req.user, 'books post here');
+router.post('/', function(req, res) {
 
   const email = req.user.local.email
     ? req.user.local.email
@@ -74,7 +73,7 @@ router.post('/', isLoggedIn, function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.redirect('/books');
+      res.send({ newBook });
     }
   });
 });

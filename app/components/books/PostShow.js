@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from 'react';
+import { connect } from 'react-redux';
 import type { TitleResults } from '../../types/BooksAPI';
 import styles from './PostShow.css';
 import PostCreate from './PostCreate';
@@ -11,7 +12,7 @@ type Props = {
   }
 };
 
-export default class PostShow extends React.Component<Props> {
+class PostShow extends React.Component<Props> {
   state = { showForm: false };
 
   togglePostForm = () => {
@@ -28,6 +29,14 @@ export default class PostShow extends React.Component<Props> {
 
   renderButton() {
     if (!this.state.showForm) {
+      if (!this.props.auth) {
+        return (
+          <a href='/login' className="ui mini positive basic button">
+            Login To Post
+          </a>
+        );
+      }
+
       return (
         <a onClick={this.togglePostForm} className="ui mini positive basic button">
           Add Book
@@ -75,3 +84,9 @@ export default class PostShow extends React.Component<Props> {
     );
   }
 }
+
+const mapStateToProps = ({ auth }) => {
+  return { auth };
+};
+
+export default connect(mapStateToProps, null)(PostShow);

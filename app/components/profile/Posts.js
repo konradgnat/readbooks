@@ -12,6 +12,10 @@ class Posts extends React.Component<> {
   }
 
   renderPosts() {
+    if (!this.props.posts) {
+      return;
+    }
+
     return this.props.posts.map(post => {
       return <Post post={post} />;
     });
