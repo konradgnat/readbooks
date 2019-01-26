@@ -3,8 +3,7 @@
 import React from 'react';
 import ExploreSearch from '../components/explore/ExploreSearch';
 import ExploreFeed from '../components/explore/ExploreFeed';
-import apiCaller from '../util/apiCaller';
-import axios from 'axios';
+import bookSearch from '../util/apiCaller';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import type { TitleResults } from '../types/BooksAPI';
@@ -18,7 +17,7 @@ type State = {
 
 class ExploreContainer extends React.Component<Props, State> {
   handleSearch = (query: string): void => {
-    apiCaller(query).then(res => {
+    bookSearch(query).then(res => {
       this.setState({ searchHits: res.items || [] });
     });
   };

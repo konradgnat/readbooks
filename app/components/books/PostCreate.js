@@ -13,7 +13,6 @@ class PostCreate extends React.Component {
 
   onSubmit = (formValues) => {
     const values = { ...this.props.bookData, ...formValues };
-    console.log(values, this.props, formValues);
     this.props.createPost(values);
   };
 
