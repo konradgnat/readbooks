@@ -6,9 +6,9 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 export const TABS_STRUCTURE = [
-  { id: 'posts', label: 'Posts', content: <Posts /> },
-  { id: 'following', label: 'Following', content: <Following /> },
-  { id: 'followers', label: 'Followers', content: <Followers /> }
+  { id: 'posts', label: 'Posts', content: (id) => <Posts id={id} /> },
+  { id: 'following', label: 'Following', content: (id) => <Following id={id} /> },
+  { id: 'followers', label: 'Followers', content: (id) => <Followers id={id} /> }
 ];
 
 class Profile extends React.Component<Props> {
@@ -18,12 +18,12 @@ class Profile extends React.Component<Props> {
       tabs: TABS_STRUCTURE,
       activeTab: 'posts'
     };
-  }
+  };
 
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchProfile(id);
-  }
+  };
 
   changeTab = tabId => {
     this.setState({
@@ -31,17 +31,44 @@ class Profile extends React.Component<Props> {
     });
   };
 
-  render() {
-    // check if current user is same
-    console.log('this props', this.props);
+  renderButtons() {
+    if (this.props.auth && this.props.auth._id === this.props.profile.user._id) {
+      return (
+        <div className="ui content">
+          <a
+            href={`/profile/${this.props.auth._id}/edit`}
+            className="ui right floated mini primary button basic"
+          >
+            Edit
+          </a>
+          <a href="/logout" className="ui right floated mini button basic">
+            Logout
+          </a>
+        </div>
+      )
+    }
 
-    if (!this.props.profile) {
+    if (this.props.auth) {
+      return (
+        <div className="ui content">
+          <a
+            className="ui right floated mini primary button basic"
+          >
+            Follow
+          </a>
+        </div>
+      )
+    }
+  };
+
+  render() {
+    if (!this.props.profile.user) {
       return <h3>Loading...</h3>;
     }
 
-    const { profile } = this.props;
-    const avatar = profile.avatar
-      ? '/' + profile.avatar
+    const { user } = this.props.profile;
+    const avatar = user.avatar
+      ? '/' + user.avatar
       : '/images/avatar-placeholder.jpg';
     const tabButtons = [];
     let tabContent = null;
@@ -55,7 +82,7 @@ class Profile extends React.Component<Props> {
             key={tab.id}
             className={`ui bottom attached tab segment ${active}`}
           >
-            {tab.content}
+            {tab.content(user._id)}
           </div>
         );
       }
@@ -79,51 +106,20 @@ class Profile extends React.Component<Props> {
             <img src={avatar} className="ui small image" />
           </div>
           <div className="twelve wide column">
-            <h1 className="ui header">{profile.username}</h1>
+            <h1 className="ui header">{user.username}</h1>
           </div>
         </div>
 
         <div className="ui blue divider" />
-        <p>
-          <strong>Bio:</strong> {profile.bio}
-          <br />
-          <strong>Five Favorite Authors:</strong> {profile.topFiveAuthors}
-          <br />
-        </p>
+        <p><i className="book icon"></i>{user.topFiveAuthors}</p>
+        <p><i className="heart icon"></i>{user.interests}</p>
+        <p><i className="map marker icon"></i>{user.location}</p>
 
         <div className="ui blue divider" />
         <div className="ui top attached tabular menu">{tabButtons}</div>
         {tabContent}
       </div>
     );
-  }
-
-  renderButtons() {
-    if (this.props.auth) {
-      return (
-        <div className="ui content">
-          <a
-            href={`/profile/${this.props.auth._id}/edit`}
-            className="ui right floated mini primary button basic"
-          >
-            Edit
-          </a>
-          <a href="/logout" className="ui right floated mini button basic">
-            Logout
-          </a>
-        </div>
-      )
-    }
-
-    return (
-      <div className="ui content">
-        <a
-          className="ui right floated mini primary button basic"
-        >
-          Follow
-        </a>
-      </div>
-    )
   }
 }
 

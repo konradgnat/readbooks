@@ -20,7 +20,7 @@ export const createPost = formValues => async(dispatch, getState) => {
 
   dispatch({ type: CREATE_POST, payload: res.data });
 
-  history.push('/profile');
+  history.push(`/profile/${userId}`);
 };
 
 export const fetchProfile = userId => async dispatch => {

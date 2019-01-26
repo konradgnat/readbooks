@@ -6,9 +6,7 @@ import Post from './Post';
 
 class Posts extends React.Component<> {
   componentDidMount() {
-    if (!this.props.auth) return;
-
-    this.props.fetchPosts(this.props.auth._id);
+    this.props.fetchPosts(this.props.id);
   }
 
   renderPosts() {

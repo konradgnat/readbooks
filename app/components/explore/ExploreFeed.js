@@ -23,7 +23,7 @@ class ExploreFeed extends React.Component<Props> {
       : '/images/no_results.svg';
     let title = hit.volumeInfo.title;
     let publishedDate = hit.volumeInfo.publishedDate;
-    let authors = hit.volumeInfo.authors.join(', ');
+    let authors = hit.volumeInfo.authors ? hit.volumeInfo.authors.join(', ') : '';
     let description = hit.searchInfo ? hit.searchInfo.textSnippet : '';
 
     return { title, publishedDate, thumbnail, authors, description };

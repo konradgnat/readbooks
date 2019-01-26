@@ -32,7 +32,7 @@ router.get('/api/:id', function(req, res) {
       console.log(err);
     } else {
       console.log(user);
-      res.render('app/main', { user: user });
+      res.send({ user: user });
     }
   });
 });
