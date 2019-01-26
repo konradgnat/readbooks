@@ -4,6 +4,7 @@ import Following from '../components/profile/Following';
 import Followers from '../components/profile/Followers';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import axios from 'axios';
 
 export const TABS_STRUCTURE = [
   { id: 'posts', label: 'Posts', content: (id) => <Posts id={id} /> },
@@ -23,6 +24,12 @@ class Profile extends React.Component<Props> {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.fetchProfile(id);
+  };
+
+  followUser = async () => {
+    const res = await axios.post(`/profile/${this.props.profile.user._id}/follow`);
+    // TODO: Add notification here.
+    console.log(res);
   };
 
   changeTab = tabId => {
@@ -49,13 +56,15 @@ class Profile extends React.Component<Props> {
     }
 
     if (this.props.auth) {
+      //TODO: switch to unfollow detection
       return (
         <div className="ui content">
-          <a
+          <button
+            onClick={this.followUser}
             className="ui right floated mini primary button basic"
           >
             Follow
-          </a>
+          </button>
         </div>
       )
     }
@@ -109,11 +118,10 @@ class Profile extends React.Component<Props> {
             <h1 className="ui header">{user.username}</h1>
           </div>
         </div>
-
         <div className="ui blue divider" />
         <p><i className="book icon"></i>{user.topFiveAuthors}</p>
         <p><i className="heart icon"></i>{user.interests}</p>
-        <p><i className="map marker icon"></i>{user.location}</p>
+        <p><i className="map pin icon"></i>{user.location}</p>
         <div className="ui blue divider" />
         <div className="ui top attached tabular menu">{tabButtons}</div>
         {tabContent}

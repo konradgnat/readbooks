@@ -47,6 +47,20 @@ router.get('/:id/edit', isLoggedIn, function(req, res) {
   });
 });
 
+router.get('/:id/followers', function(req, res) {
+  User.findById(req.params.id, (err, user) => {
+    if (err) {
+      console.log(err);
+      res.send({ error: true });
+    } else {
+      let query = User.find({ _id: { $in: user.followers }}).select({ username: 1, avatar: 1 });
+      query.exec((err, followers) => {
+        res.send(followers);
+      });
+    }
+  });
+});
+
 router.put('/:id', isLoggedIn, uploadAvatar, function(req, res) {
   req.body.avatar = req.imageName;
 
@@ -64,24 +78,20 @@ router.post('/:id/follow', isLoggedIn, function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      let follower = {
-        username: req.user.username,
-        followerId: req.user._id,
-        avatar: req.user.avatar
-      };
-      Follower.create(follower, function(err, newFoll) {
-        if (err) {
-          console.log(err);
-        } else {
-          newFoll.avatar = 'avatarplaceholder';
-          newFoll.save();
-          user.followers = user.followers.concat(newFoll);
-          user.save();
-          res.redirect('/profile/' + req.params.id);
-        }
-      });
+      user.followers = user.followers.concat(req.user._id);
+      user.save();
     }
   });
+  User.findById(req.user._id, function(err, user) {
+    if (err) {
+      console.log(err);
+    } else {
+      user.following = user.following.concat(req.params.id);
+      user.save();
+    }
+  });
+
+  res.send({ error: false })
 });
 
 // MIDDLEWARE

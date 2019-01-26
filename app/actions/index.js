@@ -1,4 +1,11 @@
-import { FETCH_USER, FETCH_POSTS, CREATE_POST, FETCH_PROFILE } from './types';
+import {
+  FETCH_USER,
+  FETCH_POSTS,
+  CREATE_POST,
+  FETCH_PROFILE,
+  FOLLOW_USER,
+  FETCH_USER_FOLLOWERS
+} from './types';
 import axios from 'axios';
 import history from '../util/history';
 
@@ -27,4 +34,17 @@ export const fetchProfile = userId => async dispatch => {
   const res = await axios.get(`/profile/api/${userId}`);
 
   dispatch({ type: FETCH_PROFILE, payload: res.data });
+};
+
+export const followUser = userId => async dispatch => {
+  const res = await axios.get(`/profile/${userId}/follow`);
+
+  dispatch({ type: FOLLOW_USER, payload: res.data });
+};
+
+
+export const fetchUserFollowers = userId => async dispatch => {
+  const res = await axios.get(`/profile/${userId}/followers`);
+
+  dispatch({ type: FETCH_USER_FOLLOWERS, payload: res.data });
 };

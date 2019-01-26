@@ -10,7 +10,13 @@ const userSchema = mongoose.Schema({
   followers: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Follower'
+      ref: "User"
+    }
+  ],
+  following: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
     }
   ],
   local: {
