@@ -24,7 +24,7 @@ class App extends React.Component<Props> {
           <Route exact path="/explore/:id" component={PostShow} />
           <Route exact path="/explore" component={ExploreContainer} />
           <Route exact path="/post/create" component={PostCreate} />
-          <Route path="/profile" component={Profile} />
+          <Route exact path="/profile/:id" component={Profile} />
         </div>
       </Router>
     );

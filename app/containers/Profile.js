@@ -20,6 +20,11 @@ class Profile extends React.Component<Props> {
     };
   }
 
+  componentDidMount() {
+    const { id } = this.props.match.params;
+    this.props.fetchProfile(id);
+  }
+
   changeTab = tabId => {
     this.setState({
       activeTab: tabId
@@ -27,13 +32,16 @@ class Profile extends React.Component<Props> {
   };
 
   render() {
-    if (!this.props.auth) {
+    // check if current user is same
+    console.log('this props', this.props);
+
+    if (!this.props.profile) {
       return <h3>Loading...</h3>;
     }
 
-    const user = this.props.auth;
-    const avatar = user.avatar
-      ? '/' + user.avatar
+    const { profile } = this.props;
+    const avatar = profile.avatar
+      ? '/' + profile.avatar
       : '/images/avatar-placeholder.jpg';
     const tabButtons = [];
     let tabContent = null;
@@ -65,30 +73,21 @@ class Profile extends React.Component<Props> {
 
     return (
       <div className="segment">
-        <a
-          href={`/profile/${this.props.auth._id}/edit`}
-          className="ui right floated mini primary button basic"
-        >
-          Edit
-        </a>
-        <a href="/logout" className="ui right floated mini button basic">
-          Logout
-        </a>
-
+        {this.renderButtons()}
         <div className="ui grid">
           <div className="three wide column">
             <img src={avatar} className="ui small image" />
           </div>
           <div className="twelve wide column">
-            <h1 className="ui header">{user.username}</h1>
+            <h1 className="ui header">{profile.username}</h1>
           </div>
         </div>
 
         <div className="ui blue divider" />
         <p>
-          <strong>Bio:</strong> {user.bio}
+          <strong>Bio:</strong> {profile.bio}
           <br />
-          <strong>Five Favorite Authors:</strong> {user.topFiveAuthors}
+          <strong>Five Favorite Authors:</strong> {profile.topFiveAuthors}
           <br />
         </p>
 
@@ -98,10 +97,38 @@ class Profile extends React.Component<Props> {
       </div>
     );
   }
+
+  renderButtons() {
+    if (this.props.auth) {
+      return (
+        <div className="ui content">
+          <a
+            href={`/profile/${this.props.auth._id}/edit`}
+            className="ui right floated mini primary button basic"
+          >
+            Edit
+          </a>
+          <a href="/logout" className="ui right floated mini button basic">
+            Logout
+          </a>
+        </div>
+      )
+    }
+
+    return (
+      <div className="ui content">
+        <a
+          className="ui right floated mini primary button basic"
+        >
+          Follow
+        </a>
+      </div>
+    )
+  }
 }
 
 function mapStateToProps(state) {
-  return { auth: state.auth };
+  return { auth: state.auth, profile: state.profile };
 }
 
 export default connect(

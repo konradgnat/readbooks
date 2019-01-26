@@ -1,4 +1,4 @@
-import { FETCH_USER, FETCH_POSTS, CREATE_POST } from './types';
+import { FETCH_USER, FETCH_POSTS, CREATE_POST, FETCH_PROFILE } from './types';
 import axios from 'axios';
 import history from '../util/history';
 
@@ -21,4 +21,10 @@ export const createPost = formValues => async(dispatch, getState) => {
   dispatch({ type: CREATE_POST, payload: res.data });
 
   history.push('/profile');
+};
+
+export const fetchProfile = userId => async dispatch => {
+  const res = await axios.get(`/profile/api/${userId}`);
+
+  dispatch({ type: FETCH_PROFILE, payload: res.data });
 };

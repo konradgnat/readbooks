@@ -21,7 +21,18 @@ router.get('/:id', function(req, res) {
       console.log(err);
     } else {
       console.log(user);
-      res.render('profile/showPublic', { user: user });
+      res.render('app/main', { user: user });
+    }
+  });
+});
+
+router.get('/api/:id', function(req, res) {
+  User.findById(req.params.id, function(err, user) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(user);
+      res.render('app/main', { user: user });
     }
   });
 });
