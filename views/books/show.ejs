@@ -18,15 +18,15 @@
           <div class="content">
             <h1 class="ui header"><%=book.title%></h1>
             <div class="meta">
-              <div>
+              <span class="author">author: <%=book.author%></span><br>
+              <span class="date">published: <%=book.publishedDate%></span><br>
+              <span class="posted_date">posted on <%= postDate %></span><br>
+              <div>posted by:
                   <% if (book.postedBy.avatar) { %>
                 <img src="/<%= book.postedBy.avatar %>" class="ui avatar image">
                   <% } %>
                 <span> - <a href="/profile/<%=book.postedBy.id%>"><%=book.postedBy.username%></a></span><br/>
               </div>
-              <span class="author">Author: <%=book.author%></span><br>
-              <span class="date">Published: <%=book.publishedDate%></span><br>
-              <span class="posted_date">Posted on <%= postDate %></span><br>
             </div>
           </div>
         </div>

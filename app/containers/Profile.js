@@ -114,7 +114,6 @@ class Profile extends React.Component<Props> {
         <p><i className="book icon"></i>{user.topFiveAuthors}</p>
         <p><i className="heart icon"></i>{user.interests}</p>
         <p><i className="map marker icon"></i>{user.location}</p>
-
         <div className="ui blue divider" />
         <div className="ui top attached tabular menu">{tabButtons}</div>
         {tabContent}

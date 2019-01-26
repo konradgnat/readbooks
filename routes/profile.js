@@ -43,7 +43,6 @@ router.get('/:id/edit', isLoggedIn, function(req, res) {
       console.log(err);
     } else {
       res.render('profile/edit', { user: user });
-      // res.send(user);
     }
   });
 });
@@ -55,7 +54,7 @@ router.put('/:id', isLoggedIn, uploadAvatar, function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.redirect('/profile');
+      res.redirect(`/profile/${req.params.id}`);
     }
   });
 });
