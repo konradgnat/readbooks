@@ -14,17 +14,32 @@ type Props = {
 export default class PostShow extends React.Component<Props> {
   state = { showForm: false };
 
-  handleAddBook = () => {
+  togglePostForm = () => {
     this.setState({ showForm: !this.state.showForm });
-    console.log(this.state);
   };
 
   renderForm = () => {
     if (this.state.showForm) {
       return (
-        <PostCreate />
+        <PostCreate bookData={this.props.location.state}/>
       )
     }
+  };
+
+  renderButton() {
+    if (!this.state.showForm) {
+      return (
+        <a onClick={this.togglePostForm} className="ui mini positive basic button">
+          Add Book
+        </a>
+      );
+    }
+
+    return (
+      <button onClick={this.togglePostForm} className="ui tiny red basic button post__cancel">
+        Cancel
+      </button>
+    );
   };
 
   render() {
@@ -60,12 +75,8 @@ export default class PostShow extends React.Component<Props> {
           </div>
         </div>
         <div className="ui content">
-          <a onClick={this.handleAddBook} className="ui mini positive basic button">
-            Add Book
-          </a>
-          <div className="ui content">
-            {this.renderForm()}
-          </div>
+          {this.renderForm()}
+          {this.renderButton()}
         </div>
         <h4 className="ui header">Description</h4>
         <p>{this.props.location.state.volumeInfo.description}</p>

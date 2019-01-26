@@ -161,3 +161,6 @@ a {
 a:hover {
 	color: #000000;
 }
+.post__submit, .post__cancel {
+	margin-top: 20px!important;
+}
