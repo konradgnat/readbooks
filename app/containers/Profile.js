@@ -1,15 +1,16 @@
 import * as React from 'react';
 import Posts from '../components/profile/Posts';
-import Following from '../components/profile/Following';
-import Followers from '../components/profile/Followers';
+import FollowList from '../components/profile/FollowList';
+import Followers from '../components/profile/FollowList';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
 
 export const TABS_STRUCTURE = [
   { id: 'posts', label: 'Posts', content: (id) => <Posts id={id} /> },
-  { id: 'following', label: 'Following', content: (id) => <Following id={id} /> },
-  { id: 'followers', label: 'Followers', content: (id) => <Followers id={id} /> }
+  { id: 'following', label: 'Following', content: (id) => <FollowList id={id} following={true} /> },
+  { id: 'followers', label: 'Followers', content: (id) => <FollowList id={id} /> }
 ];
 
 class Profile extends React.Component<Props> {
@@ -17,7 +18,8 @@ class Profile extends React.Component<Props> {
     super(props);
     this.state = {
       tabs: TABS_STRUCTURE,
-      activeTab: 'posts'
+      activeTab: 'posts',
+      id: this.props.match.params.id
     };
   };
 
@@ -134,7 +136,8 @@ function mapStateToProps(state) {
   return { auth: state.auth, profile: state.profile };
 }
 
-export default connect(
+// using withRouter allows component to refresh when route param changes
+export default withRouter(connect(
   mapStateToProps,
   actions
-)(Profile);
+)(Profile));

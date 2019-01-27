@@ -47,18 +47,18 @@ router.get('/:id/edit', isLoggedIn, function(req, res) {
   });
 });
 
+/**
+ * Gets all followers or following users for user
+ */
 router.get('/:id/followers', function(req, res) {
-  User.findById(req.params.id, (err, user) => {
-    if (err) {
-      console.log(err);
-      res.send({ error: true });
-    } else {
-      let query = User.find({ _id: { $in: user.followers }}).select({ username: 1, avatar: 1 });
-      query.exec((err, followers) => {
-        res.send(followers);
-      });
-    }
-  });
+  getFollowList(req, res,false);
+});
+
+/**
+ * Gets all users a user following
+ */
+router.get('/:id/following', function(req, res) {
+  getFollowList(req, res,true);
 });
 
 router.put('/:id', isLoggedIn, uploadAvatar, function(req, res) {
@@ -93,6 +93,33 @@ router.post('/:id/follow', isLoggedIn, function(req, res) {
 
   res.send({ error: false })
 });
+
+// Helper functions
+function getFollowList(req, res, following) {
+  const methodName = following ? 'following' : 'followers';
+
+  User.findById(req.params.id, (err, user) => {
+    if (err) {
+      console.log(err);
+    } else {
+      let query = User.find({
+        _id: {
+          $in: user[methodName]
+        }
+      }).select({
+        username: 1,
+        avatar: 1
+      });
+      query.exec((err, followList) => {
+        if (err) {
+          console.log(err);
+        } else {
+          res.send(followList);
+        }
+      });
+    }
+  });
+}
 
 // MIDDLEWARE
 function uploadAvatar(req, res, next) {

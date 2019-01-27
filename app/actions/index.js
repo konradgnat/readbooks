@@ -42,9 +42,9 @@ export const followUser = userId => async dispatch => {
   dispatch({ type: FOLLOW_USER, payload: res.data });
 };
 
-
-export const fetchUserFollowers = userId => async dispatch => {
-  const res = await axios.get(`/profile/${userId}/followers`);
+export const fetchUserFollowers = (userId, following = false) => async dispatch => {
+  const path = following ? 'following' : 'followers';
+  const res = await axios.get(`/profile/${userId}/${path}`);
 
   dispatch({ type: FETCH_USER_FOLLOWERS, payload: res.data });
 };
