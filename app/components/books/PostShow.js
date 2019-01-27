@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
 import type { TitleResults } from '../../types/BooksAPI';
-import styles from './PostShow.css';
+import './PostShow.css';
 import PostCreate from './PostCreate';
 
 type Props = {
@@ -59,14 +59,14 @@ class PostShow extends React.Component<Props> {
         <div className="ui items">
           <div className="ui item">
             <div className="ui tiny-image">
-              <img src={book.thumbnail} className={styles.detailImage} alt="" />
+              <img src={book.thumbnail} className="detailImage" alt="" />
             </div>
-            <div className={styles.detailContent}>
+            <div className="detailContent">
               <div className="content">
                 <h1 className="ui header">{book.title}</h1>
                 <div className="meta">
-                  <span className={styles.detailMeta}>Authors: {book.authors}</span>
-                  <span className={styles.detailMeta}>
+                  <span className="detailMeta">Authors: {book.authors}</span>
+                  <span className="detailMeta">
                     Published: {book.publishedDate}
                   </span>
                 </div>

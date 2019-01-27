@@ -1,7 +1,7 @@
 // @flow
 
 import React from 'react';
-import styles from './ExploreSearch.css';
+import './ExploreSearch.css';
 import Autocomplete from '../Autocomplete';
 import type { TitleResults } from 'app/types/BooksAPI';
 
@@ -93,19 +93,19 @@ class ExploreSearch extends React.Component<Props, State> {
 
   render() {
     return (
-      <div className={styles.search_container}>
+      <div className="search_container">
         <h3>Find your next favorite book!</h3>
-        <div className={styles.titleSearchWrapper}>
-          <label htmlFor="titleSearch" className={styles.titleSearchLabel}>
+        <div className="titleSearchWrapper">
+          <label htmlFor="titleSearch" className="titleSearchLabel">
             Search:
           </label>
-          <div className={styles.autoCompWrapper}>
+          <div className="autoCompWrapper">
             <input
               id="titleSearch"
               value={this.state.value}
               onKeyDown={this.onKeyDown}
               onChange={this.updateQuery}
-              className={styles.searchInput}
+              className="searchInput"
               type="search"
               autoComplete="off"
             />
@@ -120,8 +120,8 @@ class ExploreSearch extends React.Component<Props, State> {
           <button
             onClick={this.performSearch}
             type="submit"
-            className={styles.titleSearchSubmit}
-          >
+            className="titleSearchSubmit"
+            >
               <i className="circular search link icon"></i>
           </button>
         </div>

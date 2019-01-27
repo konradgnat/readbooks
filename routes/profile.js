@@ -93,10 +93,9 @@ router.post('/:id/follow', isLoggedIn, function(req, res) {
         mongoose.Types.ObjectId(req.params.id)
       );
       user.save();
+      res.send({ following: user.following });
     }
   });
-
-  res.send({ error: false });
 });
 
 /**
@@ -121,10 +120,9 @@ router.post('/:id/unfollow', isLoggedIn, function(req, res) {
         f => f.toString() !== req.params.id
       );
       user.save();
+      res.send({ following: user.following });
     }
   });
-
-  res.send({ error: false });
 });
 
 // Helper functions

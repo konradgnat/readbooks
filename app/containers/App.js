@@ -9,6 +9,7 @@ import history from '../util/history';
 import Profile from './Profile';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
+import 'react-notifications/lib/notifications.css';
 
 type Props = {};
 
@@ -28,7 +29,7 @@ class App extends React.Component<Props> {
             exact
             path="/profile/:id"
             // this allows the component to refresh when the route param changes
-            render={(props) => (<Profile key={props.location.key}/>)}
+            render={props => <Profile key={props.location.key} />}
           />
         </div>
       </Router>

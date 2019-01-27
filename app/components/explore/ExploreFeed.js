@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import type { TitleResults } from 'app/types/BooksAPI';
-import styles from './ExploreFeed.css';
-import classNames from 'classnames/bind';
+import './ExploreFeed.css';
 import { Link } from 'react-router-dom';
 
 type Props = {
@@ -11,7 +10,6 @@ type Props = {
 };
 
 class ExploreFeed extends React.Component<Props> {
-  cx = classNames.bind(styles);
 
   constructor(props: Props) {
     super(props);
@@ -30,11 +28,6 @@ class ExploreFeed extends React.Component<Props> {
   };
 
   renderSearchHit = (hit: TitleResults): React.Element<'div'> => {
-    let feedItemClassNames = this.cx({
-      feedItem: true,
-      ui: true,
-      segment: true
-    });
     let book = this.separatePostFields(hit);
     const detail = {
       pathname: '/explore/' + hit.id,
@@ -42,7 +35,7 @@ class ExploreFeed extends React.Component<Props> {
     };
 
     return (
-      <div key={hit.id} className={feedItemClassNames}>
+      <div key={hit.id} className='feedItem ui segment'>
         <Link to={detail}>
           <div className="content">
             <div className="ui tiny left floated image">
@@ -67,7 +60,7 @@ class ExploreFeed extends React.Component<Props> {
 
   render() {
     return (
-      <div className={styles.feedWrapper}>
+      <div className='feedWrapper'>
         {this.props.searchHits.map(this.renderSearchHit)}
       </div>
     );

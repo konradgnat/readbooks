@@ -2,8 +2,7 @@
 
 import * as React from 'react';
 import apiCaller from 'util/apiCaller';
-import styles from './Autocomplete.css';
-import classNames from 'classnames/bind';
+import './Autocomplete.css';
 import type { TitleResults } from 'types/BooksAPI';
 
 type Props = {
@@ -20,8 +19,6 @@ type State = {
 
 class Autocomplete extends React.Component<Props, State> {
   node = null;
-
-  cx = classNames.bind(styles);
 
   constructor(props: Props): void {
     super(props);
@@ -62,10 +59,7 @@ class Autocomplete extends React.Component<Props, State> {
     let isSelected = false;
     if (this.props.currentIndex > -1)
       isSelected = this.state.hits[this.props.currentIndex].id === hit.id;
-    let className = this.cx({
-      suggestion: true,
-      selected: isSelected
-    });
+    const className = isSelected ? 'suggestion selected' : 'suggestion';
     const title = hit.volumeInfo.title;
 
     return (
@@ -94,7 +88,7 @@ class Autocomplete extends React.Component<Props, State> {
       <div
         ref={node => (this.node = node)}
         role="list"
-        className={styles.autoCompList}
+        className="autoCompList"
         style={style}
       >
         {this.state.hits.map(this.renderHit)}

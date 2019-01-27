@@ -1,13 +1,13 @@
 // @flow
 import * as React from 'react';
-import styles from './Posts.css';
+import './Posts.css';
 
 export default props => {
   return (
-    <div className={'item ' + styles.profile__post}>
-      <div className={'ui tiny image ' + styles.profile__img_wrapper}>
+    <div className="item profile__post">
+      <div className="ui tiny image profile__img_wrapper">
         <img
-          className={'book_thumbnail ' + styles.profile__img}
+          className="book_thumbnail profile__img"
           src={props.post.thumbnail}
         />
       </div>
