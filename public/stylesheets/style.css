@@ -1,3 +1,7 @@
+:root {
+	--primary: #b2cecf;
+	--secondary: #fffdef;
+}
 #main-title {
 	margin-top: 100px;
 }
@@ -83,8 +87,8 @@ input[type="submit"].delete:hover {
 	color: #000000;
 }
 .menu_nav__item:hover {
-	background: #000000;
-	color: #ffffff;
+	color: var(--secondary);
+	background: var(--primary);
 }
 .menu_nav__item:nth-child(1) {
 	border-left: 1px solid rgba(34,36,38,.1);
@@ -165,4 +169,13 @@ a:hover {
 .item--follow {
 	display: flex!important;
 	align-items: center;
+}
+.header__img {
+	height: 49px;
+	margin-bottom: -19px;
+}
+.menu_nav__item--img {
+	height: 100%;
+	align-items: center;
+	padding: 0;
 }
