@@ -24,7 +24,12 @@ class App extends React.Component<Props> {
           <Route exact path="/explore/:id" component={PostShow} />
           <Route exact path="/explore" component={ExploreContainer} />
           <Route exact path="/post/create" component={PostCreate} />
-          <Route exact path="/profile/:id" component={Profile} />
+          <Route
+            exact
+            path="/profile/:id"
+            // this allows the component to refresh when the route param changes
+            render={(props) => (<Profile key={props.location.key}/>)}
+          />
         </div>
       </Router>
     );

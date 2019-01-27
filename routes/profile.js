@@ -51,14 +51,14 @@ router.get('/:id/edit', isLoggedIn, function(req, res) {
  * Gets all followers or following users for user
  */
 router.get('/:id/followers', function(req, res) {
-  getFollowList(req, res,false);
+  getFollowList(req, res, false);
 });
 
 /**
  * Gets all users a user following
  */
 router.get('/:id/following', function(req, res) {
-  getFollowList(req, res,true);
+  getFollowList(req, res, true);
 });
 
 router.put('/:id', isLoggedIn, uploadAvatar, function(req, res) {
@@ -73,6 +73,9 @@ router.put('/:id', isLoggedIn, uploadAvatar, function(req, res) {
   });
 });
 
+/**
+ * Follow a user route
+ */
 router.post('/:id/follow', isLoggedIn, function(req, res) {
   User.findById(req.params.id, function(err, user) {
     if (err) {
@@ -86,12 +89,42 @@ router.post('/:id/follow', isLoggedIn, function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      user.following = user.following.concat(req.params.id);
+      user.following = user.following.concat(
+        mongoose.Types.ObjectId(req.params.id)
+      );
       user.save();
     }
   });
 
-  res.send({ error: false })
+  res.send({ error: false });
+});
+
+/**
+ * Unfollow a user route
+ */
+router.post('/:id/unfollow', isLoggedIn, function(req, res) {
+  User.findById(req.params.id, function(err, user) {
+    if (err) {
+      console.log(err);
+    } else {
+      user.followers = user.followers.filter(
+        f => f.toString() !== req.user._id.toString()
+      );
+      user.save();
+    }
+  });
+  User.findById(req.user._id, function(err, user) {
+    if (err) {
+      console.log(err);
+    } else {
+      user.following = user.following.filter(
+        f => f.toString() !== req.params.id
+      );
+      user.save();
+    }
+  });
+
+  res.send({ error: false });
 });
 
 // Helper functions

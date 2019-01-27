@@ -1,11 +1,13 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
+import axios from 'axios';
+import _ from 'lodash';
 import Posts from '../components/profile/Posts';
 import FollowList from '../components/profile/FollowList';
 import Followers from '../components/profile/FollowList';
-import { connect } from 'react-redux';
 import * as actions from '../actions';
-import axios from 'axios';
-import { withRouter } from 'react-router-dom';
 
 export const TABS_STRUCTURE = [
   { id: 'posts', label: 'Posts', content: (id) => <Posts id={id} /> },
@@ -34,6 +36,12 @@ class Profile extends React.Component<Props> {
     console.log(res);
   };
 
+  unfollowUser =  async () => {
+    const res = await axios.post(`/profile/${this.props.profile.user._id}/unfollow`);
+    // TODO: Add notification here.
+    console.log(res);
+  };
+
   changeTab = tabId => {
     this.setState({
       activeTab: tabId
@@ -58,21 +66,34 @@ class Profile extends React.Component<Props> {
     }
 
     if (this.props.auth) {
-      //TODO: switch to unfollow detection
+      if (_.includes(this.props.auth.following, this.props.profile.user._id)) {
+        return (
+          <div className="ui content">
+            <button
+              onClick={this.unfollowUser}
+              className="ui right floated mini blue button basic"
+            >
+              Unfollow
+            </button>
+          </div>
+        )
+      }
+
       return (
         <div className="ui content">
-          <button
-            onClick={this.followUser}
-            className="ui right floated mini primary button basic"
-          >
+            <button
+          onClick={this.followUser}
+          className="ui right floated mini primary button basic"
+            >
             Follow
-          </button>
+            </button>
         </div>
       )
     }
   };
 
   render() {
+    console.log('profile', this.props);
     if (!this.props.profile.user) {
       return <h3>Loading...</h3>;
     }
@@ -127,6 +148,7 @@ class Profile extends React.Component<Props> {
         <div className="ui blue divider" />
         <div className="ui top attached tabular menu">{tabButtons}</div>
         {tabContent}
+        <NotificationContainer/>
       </div>
     );
   }
