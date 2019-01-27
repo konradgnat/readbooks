@@ -87,6 +87,13 @@ input[type="submit"].delete:hover {
 	color: #000000;
 }
 .menu_nav__item:hover {
+	background: var(--secondary);
+	color: var(--primary);
+}
+.menu_nav__item--img:hover {
+	background: var(--primary);
+}
+.menu_nav__profile_menu ul li {
 	color: var(--secondary);
 	background: var(--primary);
 }
@@ -178,4 +185,10 @@ a:hover {
 	height: 100%;
 	align-items: center;
 	padding: 0;
+}
+.ui.large.menu {
+	background: var(--primary);
+}
+.menu_nav__item {
+	color: var(--secondary);
 }

@@ -6,11 +6,13 @@
 }
 .suggestion:hover {
     cursor: pointer;
-    background-color: lightcyan;
+    background-color: #b2cecf;
+    color: #fffdef;
 }
 
 .selected {
-    background-color: lightcyan;
+    background-color: #b2cecf;
+    color: #fffdef;
 }
 
 .autoCompList {
