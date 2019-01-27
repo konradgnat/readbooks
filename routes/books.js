@@ -39,13 +39,6 @@ router.get('/user/:id', (req, res) => {
 });
 
 /**
- * Route for creating a new book post
- */
-router.get('/new', isLoggedIn, function(req, res) {
-  res.render('books/new');
-});
-
-/**
  * Creates new book and assigns book id to user
  */
 router.post('/', function(req, res) {

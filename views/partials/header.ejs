@@ -18,12 +18,8 @@
       <a href="/" class="menu_nav__item">Home</a>
       <a href="/explore" class="menu_nav__item">Explore</a>
       <% if (!currentUser){%>
-      <a href="/books/new" class="menu_nav__item">Add Book</a>
       <a href="/login" class="menu_nav__item">Log in</a>
       <a href="/register" class="menu_nav__item">Sign Up</a>
-      <%} else { %>
-        <a href="/books/new" class="menu_nav__item">Add Book</a>
-
       <%}%>
       <% if (currentUser) {%>
         <div class="menu_nav__item menu_nav__item--profile" onclick="expandUserMenu()">
