@@ -38,6 +38,12 @@ class Profile extends React.Component<Props> {
     this.props.fetchProfile(id);
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.auth !== prevProps.auth) {
+      this.setState({ following: this.props.auth.following });
+    }
+  }
+
   followUser = async () => {
     const res = await axios.post(
       `/profile/${this.props.profile.user._id}/follow`
