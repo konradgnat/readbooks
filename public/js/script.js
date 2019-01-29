@@ -3,7 +3,7 @@
 function expandMenu() {
   const menuNav = document.getElementById('menu_nav');
   if (menuNav.className === 'menu_nav') {
-    menuNav.className += 'menu_nav__expanded';
+    menuNav.className += ' menu_nav__expanded';
   } else {
     menuNav.className = 'menu_nav';
   }

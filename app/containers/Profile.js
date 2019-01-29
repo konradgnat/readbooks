@@ -162,7 +162,7 @@ class Profile extends React.Component<Props> {
       <div className="segment">
         {this.renderButtons()}
         <div className="ui grid">
-          <div className="three wide column">
+          <div className="three wide column profile__avatar">
             <img src={avatar} className="ui small image" />
           </div>
           <div className="twelve wide column">
