@@ -79,7 +79,7 @@ class PostShow extends React.Component<Props> {
           {this.renderButton()}
         </div>
         <h4 className="ui header">Description</h4>
-        <p>{book.description}</p>
+        <p dangerouslySetInnerHTML={{ __html: book.description }}></p>
       </div>
     );
   }

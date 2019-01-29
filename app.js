@@ -27,7 +27,7 @@ if (process.env.NODE_ENV === 'production') {
       'mongodb://localhost/bihkal',
       { useMongoClient: true }
     )
-    .then(() => console.log('local mongodb connection succesful'))
+    .then(() => console.log('local mongodb connection successful'))
     .catch(err => console.error(err));
 } else {
   mongoose
@@ -35,7 +35,7 @@ if (process.env.NODE_ENV === 'production') {
       keys.mongoURI,
       { useMongoClient: true }
     )
-    .then(() => console.log('mongodb connection succesful'))
+    .then(() => console.log('mongodb connection successful'))
     .catch(err => console.error(err));
 }
 

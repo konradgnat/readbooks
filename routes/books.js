@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Book = require('../models/book.js');
+// const htmlDecode = require('js-htmlencode').htmlDecode;
 const { checkPostOwnership, isLoggedIn } = require('../services/middleWare');
 
 /**
@@ -81,6 +82,8 @@ router.get('/:id', function(req, res) {
       if (err) {
         console.log(err);
       } else {
+        // book.description = htmlDecode(book.description);
+        // TODO: remove this if not needed to decode text
         res.render('books/show', { book: book });
       }
     });
