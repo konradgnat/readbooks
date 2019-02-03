@@ -9,6 +9,7 @@ class FollowList extends React.Component<> {
   }
   renderFollowers = () => {
     if (this.props.followers.length === 0) {
+      
       return (
         <div className="item">
           <div className="description">
@@ -17,6 +18,7 @@ class FollowList extends React.Component<> {
         </div>
       )
     }
+
     return this.props.followers.map(item => {
       return <Follower username={item.username} avatar={item.avatar} id={item._id}/>
     })

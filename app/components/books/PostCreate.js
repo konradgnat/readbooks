@@ -7,9 +7,6 @@ class PostCreate extends React.Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-    console.log('componentDidMount in create', this.props);
-  }
 
   onSubmit = (formValues) => {
     const values = { ...this.props.bookData, ...formValues };

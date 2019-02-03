@@ -14,6 +14,17 @@ class Posts extends React.Component<> {
       return;
     }
 
+    if (this.props.posts.length === 0) {
+
+      return (
+        <div className="item">
+          <div className="description">
+            Nothing here...
+          </div>
+        </div>
+      );
+    }
+
     return this.props.posts.map(post => {
       return <Post post={post} />;
     });

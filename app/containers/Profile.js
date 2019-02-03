@@ -75,8 +75,7 @@ class Profile extends React.Component<Props> {
   };
 
   renderButtons() {
-    if (
-      this.props.auth &&
+    if (this.props.auth &&
       this.props.auth._id === this.props.profile.user._id
     ) {
       return (
@@ -135,6 +134,7 @@ class Profile extends React.Component<Props> {
 
     TABS_STRUCTURE.forEach(tab => {
       let active = '';
+
       if (this.state.activeTab === tab.id) {
         active = 'active';
         tabContent = (
@@ -146,6 +146,7 @@ class Profile extends React.Component<Props> {
           </div>
         );
       }
+      
       tabButtons.push(
         <a
           key={tab.id}

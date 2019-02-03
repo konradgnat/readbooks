@@ -195,7 +195,7 @@ a:hover {
 		width: 100%;
 		left: 11px;
 	}
-	.profile__avatar {
-		width: 150px;
+	.three.wide.column.profile__avatar {
+		width: 150px!important;
 	}
 }
