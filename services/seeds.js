@@ -153,7 +153,7 @@ function seedDB() {
     if (err) {
       console.log(err);
     } else {
-      console.log('removed books');
+      console.log('removed post');
       data.forEach(function(seed) {
         Book.create(seed, function(err, book) {
           if (err) {
@@ -181,7 +181,7 @@ function seedDB() {
     if (err) {
       console.log(err);
     } else {
-      console.log('removed books');
+      console.log('removed post');
       userData.forEach(function(seed) {
         User.create(seed, function(err, user) {
           if (err) {

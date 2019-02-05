@@ -5,7 +5,7 @@ const Book = require('../models/book.js');
 const { checkPostOwnership, isLoggedIn } = require('../services/middleWare');
 
 /**
- * Gets all books
+ * Gets all posts
  */
 router.get('/', function(req, res) {
   Book.find({}, function(err, books) {
@@ -84,7 +84,7 @@ router.get('/:id', function(req, res) {
       } else {
         // book.description = htmlDecode(book.description);
         // TODO: remove this if not needed to decode text
-        res.render('books/show', { book: book });
+        res.render('posts/show', { book: book });
       }
     });
 });
@@ -97,7 +97,7 @@ router.get('/:id/edit', checkPostOwnership, function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.render('books/edit', { book: foundBook });
+      res.render('posts/edit', { book: foundBook });
     }
   });
 });
@@ -110,7 +110,7 @@ router.put('/:id', checkPostOwnership, function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.redirect('/books/' + req.params.id);
+      res.redirect('/posts/' + req.params.id);
     }
   });
 });
@@ -123,7 +123,7 @@ router.delete('/:id', checkPostOwnership, function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.redirect('/books');
+      res.redirect('/posts');
     }
   });
 });

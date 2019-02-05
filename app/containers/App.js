@@ -3,8 +3,8 @@
 import React from 'react';
 import { Router, Route } from 'react-router-dom';
 import ExploreContainer from './Explore';
-import PostShow from '../components/books/PostShow';
-import PostCreate from '../components/books/PostCreate';
+import PostShow from '../components/post/PostShow';
+import PostCreate from '../components/post/PostCreate';
 import history from '../util/history';
 import Profile from './Profile';
 import { connect } from 'react-redux';

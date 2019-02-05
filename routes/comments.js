@@ -19,7 +19,7 @@ router.post('/', isLoggedIn, function(req, res) {
           newComment.save();
           book.comments = book.comments.concat(newComment);
           book.save();
-          res.redirect('/books/' + book._id);
+          res.redirect('/posts/' + book._id);
         }
       });
     }
@@ -48,7 +48,7 @@ router.put('/:comment_id', function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.redirect('/books/' + req.params.id);
+      res.redirect('/posts/' + req.params.id);
     }
   });
 });
@@ -57,7 +57,7 @@ router.delete('/:comment_id', function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      res.redirect('/books/' + req.params.id);
+      res.redirect('/posts/' + req.params.id);
     }
   });
 });

@@ -15,7 +15,7 @@ class ExploreFeed extends React.Component<Props> {
     super(props);
   }
 
-  separatePostFields = (hit) => {
+  processPostFields = (hit) => {
     let thumbnail = hit.volumeInfo.imageLinks
       ? hit.volumeInfo.imageLinks.smallThumbnail
       : '/images/no_results.svg';
@@ -28,7 +28,7 @@ class ExploreFeed extends React.Component<Props> {
   };
 
   renderSearchHit = (hit: TitleResults): React.Element<'div'> => {
-    let book = this.separatePostFields(hit);
+    let book = this.processPostFields(hit);
     const detail = {
       pathname: '/explore/' + hit.id,
       state: book

@@ -5,7 +5,7 @@ var express = require('express'),
   Comment = require('../models/comment');
 
 router.get('/', function(req, res) {
-  res.redirect('/books');
+  res.redirect('/posts');
 });
 
 router.get('/register', function(req, res) {

@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const flash = require('connect-flash');
 const passport = require('passport');
 
 // route for fb authentication and login
@@ -18,8 +17,8 @@ router.get(
   // res.render('login', {message: req.flash('loginMessage') });
 
   passport.authenticate('facebook', {
-    successRedirect: '/books',
-    failureRedirect: '/books'
+    successRedirect: '/posts',
+    failureRedirect: '/posts'
   })
 );
 
@@ -32,8 +31,8 @@ router.get(
 router.get(
   '/twitter/callback',
   passport.authenticate('twitter', {
-    successRedirect: '/books',
-    failureRedirect: '/books'
+    successRedirect: '/posts',
+    failureRedirect: '/posts'
   })
 );
 
@@ -48,8 +47,8 @@ router.get(
 router.get(
   '/google/callback',
   passport.authenticate('google', {
-    successRedirect: '/books',
-    failureRedirect: '/books'
+    successRedirect: '/posts',
+    failureRedirect: '/posts'
   })
 );
 

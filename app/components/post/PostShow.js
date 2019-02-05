@@ -12,7 +12,11 @@ type Props = {
   }
 };
 
-class PostShow extends React.Component<Props> {
+type State = {
+  showForm: boolean
+};
+
+class PostShow extends React.Component<Props, State> {
   state = { showForm: false };
 
   togglePostForm = () => {

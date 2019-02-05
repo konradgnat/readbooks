@@ -72,11 +72,11 @@ app.use(methodOverride('_method'));
 // seedDB();
 
 app.use('/', indexRoutes);
-app.use('/books', bookRoutes);
+app.use('/posts', bookRoutes);
 app.use('/profile', profileRoutes);
 app.use('/auth', authRoutes);
 app.use('/explore', exploreRoutes);
-app.use('/books/:id/comments', commentRoutes);
+app.use('/posts/:id/comments', commentRoutes);
 
 const PORT = process.env.PORT || 8083;
 app.listen(PORT, function() {
