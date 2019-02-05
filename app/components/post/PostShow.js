@@ -9,7 +9,8 @@ import PostCreate from './PostCreate';
 type Props = {
   location: {
     state: TitleResults
-  }
+  },
+  auth: null|boolean|Object
 };
 
 type State = {

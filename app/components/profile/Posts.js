@@ -4,7 +4,14 @@ import * as actions from '../../actions';
 import { connect } from 'react-redux';
 import Post from './Post';
 
-class Posts extends React.Component<> {
+type Props = {
+  fetchPosts: function,
+  posts: [],
+  auth: boolean,
+  id: string
+};
+
+class Posts extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchPosts(this.props.id);
   }

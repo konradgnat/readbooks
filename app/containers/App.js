@@ -11,7 +11,9 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import 'react-notifications/lib/notifications.css';
 
-type Props = {};
+type Props = {
+  fetchUser: function
+};
 
 class App extends React.Component<Props> {
   componentDidMount() {
