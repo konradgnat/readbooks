@@ -2,7 +2,11 @@
 import * as React from 'react';
 import './Posts.css';
 
-export default props => {
+type Props = {
+  post: Object
+};
+
+export default (props: Props) => {
   return (
     <div className="item profile__post">
       <div className="ui tiny image profile__img_wrapper">

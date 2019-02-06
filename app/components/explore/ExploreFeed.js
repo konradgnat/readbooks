@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import type { TitleResults } from 'app/types/BooksAPI';
+import type { TitleResults } from '../../types/BooksAPI';
 import './ExploreFeed.css';
 import { Link } from 'react-router-dom';
 
