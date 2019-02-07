@@ -15,7 +15,7 @@ class ExploreFeed extends React.Component<Props> {
     super(props);
   }
 
-  processPostFields = (hit) => {
+  processPostFields = (hit: TitleResults) => {
     let thumbnail = hit.volumeInfo.imageLinks
       ? hit.volumeInfo.imageLinks.smallThumbnail
       : '/images/no_results.svg';
