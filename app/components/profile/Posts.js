@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import Post from './Post';
 
 type Props = {
-  fetchPosts: function,
+  fetchPosts: Function,
   posts: [],
   auth: boolean,
   id: string

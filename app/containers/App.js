@@ -12,7 +12,7 @@ import * as actions from '../actions';
 import 'react-notifications/lib/notifications.css';
 
 type Props = {
-  fetchUser: function
+  fetchUser: Function
 };
 
 class App extends React.Component<Props> {
