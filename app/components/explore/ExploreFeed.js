@@ -1,12 +1,12 @@
 // @flow
 
 import * as React from 'react';
-import type { TitleResults } from '../../types/BooksAPI';
+import type { SearchResults } from '../../types/BooksAPI';
 import './ExploreFeed.css';
 import { Link } from 'react-router-dom';
 
 type Props = {
-  searchHits: Array<TitleResults>
+  searchHits: Array<SearchResults>
 };
 
 class ExploreFeed extends React.Component<Props> {
@@ -15,7 +15,7 @@ class ExploreFeed extends React.Component<Props> {
     super(props);
   }
 
-  processPostFields = (hit: TitleResults) => {
+  processPostFields = (hit: SearchResults) => {
     let thumbnail = hit.volumeInfo.imageLinks
       ? hit.volumeInfo.imageLinks.smallThumbnail
       : '/images/no_results.svg';
@@ -27,7 +27,7 @@ class ExploreFeed extends React.Component<Props> {
     return { title, publishedDate, thumbnail, authors, description };
   };
 
-  renderSearchHit = (hit: TitleResults): React.Element<'div'> => {
+  renderSearchHit = (hit: SearchResults): React.Element<'div'> => {
     let book = this.processPostFields(hit);
     const detail = {
       pathname: '/explore/' + hit.id,

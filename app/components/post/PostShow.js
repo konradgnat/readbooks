@@ -2,13 +2,13 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import type { TitleResults } from '../../types/BooksAPI';
+import type { ProccessedSearchResult } from '../../types/BooksAPI';
 import './PostShow.css';
 import PostCreate from './PostCreate';
 
 type Props = {
   location: {
-    state: TitleResults
+    state: ProccessedSearchResult
   },
   auth: null|boolean|Object
 };

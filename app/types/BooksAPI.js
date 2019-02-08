@@ -1,6 +1,6 @@
 // @flow
 
-export type TitleResults = {
+export type SearchResults = {
   id: string,
   volumeInfo: {
     authors: Array<string>,
@@ -14,4 +14,14 @@ export type TitleResults = {
   searchInfo: {
     textSnippet: string
   }
+};
+
+
+export type ProccessedSearchResult = {
+  id: string,
+  thumbnail: string,
+  title: string,
+  publishedDate: string,
+  authors: string,
+  description: string,
 };

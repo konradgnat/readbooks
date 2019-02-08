@@ -3,18 +3,18 @@
 import * as React from 'react';
 import apiCaller from '../util/apiCaller';
 import './Autocomplete.css';
-import type { TitleResults } from '../types/BooksAPI';
+import type { SearchResults } from '../types/BooksAPI';
 
 type Props = {
   currentIndex: number,
   query: string,
   onClick: (hit: string) => void,
-  onSuggestions: (hits: Array<TitleResults>) => void,
+  onSuggestions: (hits: Array<SearchResults>) => void,
   open: boolean
 };
 
 type State = {
-  hits: Array<TitleResults>
+  hits: Array<SearchResults>
 };
 
 class Autocomplete extends React.Component<Props, State> {
@@ -56,7 +56,7 @@ class Autocomplete extends React.Component<Props, State> {
     this.props.onSuggestions([]);
   };
 
-  renderHit = (hit: TitleResults): React.Element<'div'> => {
+  renderHit = (hit: SearchResults): React.Element<'div'> => {
     let isSelected = false;
     if (this.props.currentIndex > -1)
       isSelected = this.state.hits[this.props.currentIndex].id === hit.id;

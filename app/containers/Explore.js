@@ -6,12 +6,12 @@ import ExploreFeed from '../components/explore/ExploreFeed';
 import bookSearch from '../util/apiCaller';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import type { TitleResults } from '../types/BooksAPI';
+import type { SearchResults } from '../types/BooksAPI';
 
 type Props = {};
 
 type State = {
-  searchHits: Array<TitleResults>,
+  searchHits: Array<SearchResults>,
   query: string
 };
 

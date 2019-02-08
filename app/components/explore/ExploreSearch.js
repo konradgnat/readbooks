@@ -3,7 +3,7 @@
 import React from 'react';
 import './ExploreSearch.css';
 import Autocomplete from '../Autocomplete';
-import type { TitleResults } from '../../types/BooksAPI';
+import type { SearchResults } from '../../types/BooksAPI';
 
 type Props = {
   handleSearch: (query: string) => void
@@ -59,7 +59,7 @@ class ExploreSearch extends React.Component<Props, State> {
     this.performSearch();
   };
 
-  onSuggestions = (hits: Array<TitleResults>): void => {
+  onSuggestions = (hits: Array<SearchResults>): void => {
     this.suggestions = hits;
     if (!this.state.open) this.setState({ open: true });
     this.setState({ currentIndex: -1 });
