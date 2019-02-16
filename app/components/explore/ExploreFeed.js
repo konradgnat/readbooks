@@ -16,19 +16,19 @@ class ExploreFeed extends React.Component<Props> {
   }
 
   processPostFields = (hit: SearchResults) => {
-    let thumbnail = hit.volumeInfo.imageLinks
+    const thumbnail = hit.volumeInfo.imageLinks
       ? hit.volumeInfo.imageLinks.smallThumbnail
       : '/images/no_results.svg';
-    let title = hit.volumeInfo.title;
-    let publishedDate = hit.volumeInfo.publishedDate;
-    let authors = hit.volumeInfo.authors ? hit.volumeInfo.authors.join(', ') : '';
-    let description = hit.searchInfo ? hit.searchInfo.textSnippet : '';
+    const title = hit.volumeInfo.title;
+    const publishedDate = hit.volumeInfo.publishedDate;
+    const authors = hit.volumeInfo.authors ? hit.volumeInfo.authors.join(', ') : '';
+    const description = hit.searchInfo ? hit.searchInfo.textSnippet : '';
 
     return { title, publishedDate, thumbnail, authors, description };
   };
 
   renderSearchHit = (hit: SearchResults): React.Element<'div'> => {
-    let book = this.processPostFields(hit);
+    const book = this.processPostFields(hit);
     const detail = {
       pathname: '/explore/' + hit.id,
       state: book
