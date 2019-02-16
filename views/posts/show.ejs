@@ -38,8 +38,8 @@
       <!-- if current user is same as author of comment, show edit button -->
       <p><%=book.thoughts%></p>
             <% if(currentUser && book.postedBy.id.equals(currentUser._id)) { %>
-          <a href="/books/<%=book.id%>/edit" class="ui tiny blue basic button">edit post</a>
-          <form class="inline-element" action="/books/<%=book.id%>?_method=DELETE" method="POST">
+          <a href="/posts/<%=book.id%>/edit" class="ui tiny blue basic button">edit post</a>
+          <form class="inline-element" action="/posts/<%=book.id%>?_method=DELETE" method="POST">
             <input class="ui tiny red basic button" type="submit" value="delete post"/>
           </form>
 
@@ -64,8 +64,8 @@
               <div class="actions">
 
                 <% if (currentUser && comment.author.id.equals(currentUser._id)) { %>
-                  <a href="/books/<%=book.id%>/comments/<%=comment._id%>/edit" class="edit">Edit</a>
-                  <form class="inline-element" action="/books/<%=book.id%>/comments/<%=comment._id%>?_method=DELETE" method="POST" class="delete">
+                  <a href="/posts/<%=book.id%>/comments/<%=comment._id%>/edit" class="edit">Edit</a>
+                  <form class="inline-element" action="/posts/<%=book.id%>/comments/<%=comment._id%>?_method=DELETE" method="POST" class="delete">
                     <input type="submit" class="delete" value="Delete"/>
                   </form>
                   <% } %>
@@ -80,7 +80,7 @@
             <p><a href="/login">Log in</a> or <a href="/register">sign up</a> to comment</p>
           </div>
         <% } else { %>
-          <form class="ui form" action="/books/<%=book._id%>/comments" method="POST">
+          <form class="ui form" action="/posts/<%=book._id%>/comments" method="POST">
             <div class="field">
               <textarea placeholder="comment" rows="2" name="comment[text]"></textarea>
             </div>
