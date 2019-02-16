@@ -16,7 +16,6 @@ export type SearchResults = {
   }
 };
 
-
 export type ProccessedSearchResult = {
   id: string,
   thumbnail: string,

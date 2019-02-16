@@ -19,7 +19,7 @@ class ExploreSearch extends React.Component<Props, State> {
   suggestions = [];
 
   onKeyDown = (event: KeyboardEvent): void => {
-    let currentIndex = this.state.currentIndex;
+    const currentIndex = this.state.currentIndex;
     switch (event.key) {
       case 'ArrowDown':
         if (currentIndex < this.suggestions.length - 1)

@@ -57,9 +57,10 @@ class Autocomplete extends React.Component<Props, State> {
   };
 
   renderHit = (hit: SearchResults): React.Element<'div'> => {
-    let isSelected = false;
-    if (this.props.currentIndex > -1)
-      isSelected = this.state.hits[this.props.currentIndex].id === hit.id;
+    const isSelected = (this.props.currentIndex > -1)
+      ? this.state.hits[this.props.currentIndex].id === hit.id;
+      : false;
+
     const className = isSelected ? 'suggestion selected' : 'suggestion';
     const title = hit.volumeInfo.title;
 
