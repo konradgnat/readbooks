@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { connect } from 'react-redux';
-import type { ProccessedSearchResult } from '../../types/BooksAPI';
+import type { ProccessedSearchResult } from '../../types/Posts';
 import './PostShow.css';
 import PostCreate from './PostCreate';
 

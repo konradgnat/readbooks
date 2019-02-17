@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class Follower extends React.Component<> {
 
   render() {
-    const { avatar, username, id } = this.props;
+    let { avatar, username, id } = this.props;
     avatar = avatar ? avatar : 'images/avatar-placeholder.jpg';
 
     return (

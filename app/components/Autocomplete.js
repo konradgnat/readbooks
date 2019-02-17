@@ -3,7 +3,7 @@
 import * as React from 'react';
 import apiCaller from '../util/apiCaller';
 import './Autocomplete.css';
-import type { SearchResults } from '../types/BooksAPI';
+import type { SearchResults } from '../types/Posts';
 
 type Props = {
   currentIndex: number,

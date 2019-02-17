@@ -3,7 +3,7 @@
 import React from 'react';
 import './ExploreSearch.css';
 import Autocomplete from '../Autocomplete';
-import type { SearchResults } from '../../types/BooksAPI';
+import type { SearchResults } from '../../types/Posts';
 
 type Props = {
   handleSearch: (query: string) => void

@@ -2,14 +2,22 @@
 
 import React from 'react';
 
-class PostForm extends React.Component<Props> {
-  constructor(props: Props):void {
+type Props = {
+  onSubmit: (formValues: State) => void
+}
+
+type State = {
+  thoughts: string
+}
+
+class PostForm extends React.Component<Props, State> {
+  constructor(props: Props): void {
     super(props);
 
     this.state = { thoughts: '' };
   }
 
-  handleSubmit = e => {
+  handleSubmit = (e: SyntheticEvent<HTMLFormElement>): void => {
     e.preventDefault();
     this.props.onSubmit(this.state);
   };
@@ -26,7 +34,7 @@ class PostForm extends React.Component<Props> {
             row="5"
             type="text"
             name="thoughts"
-            value={this.state.name}
+            value={this.state.thoughts}
             onChange={this.handleNameChange}
             className="input"
             placeholder="250  words or less, what did you think?"

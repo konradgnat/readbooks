@@ -6,7 +6,7 @@ import ExploreFeed from '../components/explore/ExploreFeed';
 import bookSearch from '../util/apiCaller';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import type { SearchResults } from '../types/BooksAPI';
+import type { SearchResults } from '../types/Posts';
 
 type Props = {};
 

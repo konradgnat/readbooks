@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from 'react';
-import type { SearchResults } from '../../types/BooksAPI';
+import type { SearchResults } from '../../types/Posts';
 import './ExploreFeed.css';
 import { Link } from 'react-router-dom';
 
