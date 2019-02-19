@@ -20,22 +20,20 @@ class ExploreSearch extends React.Component<Props, State> {
 
   onKeyDown = (event: KeyboardEvent): void => {
     const currentIndex = this.state.currentIndex;
+    event.preventDefault();
     switch (event.key) {
       case 'ArrowDown':
         if (currentIndex < this.suggestions.length - 1)
           this.setState({ currentIndex: currentIndex + 1 });
         if (!this.state.open) this.setState({ open: true });
-        event.preventDefault();
         break;
       case 'ArrowUp':
         if (currentIndex > -1)
           this.setState({ currentIndex: currentIndex - 1 });
         else this.setState({ open: false });
-        event.preventDefault();
         break;
       case 'Escape':
         this.setState({ open: false, currentIndex: -1 });
-        event.preventDefault();
         break;
       case 'Enter':
         if (this.suggestions.length > 0 && currentIndex >= 0) {
@@ -44,7 +42,6 @@ class ExploreSearch extends React.Component<Props, State> {
             open: false,
             currentIndex: -1
           });
-          event.preventDefault();
         } else {
           this.performSearch(null);
         }
