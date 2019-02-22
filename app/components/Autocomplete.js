@@ -32,7 +32,6 @@ class Autocomplete extends React.Component<Props, State> {
   }
 
   componentDidUpdate(prevProps: Props): void {
-
     if (this.props.query !== prevProps.query) {
       if (this.props.query.trim() === '') {
         this.setState({ hits: [] });
