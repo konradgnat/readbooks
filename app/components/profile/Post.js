@@ -18,7 +18,7 @@ export default (props: Props) => {
       <div className="content">
         <div className="header">{props.post.title}</div>
         <div>{props.post.thoughts.substring(0, 100) + '...'}</div>
-        <a href={`/posts/${props.post._id}`}>read more</a>
+        <a className="read_more" href={`/posts/${props.post._id}`}>read more</a>
       </div>
     </div>
   );

@@ -6,7 +6,7 @@ import Follower from './Follower';
 
 type Props = {
   id: string,
-  fetchUserFollowers: function,
+  fetchUserFollowers: (id: string, following: Array<Object>) => void,
   followers: Array<Object>,
   following: Array<Object>
 }

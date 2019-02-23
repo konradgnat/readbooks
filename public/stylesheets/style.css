@@ -163,6 +163,9 @@ a:hover {
 .menu_nav__item {
 	color: var(--secondary);
 }
+.read_more {
+	color: #9e9e9e;
+}
 @media screen and (max-width: 768px) {
 	.menu_nav .menu_nav__item:not(:first-child) {display: none;}
 	.menu_nav .menu_nav__button {
