@@ -1,9 +1,17 @@
+// @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions';
 import Follower from './Follower';
 
-class FollowList extends React.Component<> {
+type Props = {
+  id: string,
+  fetchUserFollowers: function,
+  followers: Array<Object>,
+  following: Array<Object>
+}
+
+class FollowList extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchUserFollowers(this.props.id, this.props.following);
   }
