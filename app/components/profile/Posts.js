@@ -16,6 +16,13 @@ class Posts extends React.Component<Props> {
     this.props.fetchPosts(this.props.id);
   }
 
+  componentDidUpdate(prevProps) {
+    if (this.props.id !== prevProps.id) {
+      console.log('fetch post from update', this.props.id);
+      this.props.fetchPosts(this.props.id);
+    }
+  }
+
   renderPosts() {
     if (!this.props.posts) {
       return;
