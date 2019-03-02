@@ -43,16 +43,18 @@ router.get('/user/:id', (req, res) => {
  * Creates new book and assigns book id to user
  */
 router.post('/', function(req, res) {
-
   const email = req.user.local.email
     ? req.user.local.email
     : req.user.facebook.name;
+
+  const date = req.body.publishedDate.split('-').length > 0
+    ? req.body.publishedDate.split('-')[0] : '';
 
   const newBook = {
     thumbnail: req.body.thumbnail,
     title: req.body.title,
     author: req.body.author,
-    publishedDate: req.body.publishedDate,
+    publishedDate: date,
     description: req.body.description,
     thoughts: req.body.thoughts,
     postedBy: {

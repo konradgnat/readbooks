@@ -81,6 +81,7 @@ input[type="submit"].delete:hover {
 	display: inline-block;
 	border-right: 1px solid rgba(34,36,38,.1);
 	color: #000000;
+	margin-right: -2px!important;
 }
 .menu_nav__item:hover {
 	background: var(--secondary);
