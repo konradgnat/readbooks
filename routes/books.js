@@ -84,8 +84,10 @@ router.get('/:id', function(req, res) {
       if (err) {
         console.log(err);
       } else {
-        // book.description = htmlDecode(book.description);
-        // TODO: remove this if not needed to decode text
+        const d = book._id.getTimestamp();
+        book.postDate = (d.getMonth()+1) + "-" + d.getDate() + "-" + d.getFullYear();
+        book.authorLabel = book.author && book.author.split(',') && book.author.split(',').length > 1
+          ? 'Authors' : 'Author';
         res.render('posts/show', { book: book });
       }
     });
