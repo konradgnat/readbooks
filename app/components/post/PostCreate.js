@@ -1,16 +1,23 @@
+// @flow
 import React from 'react';
 import { connect } from 'react-redux';
 import PostForm from './PostForm';
 import { createPost } from '../../actions';
 
-class PostCreate extends React.Component {
-  constructor(props) {
+type Props = {
+  createPost: ({}) => void,
+  bookData: {}
+}
+
+class PostCreate extends React.Component<Props> {
+  constructor(props: Props): void {
     super(props);
   }
 
-  onSubmit = (formValues) => {
-    const values = { ...this.props.bookData, ...formValues };
-    this.props.createPost(values);
+  onSubmit = (formValues: { thoughts: string }): void => {
+    const { createPost, bookData } = this.props;
+    const values = { ...bookData, ...formValues };
+    createPost(values);
   };
 
   render() {

@@ -1,5 +1,4 @@
 // @flow
-
 import React from 'react';
 
 type Props = {
@@ -22,7 +21,7 @@ class PostForm extends React.Component<Props, State> {
     this.props.onSubmit(this.state);
   };
 
-  handleNameChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
+  handleNameChange = (e: SyntheticInputEvent<HTMLInputElement>): void => {
     this.setState({ thoughts: e.target.value });
   };
 
