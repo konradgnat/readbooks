@@ -20,7 +20,6 @@ router.get('/:id', function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      console.log(user);
       res.render('app/main', { user: user });
     }
   });
@@ -31,7 +30,6 @@ router.get('/api/:id', function(req, res) {
     if (err) {
       console.log(err);
     } else {
-      console.log(user);
       res.send({ user: user });
     }
   });
@@ -171,7 +169,6 @@ function uploadAvatar(req, res, next) {
   let uploadFile = upload.single('avatar');
 
   uploadFile(req, res, function(err) {
-    console.log('uploadFile');
     req.imageName = imageName;
     req.uploadError = err;
     next();

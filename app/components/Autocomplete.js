@@ -1,5 +1,4 @@
 // @flow
-
 import * as React from 'react';
 import apiCaller from '../util/apiCaller';
 import './Autocomplete.css';

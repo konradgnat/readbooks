@@ -51,7 +51,6 @@ module.exports = function(passport) {
               false,
               req.flash('loginMessage', 'Wrong password.')
             );
-          console.log('login success');
           return done(null, user);
         });
       }
@@ -202,8 +201,6 @@ module.exports = function(passport) {
         // asynchronous
         process.nextTick(function() {
           if (!req.user) {
-            console.log('req.user is not found');
-            console.log(!req.user);
             User.findOne({ 'twitter.id': profile.id }, function(err, user) {
               if (err) return done(err);
               if (user) {

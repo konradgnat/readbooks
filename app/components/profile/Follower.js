@@ -1,7 +1,14 @@
+// @flow
 import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-class Follower extends React.Component<> {
+type Props = {
+  avatar: string,
+  username: string,
+  id: string
+}
+
+class Follower extends React.Component<Props> {
 
   render() {
     let { avatar, username, id } = this.props;

@@ -1,5 +1,4 @@
 // @flow
-
 import React from 'react';
 import ExploreSearch from '../components/explore/ExploreSearch';
 import ExploreFeed from '../components/explore/ExploreFeed';
