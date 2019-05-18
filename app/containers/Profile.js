@@ -41,7 +41,6 @@ class Profile extends React.Component {
       activeTab: 'posts',
       id,
       following: auth ? auth.following : [],
-      refreshFollowingList: false,
       refreshFollowersList: false
     };
   }
@@ -68,7 +67,7 @@ class Profile extends React.Component {
       );
       this.setState({
         following: res.data.following,
-        refreshFollowingList: !this.state.refreshFollowingList
+        refreshFollowersList: !this.state.refreshFollowersList
       });
     }
   };
@@ -161,16 +160,16 @@ class Profile extends React.Component {
   };
 
   renderTabContent = () => {
-    const { user: { id } } = this.props.profile;
-    const { activeTab, refreshFollowingList, refreshFollowersList} = this.state;
+    const { user: { _id } } = this.props.profile;
+    const { activeTab, refreshFollowersList } = this.state;
     if (activeTab === POSTS) {
-      return <Posts id={id} />;
+      return <Posts id={_id} />;
     }
     if (activeTab === FOLLOWING) {
-      return <FollowingList id={id} refresh={refreshFollowingList} />
+      return <FollowingList id={_id} />
     }
     if (activeTab === FOLLOWERS) {
-      return <FollowersList refresh={refreshFollowersList} id={id} />
+      return <FollowersList refresh={refreshFollowersList} id={_id} />
     }
   };
 

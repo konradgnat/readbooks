@@ -1,5 +1,6 @@
 const path = require('path');
 const WebpackShellPlugin = require('webpack-shell-plugin');
+const SourceMapDevToolPlugin = require("webpack").SourceMapDevToolPlugin;
 
 const config = {
   entry: './app/index.js',
@@ -38,7 +39,10 @@ const config = {
       { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
     ]
   },
-  plugins: []
+  devtool: false,
+  plugins: [
+    new SourceMapDevToolPlugin({})
+  ]
 };
 
 if (process.env.NODE_ENV !== 'production') {
