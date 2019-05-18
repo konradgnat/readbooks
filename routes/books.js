@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Book = require('../models/book.js');
-// const htmlDecode = require('js-htmlencode').htmlDecode;
 const { checkPostOwnership, isLoggedIn } = require('../services/middleWare');
 
 /**
@@ -42,7 +41,7 @@ router.get('/user/:id', (req, res) => {
 /**
  * Creates new book and assigns book id to user
  */
-router.post('/', function(req, res) {
+router.post('/', isLoggedIn, function(req, res) {
   const email = req.user.local.email
     ? req.user.local.email
     : req.user.facebook.name;
@@ -85,9 +84,13 @@ router.get('/:id', function(req, res) {
         console.log(err);
       } else {
         const d = book._id.getTimestamp();
-        book.postDate = (d.getMonth()+1) + "-" + d.getDate() + "-" + d.getFullYear();
-        book.authorLabel = book.author && book.author.split(',') && book.author.split(',').length > 1
-          ? 'Authors' : 'Author';
+        book.postDate
+          = (d.getMonth()+1) + '/' + d.getDate()
+          + '/' + d.getFullYear();
+        book.authorLabel
+          = book.author && book.author.split(',')
+          && book.author.split(',').length > 1 ? 'Authors' : 'Author';
+
         res.render('posts/show', { book: book });
       }
     });

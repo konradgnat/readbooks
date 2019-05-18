@@ -56,22 +56,27 @@ class PostShow extends React.Component<Props, State> {
   };
 
   render() {
-    const book = this.props.location.state;
-    // todo: format all dates - globally
+    const {
+      thumbnail,
+      title,
+      authorsJoined,
+      formattedPubDate,
+      description
+    } = this.props.location.state;
     return (
       <div className="segment">
         <div className="ui items">
           <div className="ui item">
             <div className="ui tiny-image">
-              <img src={book.thumbnail} className="detailImage" alt="" />
+              <img src={thumbnail} className="detailImage" alt="" />
             </div>
             <div className="detailContent">
               <div className="content">
-                <h1 className="ui header">{book.title}</h1>
+                <h1 className="ui header">{title}</h1>
                 <div className="meta">
-                  <span className="detailMeta">Authors: {book.authors}</span>
+                  <span className="detailMeta">Authors: {authorsJoined}</span>
                   <span className="detailMeta">
-                    Published: {book.publishedDate}
+                    Published: {formattedPubDate}
                   </span>
                 </div>
               </div>
@@ -83,7 +88,7 @@ class PostShow extends React.Component<Props, State> {
           {this.renderButton()}
         </div>
         <h4 className="ui header">Description</h4>
-        <p dangerouslySetInnerHTML={{ __html: book.description }}></p>
+        <p dangerouslySetInnerHTML={{ __html: description }}></p>
       </div>
     );
   }

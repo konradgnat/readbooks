@@ -27,7 +27,6 @@ router.post('/', isLoggedIn, function(req, res) {
 });
 
 // EDIT ROUTES
-
 router.get('/:comment_id/edit', function(req, res) {
   Comment.findById(req.params.comment_id, function(err, foundComment) {
     if (err) {

@@ -55,8 +55,8 @@
         <% book.comments.forEach(function(comment){
           // format publish date
           var d = comment._id.getTimestamp();
-          var datestring = (d.getMonth()+1) + "-" + d.getDate() + "-" + d.getFullYear() + " " +
-          d.getHours() + ":" + d.getMinutes(); %>
+          var datestring = (d.getMonth()+1) + '/' + d.getDate() + '/' + d.getFullYear() + ' ' +
+            d.getHours() + ':' + d.getMinutes(); %>
         <div class="ui divider"></div>
           <div class="comment">
             <div class="content">

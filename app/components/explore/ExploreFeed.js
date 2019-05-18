@@ -10,21 +10,38 @@ type Props = {
 };
 
 class ExploreFeed extends React.Component<Props> {
-
   constructor(props: Props) {
     super(props);
   }
 
   processPostFields = (hit: SearchResults) => {
-    const thumbnail = hit.volumeInfo.imageLinks
-      ? hit.volumeInfo.imageLinks.smallThumbnail
+    const {
+      searchInfo,
+      volumeInfo:
+        {
+          imageLinks,
+          title,
+          publishedDate,
+          authors
+        }
+    } = hit;
+    const thumbnail = imageLinks
+      ? imageLinks.smallThumbnail
       : '/images/no_results.svg';
-    const title = hit.volumeInfo.title;
-    const publishedDate = hit.volumeInfo.publishedDate;
-    const authors = hit.volumeInfo.authors ? hit.volumeInfo.authors.join(', ') : '';
-    const description = hit.searchInfo ? hit.searchInfo.textSnippet : '';
+    const authorsJoined = authors ? authors.join(', ') : '';
+    const description = searchInfo ? searchInfo.textSnippet : '';
+    // format from yyyy-mm-dd to mm/dd/yyy
+    const formattedPubDate
+      = publishedDate
+      .replace(
+        /(\d{4})-?(\d{2})?-?(\d{2})?/,
+        (match, g1, g2, g3) => {
+          if (g1 && g2 && g3) return `${g2}/${g3}/${g1}`;
+          return g1;
+      }
+    );
 
-    return { title, publishedDate, thumbnail, authors, description };
+    return { title, formattedPubDate, thumbnail, authorsJoined, description };
   };
 
   renderSearchHit = (hit: SearchResults): React.Element<'div'> => {
@@ -45,7 +62,7 @@ class ExploreFeed extends React.Component<Props> {
               />
             </div>
             <div className="header">{book.title}</div>
-            <div className="meta">{book.publishedDate}</div>
+            <div className="meta">{book.formattedPubDate}</div>
             <div
               className="description"
               dangerouslySetInnerHTML={{
