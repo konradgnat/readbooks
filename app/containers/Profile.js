@@ -8,23 +8,12 @@ import {
 import axios from 'axios';
 import _ from 'lodash';
 import Posts from '../components/profile/Posts';
-import FollowList from '../components/profile/FollowList';
-import Followers from '../components/profile/FollowList';
+import FollowingList from '../components/profile/FollowingList';
+import FollowersList from '../components/profile/FollowersList';
 import UserInfo from '../components/profile/UserInfo';
 import * as actions from '../actions';
-import type { SearchResults } from '../types/Posts';
 
 // Todo: Add maps, to allow debugging on compiled, browser code, (webpack)
-
-type Props = {
-
-};
-
-type State = {
-  searchHits: Array<SearchResults>,
-  query: string
-};
-
 export const TABS = {
   'posts': {
     id: 'posts',
@@ -34,16 +23,16 @@ export const TABS = {
   'following': {
     id: 'following',
     label: 'Following',
-    content: id => <FollowList id={id} following={true} />
+    content: id => <FollowingList id={id} />
   },
   'followers': {
     id: 'followers',
     label: 'Followers',
-    content: id => <FollowList id={id} />
+    content: id => <FollowersList id={id} />
   }
 };
 
-class Profile extends React.Component<Props, State> {
+class Profile extends React.Component {
   constructor(props: Props) {
     super(props);
     const { auth, match: { params: { id } } } = this.props;
@@ -55,18 +44,20 @@ class Profile extends React.Component<Props, State> {
   }
 
   componentDidMount() {
+    console.log('mount profile ');
+
     const { fetchProfile, match: { params: { id }}} = this.props;
     fetchProfile(id);
   }
 
   componentDidUpdate(prevProps) {
+    console.log('update profile ');
     const { auth } = this.props;
     if (auth !== prevProps.auth) {
       this.setState({ following: auth.following });
     }
   }
 
-  // Todo: extract to redux-thunk action
   followUser = async () => {
     const res = await axios.post(
       `/profile/${this.props.profile.user._id}/follow`
@@ -76,10 +67,10 @@ class Profile extends React.Component<Props, State> {
         `Success! Followed ${this.props.profile.user.username}`
       );
       this.setState({ following: res.data.following });
+      this.forceUpdate();
     }
   };
 
-  // Todo: extract to redux-thunk action
   unfollowUser = async () => {
     const res = await axios.post(
       `/profile/${this.props.profile.user._id}/unfollow`
@@ -89,6 +80,7 @@ class Profile extends React.Component<Props, State> {
         `Success! Unfollowed ${this.props.profile.user.username}`
       );
       this.setState({ following: res.data.following });
+      this.forceUpdate();
     }
   };
 
@@ -101,9 +93,10 @@ class Profile extends React.Component<Props, State> {
   renderButtons() {
     const { auth, profile } = this.props;
     const { following } = this.state;
-    if (auth &&
-      auth._id === profile.user._id
-    ) {
+    if (!auth) {
+      return
+    }
+    if (auth._id === profile.user._id) {
       return (
         <div className="ui content">
           <a
@@ -119,31 +112,29 @@ class Profile extends React.Component<Props, State> {
       );
     }
 
-    if (auth) {
-      if (_.includes(following, profile.user._id)) {
-        return (
-          <div className="ui content">
-            <button
-              onClick={this.unfollowUser}
-              className="ui right floated mini blue button basic"
-            >
-              Unfollow
-            </button>
-          </div>
-        );
-      }
-
+    if (_.includes(following, profile.user._id)) {
       return (
         <div className="ui content">
           <button
-            onClick={this.followUser}
-            className="ui right floated mini primary button basic"
+            onClick={this.unfollowUser}
+            className="ui right floated mini blue button basic"
           >
-            Follow
+            Unfollow
           </button>
         </div>
       );
     }
+
+    return (
+      <div className="ui content">
+        <button
+          onClick={this.followUser}
+          className="ui right floated mini primary button basic"
+        >
+          Follow
+        </button>
+      </div>
+    );
   }
 
   renderTabs = () => {
@@ -165,6 +156,7 @@ class Profile extends React.Component<Props, State> {
   };
 
   render() {
+    console.log('profile render');
     const { user } = this.props.profile;
     if (!user) {
       return <h3>Loading...</h3>;

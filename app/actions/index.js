@@ -3,8 +3,8 @@ import {
   FETCH_POSTS,
   CREATE_POST,
   FETCH_PROFILE,
-  FOLLOW_USER,
-  FETCH_USER_FOLLOWERS
+  FETCH_USER_FOLLOWERS,
+  FETCH_USER_FOLLOWING
 } from './types';
 import axios from 'axios';
 import history from '../util/history';
@@ -36,15 +36,14 @@ export const fetchProfile = userId => async dispatch => {
   dispatch({ type: FETCH_PROFILE, payload: res.data });
 };
 
-export const followUser = userId => async dispatch => {
-  const res = await axios.get(`/profile/${userId}/follow`);
-
-  dispatch({ type: FOLLOW_USER, payload: res.data });
-};
-
-export const fetchUserFollowers = (userId, following = false) => async dispatch => {
-  const path = following ? 'following' : 'followers';
-  const res = await axios.get(`/profile/${userId}/${path}`);
+export const fetchUserFollowers = (userId) => async dispatch => {
+  const res = await axios.get(`/profile/${userId}/followers`);
 
   dispatch({ type: FETCH_USER_FOLLOWERS, payload: res.data });
+};
+
+export const fetchUserFollowing = (userId) => async dispatch => {
+  const res = await axios.get(`/profile/${userId}/following`);
+
+  dispatch({ type: FETCH_USER_FOLLOWING, payload: res.data });
 };

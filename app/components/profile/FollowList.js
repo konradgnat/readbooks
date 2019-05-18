@@ -1,23 +1,14 @@
 // @flow
 import * as React from 'react';
-import { connect } from 'react-redux';
-import * as actions from '../../actions';
 import Follower from './Follower';
 
 type Props = {
-  id: string,
-  fetchUserFollowers: (id: string, following: Array<Object>) => void,
-  followers: Array<Object>,
-  following: Array<Object>
+  list: Object[]
 }
 
 class FollowList extends React.Component<Props> {
-  componentDidMount() {
-    this.props.fetchUserFollowers(this.props.id, this.props.following);
-  }
-  renderFollowers = () => {
-    if (this.props.followers.length === 0) {
-      
+  renderFollowList = () => {
+    if (!this.props.list || this.props.list.length === 0) {
       return (
         <div className="item">
           <div className="description">
@@ -27,7 +18,7 @@ class FollowList extends React.Component<Props> {
       )
     }
 
-    return this.props.followers.map(item => {
+    return this.props.list.map(item => {
       return <Follower username={item.username} avatar={item.avatar} id={item._id}/>
     })
   };
@@ -35,14 +26,10 @@ class FollowList extends React.Component<Props> {
   render() {
     return (
       <div className="ui list">
-        {this.renderFollowers()}
+        {this.renderFollowList()}
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ followers }) => {
-  return { followers };
-};
-
-export default connect(mapStateToProps, actions)(FollowList);
+export default FollowList;
