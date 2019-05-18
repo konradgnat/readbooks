@@ -12,8 +12,8 @@ class FollowingList extends React.Component {
   }
 }
 
-const mapStateToProps = ({ following }) => {
-  return { following: following };
+const mapStateToProps = ({ follow: { following }}) => {
+  return { following };
 };
 
 export default connect(mapStateToProps, actions)(FollowingList);

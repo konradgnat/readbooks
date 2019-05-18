@@ -14,21 +14,22 @@ import UserInfo from '../components/profile/UserInfo';
 import * as actions from '../actions';
 
 // Todo: Add maps, to allow debugging on compiled, browser code, (webpack)
+const POSTS = 'posts';
+const FOLLOWING = 'following';
+const FOLLOWERS = 'followers';
+
 export const TABS = {
   'posts': {
     id: 'posts',
-    label: 'Posts',
-    content: id => <Posts id={id} />
+    label: 'Posts'
   },
   'following': {
     id: 'following',
-    label: 'Following',
-    content: id => <FollowingList id={id} />
+    label: 'Following'
   },
   'followers': {
     id: 'followers',
-    label: 'Followers',
-    content: id => <FollowersList id={id} />
+    label: 'Followers'
   }
 };
 
@@ -39,19 +40,18 @@ class Profile extends React.Component {
     this.state = {
       activeTab: 'posts',
       id,
-      following: auth ? auth.following : []
+      following: auth ? auth.following : [],
+      refreshFollowingList: false,
+      refreshFollowersList: false
     };
   }
 
   componentDidMount() {
-    console.log('mount profile ');
-
     const { fetchProfile, match: { params: { id }}} = this.props;
     fetchProfile(id);
   }
 
   componentDidUpdate(prevProps) {
-    console.log('update profile ');
     const { auth } = this.props;
     if (auth !== prevProps.auth) {
       this.setState({ following: auth.following });
@@ -66,8 +66,10 @@ class Profile extends React.Component {
       NotificationManager.success(
         `Success! Followed ${this.props.profile.user.username}`
       );
-      this.setState({ following: res.data.following });
-      this.forceUpdate();
+      this.setState({
+        following: res.data.following,
+        refreshFollowingList: !this.state.refreshFollowingList
+      });
     }
   };
 
@@ -79,7 +81,10 @@ class Profile extends React.Component {
       NotificationManager.success(
         `Success! Unfollowed ${this.props.profile.user.username}`
       );
-      this.setState({ following: res.data.following });
+      this.setState({
+        following: res.data.following,
+        refreshFollowersList: !this.state.refreshFollowersList
+      });
       this.forceUpdate();
     }
   };
@@ -155,8 +160,21 @@ class Profile extends React.Component {
     });
   };
 
+  renderTabContent = () => {
+    const { user: { id } } = this.props.profile;
+    const { activeTab, refreshFollowingList, refreshFollowersList} = this.state;
+    if (activeTab === POSTS) {
+      return <Posts id={id} />;
+    }
+    if (activeTab === FOLLOWING) {
+      return <FollowingList id={id} refresh={refreshFollowingList} />
+    }
+    if (activeTab === FOLLOWERS) {
+      return <FollowersList refresh={refreshFollowersList} id={id} />
+    }
+  };
+
   render() {
-    console.log('profile render');
     const { user } = this.props.profile;
     if (!user) {
       return <h3>Loading...</h3>;
@@ -175,10 +193,10 @@ class Profile extends React.Component {
           {this.renderTabs()}
         </div>
         <div
-          key={TABS[activeTab].id}
+          key={activeTab}
           className={`ui bottom attached tab segment active`}
         >
-          {TABS[activeTab].content(user._id)}
+          {this.renderTabContent()}
         </div>
         <NotificationContainer />
       </div>
