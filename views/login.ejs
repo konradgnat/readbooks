@@ -1,30 +1,43 @@
 <% include partials/header %>
 
 <div class="pusher">
-	<div class="ui vertical masthead segment">
-	    <div class="ui text container">
-	        <% if (message.length > 0) { %>
-		        <div class="ui warning message"><%= message %></div>
-		    <% } %>
-	      <h1 class="ui header">Login</h1>
-	      <div class="ui segment">
-	      <p>Login with: </p>
-	      <a href="/auth/facebook" class="ui mini blue basic button"><i class="facebook square icon"></i> Facebook</a>
-	      <a href="/auth/twitter" class="ui mini blue basic button"><i class="twitter icon"></i> Twitter</a>
-	      <a href="/auth/google" class="ui mini blue basic button"><i class="google icon"></i> Google</a>
-	      </div>
-			<form class="ui form" action="/login" method="POST">
-				<div class="field">
-					<label>email</label>
-					<input type="text" name="email" placeholder="email">
-				</div>
-				<div class="field">
-					<label>password</label>
-					<input type="password" name="password" placeholder="password">
-				</div>
-				<input class="ui tiny button" type="submit" value="submit">
-			</form>
-	    </div>
+    <div class="ui vertical masthead segment">
+        <div class="ui text container">
+            <% if (message.length > 0) { %>
+                <div class="ui warning message"><%= message %></div>
+            <% } %>
+            <h1 class="ui centered header">Login</h1>
+            <br/>
+            <div class="ui centered grid">
+                <div class="ui sixteen wide mobile eight wide tablet eight wide computer column segment">
+                    <p>Login with: </p>
+                    <a href="/auth/facebook" class="ui mini blue basic button"><i class="facebook square icon"></i>
+                        Facebook</a>
+                    <a href="/auth/twitter" class="ui mini blue basic button"><i class="twitter icon"></i> Twitter</a>
+                    <a href="/auth/google" class="ui mini blue basic button"><i class="google icon"></i> Google</a>
+                </div>
+            </div>
+            <br/>
+            <form class="ui form centered grid" action="/login" method="POST">
+                <div class="row">
+                    <div class="sixteen wide mobile eight wide tablet eight wide computer column">
+                        <div class="field">
+                            <label>email</label>
+                            <input type="text" name="email" placeholder="email">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="sixteen wide mobile eight wide tablet eight wide computer column">
+                        <div class="field">
+                            <label>password</label>
+                            <input type="password" name="password" placeholder="password">
+                        </div>
+                    </div>
+                </div>
+                <input class="ui tiny button" type="submit" value="submit">
+            </form>
+        </div>
     </div>
 </div>
 

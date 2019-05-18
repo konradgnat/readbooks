@@ -203,3 +203,5 @@ a:hover {
 		width: 150px!important;
 	}
 }
+@media (max-width: 350px) {
+}

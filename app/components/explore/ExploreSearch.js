@@ -105,31 +105,33 @@ class ExploreSearch extends React.Component<Props, State> {
           <label htmlFor="titleSearch" className="titleSearchLabel">
             Search:
           </label>
-          <div className="autoCompWrapper">
-            <input
-              id="titleSearch"
-              value={this.state.value}
-              onKeyDown={this.onKeyDown}
-              onChange={this.updateQuery}
-              className="searchInput"
-              type="search"
-              autoComplete="off"
-            />
-            <Autocomplete
-              currentIndex={this.state.currentIndex}
-              query={this.state.query}
-              onClick={this.onSuggestionClick}
-              onSuggestions={this.onSuggestions}
-              open={this.state.open}
-            />
-          </div>
-          <button
-            onClick={this.performSearch}
-            type="submit"
-            className="titleSearchSubmit"
+          <div className="search__input_wrapper">
+            <div className="autoCompWrapper">
+              <input
+                id="titleSearch"
+                value={this.state.value}
+                onKeyDown={this.onKeyDown}
+                onChange={this.updateQuery}
+                className="searchInput"
+                type="search"
+                autoComplete="off"
+              />
+              <Autocomplete
+                currentIndex={this.state.currentIndex}
+                query={this.state.query}
+                onClick={this.onSuggestionClick}
+                onSuggestions={this.onSuggestions}
+                open={this.state.open}
+              />
+            </div>
+            <button
+              onClick={this.performSearch}
+              type="submit"
+              className="titleSearchSubmit"
             >
               <i className="circular search link icon"></i>
-          </button>
+            </button>
+          </div>
         </div>
       </div>
     );
