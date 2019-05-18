@@ -57,7 +57,7 @@ class PostShow extends React.Component<Props, State> {
 
   render() {
     const book = this.props.location.state;
-
+    // todo: format all dates - globally
     return (
       <div className="segment">
         <div className="ui items">

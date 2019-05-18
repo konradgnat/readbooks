@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
@@ -13,8 +12,18 @@ import FollowList from '../components/profile/FollowList';
 import Followers from '../components/profile/FollowList';
 import UserInfo from '../components/profile/UserInfo';
 import * as actions from '../actions';
+import type { SearchResults } from '../types/Posts';
 
 // Todo: Add maps, to allow debugging on compiled, browser code, (webpack)
+
+type Props = {
+
+};
+
+type State = {
+  searchHits: Array<SearchResults>,
+  query: string
+};
 
 export const TABS = {
   'posts': {
@@ -34,24 +43,26 @@ export const TABS = {
   }
 };
 
-class Profile extends React.Component<Props> {
+class Profile extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
+    const { auth, match: { params: { id } } } = this.props;
     this.state = {
       activeTab: 'posts',
-      id: this.props.match.params.id,
-      following: this.props.auth ? this.props.auth.following : []
+      id,
+      following: auth ? auth.following : []
     };
   }
 
   componentDidMount() {
-    const { id } = this.props.match.params;
-    this.props.fetchProfile(id);
+    const { fetchProfile, match: { params: { id }}} = this.props;
+    fetchProfile(id);
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.auth !== prevProps.auth) {
-      this.setState({ following: this.props.auth.following });
+    const { auth } = this.props;
+    if (auth !== prevProps.auth) {
+      this.setState({ following: auth.following });
     }
   }
 
@@ -175,7 +186,7 @@ class Profile extends React.Component<Props> {
           key={TABS[activeTab].id}
           className={`ui bottom attached tab segment active`}
         >
-          {TABS[activeTab].content(user.id)}
+          {TABS[activeTab].content(user._id)}
         </div>
         <NotificationContainer />
       </div>
