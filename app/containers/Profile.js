@@ -13,7 +13,6 @@ import FollowersList from '../components/profile/FollowersList';
 import UserInfo from '../components/profile/UserInfo';
 import * as actions from '../actions';
 
-// Todo: Add maps, to allow debugging on compiled, browser code, (webpack)
 const POSTS = 'posts';
 const FOLLOWING = 'following';
 const FOLLOWERS = 'followers';
