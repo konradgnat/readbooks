@@ -46,21 +46,33 @@ router.post('/', isLoggedIn, function(req, res) {
     ? req.user.local.email
     : req.user.facebook.name;
 
-  const date = req.body.publishedDate.split('-').length > 0
-    ? req.body.publishedDate.split('-')[0] : '';
+  const {
+    formattedPubDate,
+    thumbnail,
+    title,
+    authorsJoined,
+    description,
+    thoughts
+  } = req.body;
+
+  const {
+    _id,
+    username,
+    avatar
+  } = req.user;
 
   const newBook = {
-    thumbnail: req.body.thumbnail,
-    title: req.body.title,
-    author: req.body.author,
-    publishedDate: date,
-    description: req.body.description,
-    thoughts: req.body.thoughts,
+    thumbnail: thumbnail,
+    title: title,
+    author: authorsJoined,
+    publishedDate: formattedPubDate,
+    description: description,
+    thoughts: thoughts,
     postedBy: {
-      id: req.user._id,
-      username: req.user.username,
+      id: _id,
+      username,
       email,
-      avatar: req.user.avatar
+      avatar
     }
   };
 
