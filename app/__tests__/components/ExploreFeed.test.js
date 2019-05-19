@@ -1,7 +1,7 @@
 import React from 'react';
-import ExploreFeed from '../../components/explore/ExploreFeed';
+import ExploreFeed from 'components/explore/ExploreFeed';
 import { shallow } from 'enzyme';
-import { hits } from '../../__mocks__/data/exploreSearchHits';
+import { hits } from '__mocks__/data/exploreSearchHits';
 
 describe('ExploreFeed', () => {
   it('renders correctly without results', () => {

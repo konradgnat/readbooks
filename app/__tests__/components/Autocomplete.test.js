@@ -1,9 +1,9 @@
 import React from 'react';
-import Autocomplete from '../../components/explore/Autocomplete';
+import Autocomplete from 'components/explore/Autocomplete';
 import { shallow, mount } from 'enzyme';
-import apiCaller from '../../util/apiCaller';
+import apiCaller from 'util/apiCaller';
 
-jest.mock('../../../../../src/util/apiCaller', () => jest.fn());
+jest.mock('util/apiCaller', () => jest.fn());
 
 describe('Autocomplete', () => {
   it('renders matching snapshot', () => {

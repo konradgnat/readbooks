@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Autocomplete renders correctly 1`] = `
+exports[`Autocomplete renders matching snapshot 1`] = `
 <div
   className="autoCompList"
   role="list"
