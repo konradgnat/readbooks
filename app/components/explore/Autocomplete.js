@@ -1,8 +1,8 @@
 // @flow
 import * as React from 'react';
-import apiCaller from '../util/apiCaller';
-import './Autocomplete.css';
-import type { SearchResults } from '../types/Posts';
+import apiCaller from 'util/apiCaller';
+import 'components/explore/Autocomplete.css';
+import type { SearchResults } from 'types/Posts';
 
 type Props = {
   currentIndex: number,

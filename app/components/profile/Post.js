@@ -1,6 +1,6 @@
 // @flow
 import * as React from 'react';
-import './Posts.css';
+import 'components/profile/Posts.css';
 
 type Props = {
   post: Object

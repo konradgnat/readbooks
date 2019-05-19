@@ -1,4 +1,4 @@
-import { FETCH_USER_FOLLOWERS, FETCH_USER_FOLLOWING } from '../actions/types';
+import { FETCH_USER_FOLLOWERS, FETCH_USER_FOLLOWING } from 'actions/types';
 
 const INITIAL_STATE = {
   followers: [],

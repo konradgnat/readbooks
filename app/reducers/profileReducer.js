@@ -1,4 +1,4 @@
-import { FETCH_PROFILE } from '../actions/types';
+import { FETCH_PROFILE } from 'actions/types';
 
 export default function(state = [], action) {
 

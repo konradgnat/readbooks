@@ -1,8 +1,8 @@
 // @flow
 import React from 'react';
 import { connect } from 'react-redux';
-import PostForm from './PostForm';
-import { createPost } from '../../actions';
+import PostForm from 'components/post/PostForm';
+import { createPost } from 'actions';
 
 type Props = {
   createPost: ({}) => void,

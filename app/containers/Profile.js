@@ -7,15 +7,18 @@ import {
 } from 'react-notifications';
 import axios from 'axios';
 import _ from 'lodash';
-import Posts from '../components/profile/Posts';
-import FollowingList from '../components/profile/FollowingList';
-import FollowersList from '../components/profile/FollowersList';
-import UserInfo from '../components/profile/UserInfo';
-import * as actions from '../actions';
+import Posts from 'components/profile/Posts';
+import FollowingList from 'components/profile/FollowingList';
+import FollowersList from 'components/profile/FollowersList';
+import UserInfo from 'components/profile/UserInfo';
+import * as actions from 'actions';
 
 const POSTS = 'posts';
 const FOLLOWING = 'following';
 const FOLLOWERS = 'followers';
+
+// todo: create tests for all code
+// todo: add js linting
 
 export const TABS = {
   'posts': {

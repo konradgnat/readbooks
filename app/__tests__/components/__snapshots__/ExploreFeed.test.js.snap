@@ -1,82 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ExploreFeed renders correctly without any results 1`] = `
-<div
-  className="feedWrapper"
->
-  <div
-    className="feedItem ui segment"
-    key="_uTRAwAAQBAJ"
-  >
-    <div
-      className="content"
-    >
-      <div
-        className="ui tiny left floated image"
-      >
-        <img
-          alt=""
-          src="http://books.google.com/books/content?id=9gUJAQAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api"
-        />
-      </div>
-      <div
-        className="header"
-      >
-        Practical Modern JavaScript
-      </div>
-      <div
-        className="meta"
-      >
-        1995-12-01
-      </div>
-      <div
-        className="description"
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "Many webmasters don't have time to learn a high level programming language, ",
-          }
-        }
-      />
-    </div>
-  </div>
-  <div
-    className="feedItem ui segment"
-    key="vmE4nBg4mpc"
-  >
-    <div
-      className="content"
-    >
-      <div
-        className="ui tiny left floated image"
-      >
-        <img
-          alt=""
-          src="http://image.com"
-        />
-      </div>
-      <div
-        className="header"
-      >
-        Functional JavaScript
-      </div>
-      <div
-        className="meta"
-      >
-        2009-12-01
-      </div>
-      <div
-        className="description"
-        dangerouslySetInnerHTML={
-          Object {
-            "__html": "Lorem ipsum",
-          }
-        }
-      />
-    </div>
-  </div>
-</div>
-`;
-
 exports[`ExploreFeed renders correctly without results 1`] = `
 <div
   className="feedWrapper"
@@ -91,17 +14,11 @@ exports[`ExploreFeed renders correctly without results 1`] = `
         Object {
           "pathname": "/explore/_uTRAwAAQBAJ",
           "state": Object {
-            "id": "_uTRAwAAQBAJ",
-            "searchInfo": Object {
-              "textSnippet": "Many webmasters don't have time to learn a high level programming language, ",
-            },
-            "volumeInfo": Object {
-              "imageLinks": Object {
-                "smallThumbnail": "http://books.google.com/books/content?id=9gUJAQAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-              },
-              "publishedDate": "1995-12-01",
-              "title": "Practical Modern JavaScript",
-            },
+            "authorsJoined": "author first, author second",
+            "description": "Many webmasters don't have time to learn a high level programming language, ",
+            "formattedPubDate": "12/01/1995",
+            "thumbnail": "http://books.google.com/books/content?id=9gUJAQAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
+            "title": "Practical Modern JavaScript",
           },
         }
       }
@@ -125,7 +42,7 @@ exports[`ExploreFeed renders correctly without results 1`] = `
         <div
           className="meta"
         >
-          1995-12-01
+          12/01/1995
         </div>
         <div
           className="description"
@@ -148,17 +65,11 @@ exports[`ExploreFeed renders correctly without results 1`] = `
         Object {
           "pathname": "/explore/vmE4nBg4mpc",
           "state": Object {
-            "id": "vmE4nBg4mpc",
-            "searchInfo": Object {
-              "textSnippet": "Lorem ipsum",
-            },
-            "volumeInfo": Object {
-              "imageLinks": Object {
-                "smallThumbnail": "http://image.com",
-              },
-              "publishedDate": "2009-12-01",
-              "title": "Functional JavaScript",
-            },
+            "authorsJoined": "author first, author second",
+            "description": "Lorem ipsum",
+            "formattedPubDate": "12/01/2009",
+            "thumbnail": "http://image.com",
+            "title": "Functional JavaScript",
           },
         }
       }
@@ -182,7 +93,7 @@ exports[`ExploreFeed renders correctly without results 1`] = `
         <div
           className="meta"
         >
-          2009-12-01
+          12/01/2009
         </div>
         <div
           className="description"

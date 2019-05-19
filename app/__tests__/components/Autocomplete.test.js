@@ -1,5 +1,5 @@
 import React from 'react';
-import Autocomplete from '../../components/Autocomplete';
+import Autocomplete from '../../components/explore/Autocomplete';
 import { shallow, mount } from 'enzyme';
 import apiCaller from '../../util/apiCaller';
 

@@ -1,11 +1,11 @@
 // @flow
 import React from 'react';
-import ExploreSearch from '../components/explore/ExploreSearch';
-import ExploreFeed from '../components/explore/ExploreFeed';
-import bookSearch from '../util/apiCaller';
+import ExploreSearch from 'components/explore/ExploreSearch';
+import ExploreFeed from 'components/explore/ExploreFeed';
+import bookSearch from 'util/apiCaller';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
-import type { SearchResults } from '../types/Posts';
+import * as actions from 'actions';
+import type { SearchResults } from 'types/Posts';
 
 type Props = {};
 

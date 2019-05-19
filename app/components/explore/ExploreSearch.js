@@ -1,9 +1,9 @@
 // @flow
 
 import React from 'react';
-import './ExploreSearch.css';
-import Autocomplete from '../Autocomplete';
-import type { SearchResults } from '../../types/Posts';
+import 'components/explore/ExploreSearch.css';
+import Autocomplete from 'components/explore/Autocomplete';
+import type { SearchResults } from 'types/Posts';
 
 type Props = {
   handleSearch: (query: string) => void

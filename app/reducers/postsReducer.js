@@ -1,4 +1,4 @@
-import { FETCH_POSTS, CREATE_POST } from '../actions/types';
+import { FETCH_POSTS, CREATE_POST } from 'actions/types';
 
 export default function(state = [], action) {
 

@@ -1,13 +1,13 @@
 // @flow
 import React from 'react';
 import { Router, Route } from 'react-router-dom';
-import ExploreContainer from './Explore';
-import PostShow from '../components/post/PostShow';
-import PostCreate from '../components/post/PostCreate';
-import history from '../util/history';
-import Profile from './Profile';
+import ExploreContainer from 'containers/Explore';
+import PostShow from 'components/post/PostShow';
+import PostCreate from 'components/post/PostCreate';
+import history from 'util/history';
+import Profile from 'containers/Profile';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import * as actions from 'actions';
 import 'react-notifications/lib/notifications.css';
 
 type Props = {

@@ -1,7 +1,7 @@
-import authReducer from './authReducer';
-import postsReducer from './postsReducer';
-import profileReducer from './profileReducer';
-import followsReducer from './followsReducer';
+import authReducer from 'reducers/authReducer';
+import postsReducer from 'reducers/postsReducer';
+import profileReducer from 'reducers/profileReducer';
+import followsReducer from 'reducers/followsReducer';
 import { combineReducers } from 'redux';
 
 export default combineReducers({

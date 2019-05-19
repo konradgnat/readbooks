@@ -5,7 +5,7 @@ exports[`ExploreSearch renders correctly 1`] = `
   className="search_container"
 >
   <h3>
-    Find interesting reads
+    Find your next favorite book!
   </h3>
   <div
     className="titleSearchWrapper"
@@ -14,33 +14,41 @@ exports[`ExploreSearch renders correctly 1`] = `
       className="titleSearchLabel"
       htmlFor="titleSearch"
     >
-      Search By Title:
+      Search:
     </label>
     <div
-      className="autoCompWrapper"
+      className="search__input_wrapper"
     >
-      <input
-        autoComplete="off"
-        className="searchInput"
-        id="titleSearch"
-        onChange={[Function]}
-        onKeyDown={[Function]}
-        type="search"
-        value=""
-      />
-      <Autocomplete
-        currentIndex={-1}
+      <div
+        className="autoCompWrapper"
+      >
+        <input
+          autoComplete="off"
+          className="searchInput"
+          id="titleSearch"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          type="search"
+          value=""
+        />
+        <Autocomplete
+          currentIndex={-1}
+          onClick={[Function]}
+          onSuggestions={[Function]}
+          open={false}
+          query=""
+        />
+      </div>
+      <button
+        className="titleSearchSubmit"
         onClick={[Function]}
-        onSuggestions={[Function]}
-        open={false}
-        query=""
-      />
+        type="submit"
+      >
+        <i
+          className="circular search link icon"
+        />
+      </button>
     </div>
-    <input
-      className="titleSearchSubmit"
-      type="submit"
-      value="submit"
-    />
   </div>
 </div>
 `;

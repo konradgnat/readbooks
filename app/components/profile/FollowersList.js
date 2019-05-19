@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../../actions';
-import FollowList from './FollowList';
+import * as actions from 'actions';
+import FollowList from 'components/profile/FollowList';
 
 class FollowersList extends React.Component {
   state = { refresh: false };

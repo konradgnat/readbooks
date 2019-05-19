@@ -2,7 +2,7 @@
 import * as React from 'react';
 import * as actions from '../../actions';
 import { connect } from 'react-redux';
-import Post from './Post';
+import Post from 'components/profile/Post';
 
 type Props = {
   fetchPosts: Function,
