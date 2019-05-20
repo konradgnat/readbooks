@@ -48,6 +48,7 @@ describe('Autocomplete', () => {
     await mockAPI();
     expect(wrapper.state('hits')).toEqual(hits);
     expect(onSuggestions).toHaveBeenCalledWith(hits);
+    wrapper.unmount();
   });
 
   it('should not search when the query trims to empty string', async () => {
@@ -64,6 +65,7 @@ describe('Autocomplete', () => {
     wrapper.setProps({ query: '    ' });
     expect(wrapper.state('hits')).toEqual([]);
     expect(onSuggestions).toHaveBeenCalledWith([]);
+    wrapper.unmount();
   });
 
   it('should call renderHit for each hit when query is entered', async () => {
@@ -86,6 +88,7 @@ describe('Autocomplete', () => {
     await mockAPI();
 
     expect(mockRenderHit).toHaveBeenCalledTimes(2);
+    wrapper.unmount();
   });
 
   it('should render an item for each hit when query is entered', async () => {
@@ -107,5 +110,6 @@ describe('Autocomplete', () => {
 
     expect(wrapper.find('div')).toHaveLength(1);
     expect(wrapper.state('hits')).toEqual(hits);
+    wrapper.unmount();
   });
 });

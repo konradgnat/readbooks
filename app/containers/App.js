@@ -1,11 +1,10 @@
 // @flow
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
-import ExploreContainer from 'containers/Explore';
+import { Route } from 'react-router-dom';
+import ExploreContainer from 'containers/ExploreContainer';
 import PostShow from 'components/post/PostShow';
 import PostCreate from 'components/post/PostCreate';
-import history from 'util/history';
-import Profile from 'containers/Profile';
+import ProfileContainer from 'containers/ProfileContainer';
 import { connect } from 'react-redux';
 import * as actions from 'actions';
 import 'react-notifications/lib/notifications.css';
@@ -21,19 +20,17 @@ class App extends React.Component<Props> {
 
   render() {
     return (
-      <Router history={history}>
-        <div>
-          <Route exact path="/explore/:id" component={PostShow} />
-          <Route exact path="/explore" component={ExploreContainer} />
-          <Route exact path="/post/create" component={PostCreate} />
-          <Route
-            exact
-            path="/profile/:id"
-            // this allows the component to refresh when the route param changes
-            render={props => <Profile key={props.location.key} />}
-          />
-        </div>
-      </Router>
+      <div>
+        <Route exact path="/explore/:id" component={PostShow} />
+        <Route exact path="/explore" component={ExploreContainer} />
+        <Route exact path="/post/create" component={PostCreate} />
+        <Route
+          exact
+          path="/profile/:id"
+          // this allows the component to refresh when the route param changes
+          render={props => <ProfileContainer key={props.location.key} />}
+        />
+      </div>
     );
   }
 }

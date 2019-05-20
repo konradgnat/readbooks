@@ -35,7 +35,7 @@ export const TABS = {
   }
 };
 
-class Profile extends React.Component {
+class ProfileContainer extends React.Component {
   constructor(props: Props) {
     super(props);
     const { auth, match: { params: { id } } } = this.props;
@@ -214,5 +214,5 @@ export default withRouter(
   connect(
     mapStateToProps,
     actions
-  )(Profile)
+  )(ProfileContainer)
 );

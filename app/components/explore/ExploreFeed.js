@@ -76,6 +76,7 @@ class ExploreFeed extends React.Component<Props> {
   };
 
   render() {
+    // console.log('Feed render this.props.searchHits', this.props.searchHits);
     return (
       <div className='feedWrapper'>
         {this.props.searchHits.map(this.renderSearchHit)}

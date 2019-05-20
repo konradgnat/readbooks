@@ -10,26 +10,26 @@ import type { SearchResults } from 'types/Posts';
 type Props = {};
 
 type State = {
-  searchHits: Array<SearchResults>,
-  query: string
+  searchHits: Array<SearchResults>
 };
 
-class ExploreContainer extends React.Component<Props, State> {
+export class ExploreContainer extends React.Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      searchHits: []
+    };
+  }
+
   handleSearch = (query: string): void => {
     bookSearch(query).then(res => {
+      console.log('inside container handleSearch!!!');
       this.setState({ searchHits: res.items || [] });
     });
   };
 
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      searchHits: [],
-      query: ''
-    };
-  }
-
   render() {
+    // console.log('conatiner Render ; state!!!', this.state);
     return (
       <div>
         <ExploreSearch handleSearch={this.handleSearch} />
