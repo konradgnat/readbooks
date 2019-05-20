@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`explore container renders matching snapshot 1`] = `
+<div>
+  <ExploreSearch
+    handleSearch={[Function]}
+  />
+  <ExploreFeed
+    searchHits={Array []}
+  />
+</div>
+`;

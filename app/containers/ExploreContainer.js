@@ -23,13 +23,11 @@ export class ExploreContainer extends React.Component<Props, State> {
 
   handleSearch = (query: string): void => {
     bookSearch(query).then(res => {
-      console.log('inside container handleSearch!!!');
       this.setState({ searchHits: res.items || [] });
     });
   };
 
   render() {
-    // console.log('conatiner Render ; state!!!', this.state);
     return (
       <div>
         <ExploreSearch handleSearch={this.handleSearch} />
