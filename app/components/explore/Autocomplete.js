@@ -27,7 +27,11 @@ class Autocomplete extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    document.addEventListener('mousedown', this.handleClick, false);
+    document.addEventListener('mousedown', this.handleClick);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('mousedown', this.handleClick);
   }
 
   componentDidUpdate(prevProps: Props): void {
@@ -76,20 +80,20 @@ class Autocomplete extends React.Component<Props, State> {
   };
 
   render() {
-    const style = {};
+    const autocompleteStyle = {};
     if (
       !this.props.open ||
       !this.state.hits ||
-      (this.state.hits && this.state.hits.length === 0)
+      this.state.hits.length === 0
     ) {
-      style.display = 'none';
+      autocompleteStyle.display = 'none';
     }
     return (
       <div
         ref={node => (this.node = node)}
         role="list"
         className="autoCompList"
-        style={style}
+        style={autocompleteStyle}
       >
         {this.state.hits.map(this.renderHit)}
       </div>

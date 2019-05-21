@@ -10,7 +10,7 @@
     "rebuild": "rm -rf node_modules && npm install",
     "build": "webpack --mode production",
     "watch": "webpack --watch --mode development",
-    "test": "jest --modulePaths=app",
+    "test": "jest --clearCache --modulePaths=app",
     "test:watch": "jest --modulePaths=app --watch",
     "test:coverage": "jest --modulePaths=app --coverage",
     "test:update": "npm test -- -u"

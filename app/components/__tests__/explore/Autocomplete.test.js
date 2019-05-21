@@ -5,6 +5,18 @@ import apiCaller from 'util/apiCaller';
 
 jest.mock('util/apiCaller', () => jest.fn());
 
+const mountComponent = (currentIndex, query, onClick, onSuggestions, open) => {
+  return mount(
+    <Autocomplete
+      currentIndex={currentIndex}
+      query={query}
+      onClick={onClick}
+      onSuggestions={onSuggestions}
+      open={open}
+    />
+  );
+};
+
 describe('Autocomplete', () => {
   it('renders matching snapshot', () => {
     const wrapper = shallow(<Autocomplete />);
@@ -12,6 +24,7 @@ describe('Autocomplete', () => {
   });
 
   let hits;
+  let mockAPI;
   beforeEach(() => {
     hits = [
       {
@@ -27,21 +40,23 @@ describe('Autocomplete', () => {
         }
       }
     ];
-  });
 
-  it('should search and display list when new query is entered', async () => {
-    const mockAPI = apiCaller.mockImplementation(() =>
+    mockAPI = apiCaller.mockImplementation(() =>
       Promise.resolve({ items: hits })
     );
+  });
+  afterEach(() => {
+    jest.resetAllMocks()
+  });
+
+  it('should perform search and display a list when a new query is entered', async () => {
     const onSuggestions = jest.fn();
-    const wrapper = mount(
-      <Autocomplete
-        currentIndex={-1}
-        query={''}
-        onClick={jest.fn()}
-        onSuggestions={onSuggestions}
-        open={false}
-      />
+    const wrapper = mountComponent(
+      -1,
+      '',
+      jest.fn(),
+      onSuggestions,
+      false
     );
     wrapper.setProps({ query: 'new query' });
     expect(apiCaller).toHaveBeenCalledWith('new query');
@@ -52,36 +67,52 @@ describe('Autocomplete', () => {
   });
 
   it('should not search when the query trims to empty string', async () => {
+
     const onSuggestions = jest.fn();
-    const wrapper = mount(
-      <Autocomplete
-        currentIndex={-1}
-        query={''}
-        onClick={jest.fn()}
-        onSuggestions={onSuggestions}
-        open={false}
-      />
+    const wrapper = mountComponent(
+      -1,
+      '',
+      jest.fn(),
+      onSuggestions,
+      false
     );
+
     wrapper.setProps({ query: '    ' });
+    await mockAPI();
     expect(wrapper.state('hits')).toEqual([]);
     expect(onSuggestions).toHaveBeenCalledWith([]);
+    expect(mockAPI.mock.calls).toEqual([[]]);
+    wrapper.unmount();
+  });
+
+  it('should not search when new query is empty after previous search', async () => {
+
+    const onSuggestions = jest.fn();
+    const wrapper = mountComponent(
+      -1,
+      'existing query',
+      jest.fn(),
+      onSuggestions,
+      false
+    );
+
+    wrapper.setProps({ query: '' });
+    await mockAPI();
+    expect(wrapper.state('hits')).toEqual([]);
+    expect(onSuggestions).toHaveBeenCalledWith([]);
+    expect(mockAPI.mock.calls).toEqual([[]]);
     wrapper.unmount();
   });
 
   it('should call renderHit for each hit when query is entered', async () => {
-    const mockAPI = apiCaller.mockImplementation(() =>
-      Promise.resolve({ items: hits })
-    );
     const onSuggestions = jest.fn();
     const mockRenderHit = jest.fn();
-    const wrapper = mount(
-      <Autocomplete
-        currentIndex={-1}
-        query={''}
-        onClick={jest.fn()}
-        onSuggestions={onSuggestions}
-        open={false}
-      />
+    const wrapper = mountComponent(
+      -1,
+      '',
+      jest.fn(),
+      onSuggestions,
+      false
     );
     wrapper.instance().renderHit = mockRenderHit;
     wrapper.setProps({ query: 'new query' });
@@ -92,18 +123,13 @@ describe('Autocomplete', () => {
   });
 
   it('should render an item for each hit when query is entered', async () => {
-    const mockAPI = apiCaller.mockImplementation(() =>
-      Promise.resolve({ items: hits })
-    );
     const onSuggestions = jest.fn();
-    const wrapper = mount(
-      <Autocomplete
-        currentIndex={-1}
-        query={''}
-        onClick={jest.fn()}
-        onSuggestions={onSuggestions}
-        open={false}
-      />
+    const wrapper = mountComponent(
+      -1,
+      '',
+      jest.fn(),
+      onSuggestions,
+      false
     );
     wrapper.setProps({ query: 'new query' });
     await mockAPI();
