@@ -11,7 +11,7 @@ type Props = {
   id: string
 };
 
-class Posts extends React.Component<Props> {
+export class Posts extends React.Component<Props> {
   componentDidMount() {
     this.props.fetchPosts(this.props.id);
   }
@@ -39,7 +39,7 @@ class Posts extends React.Component<Props> {
     }
 
     return this.props.posts.map(post => {
-      return <Post post={post} />;
+      return <Post key={post._id} post={post} />;
     });
   }
 
