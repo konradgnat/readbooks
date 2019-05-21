@@ -5,6 +5,7 @@
 .feedItem {
     overflow: auto;
     min-width: 80px;
+    cursor: pointer;
 }
 
 .feedItem:hover {

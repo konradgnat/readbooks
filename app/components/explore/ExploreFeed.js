@@ -1,13 +1,17 @@
 // @flow
-
 import * as React from 'react';
 import type { SearchResults } from 'types/Posts';
 import 'components/explore/ExploreFeed.css';
 import { Link } from 'react-router-dom';
 
+// Todo: add pagination
+// Todo: consider removing autocomplete, it sometimes exceeds api limit, breaking search results
+
 type Props = {
   searchHits: Array<SearchResults>
 };
+
+const DEFAULT_IMAGE_PATH = '/images/no_results.svg';
 
 class ExploreFeed extends React.Component<Props> {
   constructor(props: Props) {
@@ -27,19 +31,17 @@ class ExploreFeed extends React.Component<Props> {
     } = hit;
     const thumbnail = imageLinks
       ? imageLinks.smallThumbnail
-      : '/images/no_results.svg';
+      : DEFAULT_IMAGE_PATH;
     const authorsJoined = authors ? authors.join(', ') : '';
     const description = searchInfo ? searchInfo.textSnippet : '';
-    // format from yyyy-mm-dd to mm/dd/yyy
+    // format from yyyy-mm-dd to mm/dd/yyy or yyyy
     const formattedPubDate
       = publishedDate
+      ? publishedDate
       .replace(
         /(\d{4})-?(\d{2})?-?(\d{2})?/,
-        (match, g1, g2, g3) => {
-          if (g1 && g2 && g3) return `${g2}/${g3}/${g1}`;
-          return g1;
-      }
-    );
+        (match, g1, g2, g3) => (g1 && g2 && g3) ? `${g2}/${g3}/${g1}` : g1
+      ) : '';
 
     return { title, formattedPubDate, thumbnail, authorsJoined, description };
   };
@@ -76,7 +78,6 @@ class ExploreFeed extends React.Component<Props> {
   };
 
   render() {
-    // console.log('Feed render this.props.searchHits', this.props.searchHits);
     return (
       <div className='feedWrapper'>
         {this.props.searchHits.map(this.renderSearchHit)}

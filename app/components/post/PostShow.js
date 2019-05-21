@@ -42,14 +42,20 @@ class PostShow extends React.Component<Props, State> {
       }
 
       return (
-        <a onClick={this.togglePostForm} className="ui mini positive basic button">
+        <a
+          onClick={this.togglePostForm}
+          className="ui mini positive basic button"
+        >
           Add Book
         </a>
       );
     }
 
     return (
-      <button onClick={this.togglePostForm} className="ui tiny red basic button post__cancel">
+      <button
+        onClick={this.togglePostForm}
+        className="ui tiny red basic button post__cancel"
+      >
         Cancel
       </button>
     );
