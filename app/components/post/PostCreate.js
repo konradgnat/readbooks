@@ -9,7 +9,7 @@ type Props = {
   bookData: {}
 }
 
-class PostCreate extends React.Component<Props> {
+export class PostCreate extends React.Component<Props> {
   constructor(props: Props): void {
     super(props);
   }

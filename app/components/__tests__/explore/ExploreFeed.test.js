@@ -12,10 +12,8 @@ describe('ExploreFeed', () => {
   it('renders an element for each item in the search results', () => {
     const wrapper = shallow(<ExploreFeed searchHits={hits}/>);
 
-    expect(wrapper.find('.feedItem').length).toEqual(2);
+    expect(wrapper.find('.feed__item').length).toEqual(2);
   });
-
-  // it renders a link to detail page
 
   describe('rendering search results', () => {
     it('renders the book result image path', () => {
