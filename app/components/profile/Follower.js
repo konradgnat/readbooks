@@ -8,11 +8,13 @@ type Props = {
   id: string
 }
 
+export const DEFAULT_AVATAR_IMAGE = 'images/avatar-placeholder.jpg';
+
 class Follower extends React.Component<Props> {
 
   render() {
     let { avatar, username, id } = this.props;
-    avatar = avatar ? avatar : 'images/avatar-placeholder.jpg';
+    avatar = avatar ? avatar : DEFAULT_AVATAR_IMAGE;
 
     return (
       <div className="item item--follow">

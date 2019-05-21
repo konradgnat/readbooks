@@ -16,7 +16,7 @@ type State = {
   showForm: boolean
 };
 
-export class PostShow extends React.Component<Props, State> {
+class PostShow extends React.Component<Props, State> {
   state = { showForm: false };
 
   togglePostForm = () => {
@@ -25,12 +25,10 @@ export class PostShow extends React.Component<Props, State> {
 
   renderForm = () => {
     if (this.state.showForm) {
-      console.log('inside renderForm');
       return (
         <PostCreate bookData={this.props.location.state}/>
       )
     }
-    console.log('inside renderForm 2');
   };
 
   renderButton() {
@@ -71,6 +69,7 @@ export class PostShow extends React.Component<Props, State> {
       formattedPubDate,
       description
     } = this.props.location.state;
+
     return (
       <div className="segment">
         <div className="ui items">
