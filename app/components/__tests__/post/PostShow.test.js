@@ -13,7 +13,4 @@ describe('PostShow component', () => {
     wrapper.instance().togglePostForm();
     expect(wrapper.state().showForm).toEqual(true);
   });
-  it('should render the form when showForm is true', () => {
-    wrapper = shallow(<PostShow />);
-  })
 });

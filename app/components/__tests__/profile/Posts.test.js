@@ -25,7 +25,9 @@ describe('Posts component', () => {
 
   it('renders text notifying nothing is there when posts array is empty', () => {
     const mockFetchPosts = jest.fn();
-    const wrapper = shallow(<Posts fetchPosts={mockFetchPosts} id='1234' posts={[]}/>);
+    const wrapper = shallow(
+      <Posts fetchPosts={mockFetchPosts} id='1234' posts={[]}/>
+      );
     expect(wrapper.find('.description').text()).toMatch('Nothing here');
   });
 
@@ -46,7 +48,26 @@ describe('Posts component', () => {
       }
     ];
 
-    const wrapper = shallow(<Posts fetchPosts={mockFetchPosts} id='1234' posts={mockPosts}/>);
+    const wrapper = shallow(
+      <Posts fetchPosts={mockFetchPosts} id='1234' posts={mockPosts}/>
+      );
     expect(wrapper.find(Post).length).toEqual(2);
+  });
+
+  it('passes the post object to the Post component', () => {
+    const mockFetchPosts = jest.fn();
+    const mockPosts = [
+      {
+        thumbnail: 'some/filepath.jpg',
+        thoughts: 'some comments',
+        title: 'some title',
+        _id: '1234'
+      }
+    ];
+
+    const wrapper = shallow(
+      <Posts fetchPosts={mockFetchPosts} id='1234' posts={mockPosts}/>
+      );
+    expect(wrapper.find(Post).props().post).toEqual(mockPosts[0]);
   });
 });
