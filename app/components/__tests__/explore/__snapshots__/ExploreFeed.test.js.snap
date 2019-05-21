@@ -2,13 +2,14 @@
 
 exports[`ExploreFeed renders correctly without results 1`] = `
 <div
-  className="feedWrapper"
+  className="feed"
 >
   <div
-    className="feedItem ui segment"
+    className="feed__item ui segment"
     key="_uTRAwAAQBAJ"
   >
     <Link
+      className="feed__item_link"
       replace={false}
       to={
         Object {
@@ -34,18 +35,23 @@ exports[`ExploreFeed renders correctly without results 1`] = `
             src="http://books.google.com/books/content?id=9gUJAQAAMAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api"
           />
         </div>
-        <div
-          className="header"
+        <h3
+          className="header feed__item_title"
         >
           Practical Modern JavaScript
+        </h3>
+        <div
+          className="meta authors"
+        >
+          author first, author second
         </div>
         <div
-          className="meta"
+          className="meta feed__item_date"
         >
           12/01/1995
         </div>
         <div
-          className="description"
+          className="description feed__item_description"
           dangerouslySetInnerHTML={
             Object {
               "__html": "Many webmasters don't have time to learn a high level programming language, ",
@@ -56,10 +62,11 @@ exports[`ExploreFeed renders correctly without results 1`] = `
     </Link>
   </div>
   <div
-    className="feedItem ui segment"
+    className="feed__item ui segment"
     key="vmE4nBg4mpc"
   >
     <Link
+      className="feed__item_link"
       replace={false}
       to={
         Object {
@@ -85,18 +92,23 @@ exports[`ExploreFeed renders correctly without results 1`] = `
             src="http://image.com"
           />
         </div>
-        <div
-          className="header"
+        <h3
+          className="header feed__item_title"
         >
           Functional JavaScript
+        </h3>
+        <div
+          className="meta authors"
+        >
+          author first, author second
         </div>
         <div
-          className="meta"
+          className="meta feed__item_date"
         >
           12/01/2009
         </div>
         <div
-          className="description"
+          className="description feed__item_description"
           dangerouslySetInnerHTML={
             Object {
               "__html": "Lorem ipsum",

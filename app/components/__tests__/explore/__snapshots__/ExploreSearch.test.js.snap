@@ -40,7 +40,7 @@ exports[`ExploreSearch renders correctly 1`] = `
         />
       </div>
       <button
-        className="titleSearchSubmit"
+        className="search__submit"
         onClick={[Function]}
         type="submit"
       >

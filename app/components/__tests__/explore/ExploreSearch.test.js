@@ -8,13 +8,79 @@ describe('ExploreSearch', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should initialize with state value', () => {
+  it('should update state value when query is entered', () => {
     const wrapper = shallow(<ExploreSearch />);
     wrapper
       .find('input[type="search"]')
       .simulate('change', { target: { value: 'some query' } });
     expect(wrapper.state('query')).toEqual('some query');
     expect(wrapper.state('value')).toEqual('some query');
+  });
+
+  it('should perform a search when search button is clicked', () => {
+    const handleSearchSpy = jest.fn();
+    const wrapper = shallow(<ExploreSearch handleSearch={handleSearchSpy}/>);
+    wrapper.setState({ query: 'search query', open: true });
+    wrapper
+      .find('.search__submit')
+      .simulate('click');
+    expect(handleSearchSpy).toHaveBeenCalledWith('search query');
+    expect(wrapper.instance().state.open).toEqual(false);
+  });
+
+  it('should set the value when a suggestion is clicked', () => {
+    const handleSearchSpy = jest.fn();
+    const wrapper = shallow(<ExploreSearch handleSearch={handleSearchSpy}/>);
+    wrapper.find('Autocomplete').props().onClick('selected book title');
+    expect(wrapper.state().value).toEqual('selected book title');
+  });
+
+  it('should close the autocomplete dropdown when a suggestion is clicked', () => {
+    const handleSearchSpy = jest.fn();
+    const wrapper = shallow(<ExploreSearch handleSearch={handleSearchSpy}/>);
+    wrapper.setState({ open: true });
+    wrapper.find('Autocomplete').props().onClick('selected book title');
+    expect(wrapper.state().open).toEqual(false);
+  });
+
+  it('should reset the current index to -1 when a suggestion is clicked', () => {
+    const handleSearchSpy = jest.fn();
+    const wrapper = shallow(<ExploreSearch handleSearch={handleSearchSpy}/>);
+    wrapper.setState({ currentIndex: 5 });
+    wrapper.find('Autocomplete').props().onClick('selected book title');
+    expect(wrapper.state().currentIndex).toEqual(-1);
+  });
+
+  it('should perform search when a suggestion is clicked', () => {
+    const handleSearchSpy = jest.fn();
+    const wrapper = shallow(<ExploreSearch handleSearch={handleSearchSpy}/>);
+    wrapper.find('Autocomplete').props().onClick('selected book title');
+    expect(handleSearchSpy).toHaveBeenCalled();
+  });
+
+  it('should update the suggestions array when new suggestions are passed', () => {
+    const handleSearchSpy = jest.fn();
+    const hits = ['book one', 'book two'];
+    const wrapper = shallow(<ExploreSearch handleSearch={handleSearchSpy}/>);
+    wrapper.find('Autocomplete').props().onSuggestions(hits);
+    expect(wrapper.state().suggestions).toEqual(hits);
+  });
+
+  it('should set the current index to -1 when new suggestions are passed', () => {
+    const handleSearchSpy = jest.fn();
+    const hits = ['book one', 'book two'];
+    const wrapper = shallow(<ExploreSearch handleSearch={handleSearchSpy}/>);
+    wrapper.setState({ currentIndex: 5 });
+    wrapper.find('Autocomplete').props().onSuggestions(hits);
+    expect(wrapper.state().currentIndex).toEqual(-1);
+  });
+
+  it('should open the suggestions dropdown when new suggestions are passed', () => {
+    const handleSearchSpy = jest.fn();
+    const hits = ['book one', 'book two'];
+    const wrapper = shallow(<ExploreSearch handleSearch={handleSearchSpy}/>);
+    wrapper.find('Autocomplete').props().onSuggestions(hits);
+    expect(wrapper.state().open).toEqual(true);
   });
 
   describe('should respond to input from keyboard', () => {

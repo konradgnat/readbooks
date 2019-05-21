@@ -38,7 +38,7 @@
     flex-direction: column;
     width: 20%;
 }
-.titleSearchSubmit {
+.search__submit {
     width: 20%;
     height: 100%;
     border: solid 1px grey;
@@ -64,7 +64,7 @@
         height: 36px;
         text-align: center;
     }
-    .titleSearchSubmit {
+    .search__submit {
         height: 39px;
     }
 }

@@ -1,5 +1,4 @@
 // @flow
-
 import React from 'react';
 import 'components/explore/ExploreSearch.css';
 import Autocomplete from 'components/explore/Autocomplete';
@@ -17,13 +16,23 @@ type State = {
 };
 
 class ExploreSearch extends React.Component<Props, State> {
-  suggestions = [];
+  constructor(props: Props) {
+    super(props);
+
+    this.state = {
+      query: '',
+      value: '',
+      open: false,
+      suggestions: [],
+      currentIndex: -1
+    };
+  }
 
   onKeyDown = (event: KeyboardEvent): void => {
-    const currentIndex = this.state.currentIndex;
+    const { currentIndex } = this.state;
     switch (event.key) {
       case 'ArrowDown':
-        if (currentIndex < this.suggestions.length - 1) {
+        if (currentIndex < this.state.suggestions.length - 1) {
           this.setState({ currentIndex: currentIndex + 1 });
         }
         if (!this.state.open) {
@@ -44,9 +53,9 @@ class ExploreSearch extends React.Component<Props, State> {
         event.preventDefault();
         break;
       case 'Enter':
-        if (this.suggestions.length > 0 && currentIndex >= 0) {
+        if (this.state.suggestions.length > 0 && currentIndex >= 0) {
           this.setState({
-            value: this.suggestions[currentIndex].volumeInfo.title,
+            value: this.state.suggestions[currentIndex].volumeInfo.title,
             open: false,
             currentIndex: -1
           });
@@ -66,9 +75,7 @@ class ExploreSearch extends React.Component<Props, State> {
   };
 
   onSuggestions = (hits: Array<SearchResults>): void => {
-    this.suggestions = hits;
-    if (!this.state.open) this.setState({ open: true });
-    this.setState({ currentIndex: -1 });
+    this.setState({ currentIndex: -1, suggestions: hits, open: true });
   };
 
   updateQuery = (event: SyntheticInputEvent<HTMLInputElement>): void => {
@@ -85,17 +92,6 @@ class ExploreSearch extends React.Component<Props, State> {
     this.props.handleSearch(this.state.query);
     if (event) event.preventDefault();
   };
-
-  constructor(props: Props) {
-    super(props);
-
-    this.state = {
-      query: '',
-      value: '',
-      open: false,
-      currentIndex: -1
-    };
-  }
 
   render() {
     return (
@@ -127,7 +123,7 @@ class ExploreSearch extends React.Component<Props, State> {
             <button
               onClick={this.performSearch}
               type="submit"
-              className="titleSearchSubmit"
+              className="search__submit"
             >
               <i className="circular search link icon"></i>
             </button>
