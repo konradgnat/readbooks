@@ -6,19 +6,19 @@ type Props = {
   post: Object
 };
 
-export default (props: Props) => {
+export default ({ thumbnail, title, thoughts, _id }: Props) => {
   return (
     <div className="item profile__post">
       <div className="ui tiny image profile__img_wrapper">
         <img
           className="book_thumbnail profile__img"
-          src={props.post.thumbnail}
+          src={thumbnail}
         />
       </div>
       <div className="content">
-        <div className="header">{props.post.title}</div>
-        <div>{props.post.thoughts.substring(0, 100) + '...'}</div>
-        <a className="read_more" href={`/posts/${props.post._id}`}>read more</a>
+        <div className="header">{title}</div>
+        <div className="post__desc">{thoughts.substring(0, 100) + '...'}</div>
+        <a className="read_more" href={`/posts/${_id}`}>read more</a>
       </div>
     </div>
   );
