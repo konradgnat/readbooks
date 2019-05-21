@@ -1,13 +1,18 @@
-.feedWrapper {
+.feed {
     margin-top: 60px;
 }
 
-.feedItem {
+.feed__item {
     overflow: auto;
     min-width: 80px;
     cursor: pointer;
 }
 
-.feedItem:hover {
+.feed__item:hover {
     cursor: pointer;
+}
+
+.feed__item_title {
+    margin-top: 0;
+    margin-bottom: 4px;
 }

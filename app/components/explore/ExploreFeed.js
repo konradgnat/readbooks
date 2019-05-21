@@ -11,7 +11,7 @@ type Props = {
   searchHits: Array<SearchResults>
 };
 
-const DEFAULT_IMAGE_PATH = '/images/no_results.svg';
+export const DEFAULT_IMAGE_PATH = '/images/no_results.svg';
 
 class ExploreFeed extends React.Component<Props> {
   constructor(props: Props) {
@@ -54,8 +54,8 @@ class ExploreFeed extends React.Component<Props> {
     };
 
     return (
-      <div key={hit.id} className='feedItem ui segment'>
-        <Link to={detail}>
+      <div key={hit.id} className='feed__item ui segment'>
+        <Link className="feed__item_link" to={detail}>
           <div className="content">
             <div className="ui tiny left floated image">
               <img
@@ -63,10 +63,11 @@ class ExploreFeed extends React.Component<Props> {
                 alt=""
               />
             </div>
-            <div className="header">{book.title}</div>
-            <div className="meta">{book.formattedPubDate}</div>
+            <h3 className="header feed__item_title">{book.title}</h3>
+            <div className="meta authors">{book.authorsJoined}</div>
+            <div className="meta feed__item_date">{book.formattedPubDate}</div>
             <div
-              className="description"
+              className="description feed__item_description"
               dangerouslySetInnerHTML={{
                 __html: book.description
               }}
@@ -79,7 +80,7 @@ class ExploreFeed extends React.Component<Props> {
 
   render() {
     return (
-      <div className='feedWrapper'>
+      <div className='feed'>
         {this.props.searchHits.map(this.renderSearchHit)}
       </div>
     );
