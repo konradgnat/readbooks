@@ -21,7 +21,7 @@ class PostForm extends React.Component<Props, State> {
     this.props.onSubmit(this.state);
   };
 
-  handleNameChange = (e: SyntheticInputEvent<HTMLInputElement>): void => {
+  handleCommentChange = (e: SyntheticInputEvent<HTMLInputElement>): void => {
     this.setState({ thoughts: e.target.value });
   };
 
@@ -34,7 +34,7 @@ class PostForm extends React.Component<Props, State> {
             type="text"
             name="thoughts"
             value={this.state.thoughts}
-            onChange={this.handleNameChange}
+            onChange={this.handleCommentChange}
             className="input"
             placeholder="250  words or less, what did you think?"
           />
