@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from 'actions';
 import FollowList from 'components/profile/FollowList';
 
-class FollowersList extends React.Component {
+export class FollowersList extends React.Component {
   state = { refresh: false };
 
   componentDidMount() {

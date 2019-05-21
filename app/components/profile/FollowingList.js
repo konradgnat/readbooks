@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import * as actions from 'actions';
 import FollowList from 'components/profile/FollowList';
 
-class FollowingList extends React.Component {
+export class FollowingList extends React.Component {
   componentDidMount() {
     this.props.fetchUserFollowing(this.props.id);
   }
