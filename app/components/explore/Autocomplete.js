@@ -80,16 +80,13 @@ class Autocomplete extends React.Component<Props, State> {
   };
 
   render() {
-    const autocompleteStyle = {};
-    if (
-      !this.props.open ||
-      !this.state.hits ||
-      this.state.hits.length === 0
-    ) {
-      autocompleteStyle.display = 'none';
-    }
+    const autocompleteStyle = {
+      display: (!this.props.open || this.state.hits.length === 0) ? 'none' : 'block'
+    };
+
     return (
       <div
+        id="autoCompList"
         ref={node => (this.node = node)}
         role="list"
         className="autoCompList"

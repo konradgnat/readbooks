@@ -3,6 +3,7 @@
 exports[`Autocomplete renders matching snapshot 1`] = `
 <div
   className="autoCompList"
+  id="autoCompList"
   role="list"
   style={
     Object {

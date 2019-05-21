@@ -13,7 +13,7 @@
     "test": "jest --clearCache --modulePaths=app",
     "test:watch": "jest --modulePaths=app --watch",
     "test:coverage": "jest --modulePaths=app --coverage",
-    "test:update": "npm test -- -u"
+    "test:update": "jest --updateSnapshot --modulePaths=app"
   },
   "repository": {
     "type": "git",
