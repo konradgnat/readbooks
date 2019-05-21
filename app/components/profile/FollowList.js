@@ -19,7 +19,7 @@ class FollowList extends React.Component<Props> {
     }
 
     return this.props.list.map(item => {
-      return <Follower username={item.username} avatar={item.avatar} id={item._id}/>
+      return <Follower key={item._id} username={item.username} avatar={item.avatar} id={item._id}/>
     })
   };
 
