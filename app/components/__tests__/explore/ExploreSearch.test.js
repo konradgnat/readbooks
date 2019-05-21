@@ -88,20 +88,22 @@ describe('ExploreSearch', () => {
 
     beforeEach(() => {
       wrapper = shallow(<ExploreSearch />);
-      wrapper.instance().suggestions = [
-        {
-          id: 'resultID1',
-          volumeInfo: {
-            title: 'Title 1'
+      wrapper.setState({
+        suggestions: [
+          {
+            id: 'resultID1',
+            volumeInfo: {
+              title: 'Title 1'
+            }
+          },
+          {
+            id: 'resultID2',
+            volumeInfo: {
+              title: 'Title 2'
+            }
           }
-        },
-        {
-          id: 'resultID2',
-          volumeInfo: {
-            title: 'Title 2'
-          }
-        }
-      ];
+        ]
+      });
       event = { preventDefault: jest.fn() };
     });
 
@@ -164,15 +166,59 @@ describe('ExploreSearch', () => {
       expect(event.preventDefault).toHaveBeenCalled();
     });
 
-    it('should set value, reset currentIndex and close list on Enter', () => {
-      wrapper.setState({ currentIndex: 1, open: true });
+    it('should set value on Enter when a suggestion is highlighted', () => {
+      wrapper.setState({
+        currentIndex: 1,
+        open: true,
+      });
+      wrapper
+        .find('input[type="search"]')
+        .simulate('keydown', { key: 'Enter', ...event });
+      expect(wrapper.state('value')).toEqual('Title 2');
+    });
+
+    it('should reset currentIndex on Enter when a suggestion is highlighted', () => {
+      wrapper.setState({
+        currentIndex: 1,
+        open: true,
+      });
       wrapper
         .find('input[type="search"]')
         .simulate('keydown', { key: 'Enter', ...event });
       expect(wrapper.state('currentIndex')).toEqual(-1);
+    });
+
+    it('should close list on Enter when a suggestion is highlighted', () => {
+      wrapper.setState({
+        currentIndex: 1,
+        open: true,
+      });
+      wrapper
+        .find('input[type="search"]')
+        .simulate('keydown', { key: 'Enter', ...event });
       expect(wrapper.state('open')).toBe(false);
-      expect(wrapper.state('value')).toEqual('Title 2');
       expect(event.preventDefault).toHaveBeenCalled();
+    });
+
+    it('should perform search on Enter when no suggestion is highlighted', () => {
+      const performSearchMock = jest.fn();
+      wrapper.instance().performSearch = performSearchMock;
+      wrapper
+        .find('input[type="search"]')
+        .simulate('keydown', { key: 'Enter', ...event });
+      expect(performSearchMock).toHaveBeenCalled();
+    });
+
+    it('should do nothing when the entered key is not relevant', () => {
+      const performSearchMock = jest.fn();
+      const setStateMock = jest.fn();
+      wrapper.instance().performSearch = performSearchMock;
+      wrapper.instance().setState = setStateMock;
+      wrapper
+        .find('input[type="search"]')
+        .simulate('keydown', { key: 'a', ...event });
+      expect(performSearchMock).not.toHaveBeenCalled();
+      expect(setStateMock).not.toHaveBeenCalled();
     });
   });
 });
