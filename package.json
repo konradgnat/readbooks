@@ -38,7 +38,6 @@
     "express": "^4.15.3",
     "express-session": "^1.15.3",
     "js-htmlencode": "^0.3.0",
-    "lodash": "^4.17.11",
     "method-override": "^2.3.9",
     "mongoose": "^4.10.4",
     "morgan": "^1.8.2",

@@ -15,6 +15,7 @@ type State = {
   open: boolean
 };
 
+// Todo: fix bug, when selected suggestions - value should become query and search on this title
 class ExploreSearch extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);

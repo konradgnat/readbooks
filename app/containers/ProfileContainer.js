@@ -6,7 +6,6 @@ import {
   NotificationManager
 } from 'react-notifications';
 import axios from 'axios';
-import _ from 'lodash';
 import ProfileTabs from 'components/profile/ProfileTabs';
 import ProfileTabContent from 'components/profile/ProfileTabContent';
 import UserInfo from 'components/profile/UserInfo';
@@ -77,12 +76,13 @@ export class ProfileContainer extends React.Component {
   };
 
   renderButtons() {
-    const { auth, profile } = this.props;
+    const { auth, profile: { user: { _id } } } = this.props;
     const { following } = this.state;
     if (!auth) {
-      return
+      return;
     }
-    if (auth._id === profile.user._id) {
+
+    if (auth._id === _id) {
       return (
         <div className="ui content">
           <a
@@ -98,7 +98,7 @@ export class ProfileContainer extends React.Component {
       );
     }
 
-    if (_.includes(following, profile.user._id)) {
+    if (following.indexOf(_id) !== -1) {
       return (
         <div className="ui content">
           <button
@@ -131,7 +131,7 @@ export class ProfileContainer extends React.Component {
 
     const { activeTab, refreshFollowersList } = this.state;
     const avatar = user.avatar
-      ? '/' + user.avatar
+      ? `/${user.avatar}`
       : '/images/avatar-placeholder.jpg';
 
     return (
@@ -143,7 +143,7 @@ export class ProfileContainer extends React.Component {
         </div>
         <div
           key={activeTab}
-          className={`ui bottom attached tab segment active`}
+          className="ui bottom attached tab segment active"
         >
           <ProfileTabContent
             activeTab={activeTab}

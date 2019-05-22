@@ -6,7 +6,7 @@ type Props = {
   post: Object
 };
 
-export default ({ thumbnail, title, thoughts, _id }: Props) => {
+export default ({ post: { thumbnail, title, thoughts, _id }}: Props) => {
   return (
     <div className="item profile__post">
       <div className="ui tiny image profile__img_wrapper">
