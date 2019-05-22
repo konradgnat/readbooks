@@ -7,35 +7,15 @@ import {
 } from 'react-notifications';
 import axios from 'axios';
 import _ from 'lodash';
-import Posts from 'components/profile/Posts';
-import FollowingList from 'components/profile/FollowingList';
-import FollowersList from 'components/profile/FollowersList';
+import ProfileTabs from 'components/profile/ProfileTabs';
+import ProfileTabContent from 'components/profile/ProfileTabContent';
 import UserInfo from 'components/profile/UserInfo';
 import * as actions from 'actions';
-
-const POSTS = 'posts';
-const FOLLOWING = 'following';
-const FOLLOWERS = 'followers';
 
 // todo: create tests for all code
 // todo: add js linting
 
-export const TABS = {
-  'posts': {
-    id: 'posts',
-    label: 'Posts'
-  },
-  'following': {
-    id: 'following',
-    label: 'Following'
-  },
-  'followers': {
-    id: 'followers',
-    label: 'Followers'
-  }
-};
-
-class ProfileContainer extends React.Component {
+export class ProfileContainer extends React.Component {
   constructor(props: Props) {
     super(props);
     const { auth, match: { params: { id } } } = this.props;
@@ -143,45 +123,13 @@ class ProfileContainer extends React.Component {
     );
   }
 
-  renderTabs = () => {
-    const { activeTab } = this.state;
-
-    return Object.keys(TABS).map(tabId => {
-      const tab = TABS[tabId];
-      return(
-        <a
-          key={tabId}
-          className={`item ${activeTab === tabId ? 'active' : ''}`}
-          data-tab={tabId}
-          onClick={() => this.changeTab(tabId)}
-        >
-          {tab.label}
-        </a>
-      );
-    });
-  };
-
-  renderTabContent = () => {
-    const { user: { _id } } = this.props.profile;
-    const { activeTab, refreshFollowersList } = this.state;
-    if (activeTab === POSTS) {
-      return <Posts id={_id} />;
-    }
-    if (activeTab === FOLLOWING) {
-      return <FollowingList id={_id} />
-    }
-    if (activeTab === FOLLOWERS) {
-      return <FollowersList refresh={refreshFollowersList} id={_id} />
-    }
-  };
-
   render() {
     const { user } = this.props.profile;
     if (!user) {
       return <h3>Loading...</h3>;
     }
 
-    const { activeTab } = this.state;
+    const { activeTab, refreshFollowersList } = this.state;
     const avatar = user.avatar
       ? '/' + user.avatar
       : '/images/avatar-placeholder.jpg';
@@ -191,13 +139,17 @@ class ProfileContainer extends React.Component {
         {this.renderButtons()}
         <UserInfo user={user} avatar={avatar}/>
         <div className="ui top attached tabular menu">
-          {this.renderTabs()}
+          <ProfileTabs activeTab={activeTab} changeTab={this.changeTab}/>
         </div>
         <div
           key={activeTab}
           className={`ui bottom attached tab segment active`}
         >
-          {this.renderTabContent()}
+          <ProfileTabContent
+            activeTab={activeTab}
+            refreshFollowersList={refreshFollowersList}
+            userId={user._id}
+          />
         </div>
         <NotificationContainer />
       </div>

@@ -4,7 +4,7 @@ import { Posts } from 'components/profile/Posts';
 import Post from 'components/profile/Post';
 
 describe('Posts component', () => {
-  it('renders an empty div if there are no posts', () => {
+  it('should render an empty div if there are no posts', () => {
     const mockFetchPosts = jest.fn();
     const wrapper = shallow(<Posts fetchPosts={mockFetchPosts}/>);
     expect(wrapper.find('div').length).toEqual(1);
