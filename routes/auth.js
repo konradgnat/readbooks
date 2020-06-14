@@ -13,8 +13,6 @@ router.get(
 // handle the callback after fb has authenticated user
 router.get(
   '/facebook/callback',
-  // function(req, res){
-  // res.render('login', {message: req.flash('loginMessage') });
 
   passport.authenticate('facebook', {
     successRedirect: '/posts',

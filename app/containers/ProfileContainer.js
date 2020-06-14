@@ -18,6 +18,7 @@ export class ProfileContainer extends React.Component {
   constructor(props: Props) {
     super(props);
     const { auth, match: { params: { id } } } = this.props;
+
     this.state = {
       activeTab: 'posts',
       id,
@@ -33,6 +34,7 @@ export class ProfileContainer extends React.Component {
 
   componentDidUpdate(prevProps) {
     const { auth } = this.props;
+
     if (auth !== prevProps.auth) {
       this.setState({ following: auth.following });
     }
