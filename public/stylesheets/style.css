@@ -206,5 +206,11 @@ a:hover {
 		width: 150px!important;
 	}
 }
+.footer {
+	background: var(--primary);
+	height: 300px;
+	width: 100%;
+	margin-top: 300px;
+}
 @media (max-width: 350px) {
 }
