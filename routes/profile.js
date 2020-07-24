@@ -153,20 +153,19 @@ function getFollowList(req, res, following) {
 // MIDDLEWARE
 function uploadAvatar(req, res, next) {
   let imageName;
-  let uploadStorage = multer.diskStorage({
+  const uploadStorage = multer.diskStorage({
     destination: function(req, file, cb) {
       cb(null, 'uploads/');
     },
     filename: function(req, file, cb) {
-      imageName = file.originalname;
-      imageName = Date.now() + '_' + imageName;
+      imageName = Date.now() + '_' + file.originalname;
       cb(null, imageName);
     }
   });
 
-  let upload = multer({ storage: uploadStorage });
+  const upload = multer({ storage: uploadStorage });
 
-  let uploadFile = upload.single('avatar');
+  const uploadFile = upload.single('avatar');
 
   uploadFile(req, res, function(err) {
     req.imageName = imageName;

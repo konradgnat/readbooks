@@ -1,15 +1,15 @@
 const Book = require('../models/book.js');
 
-function isLoggedIn(req, res, next) {
+const isLoggedIn = (req, res, next) => {
   if (req.isAuthenticated()) {
     return next();
   }
   res.redirect('/login');
 }
 
-function checkPostOwnership(req, res, next) {
+const checkPostOwnership = (req, res, next) => {
   if (req.isAuthenticated()) {
-    Book.findById(req.params.id, function(err, foundBook) {
+    Book.findById(req.params.id, (err, foundBook) => {
       if (err) {
         res.redirect('back');
       } else {
