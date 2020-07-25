@@ -7,15 +7,15 @@ const keys = require('../config/keys');
 
 // TODO: Feature: Linking accounts -> need to have login route available, manage duplicate user info
 
-module.exports = function(passport) {
+module.exports = (passport) => {
   // used to serialize the user for the session
-  passport.serializeUser(function(user, done) {
+  passport.serializeUser((user, done) => {
     done(null, user.id);
   });
 
   // used to deserialize the user
-  passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
+  passport.deserializeUser((id, done) => {
+    User.findById(id, (err, user) => {
       done(err, user);
     });
   });
@@ -33,7 +33,7 @@ module.exports = function(passport) {
         passwordField: 'password',
         passReqToCallback: true // allows pass back entire request to callback
       },
-      function(req, email, password, done) {
+      (req, email, password, done) => {
         // callback with email and password from form
         // find user with same email as form
         User.findOne({ 'local.email': email }, function(err, user) {

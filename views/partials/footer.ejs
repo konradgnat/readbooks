@@ -1,8 +1,27 @@
 <footer class="footer">
   <div class="ui two column centered grid">
     <div class="column">
-<!-- todo: Add links to pages -->
-      
+      <ul class="footer__links">
+        <li>
+           <a href="/" class="footer_nav__item footer_nav__item--img"><img class="header__img" src="/images/readsplanet-thin.png" alt=""></a>
+        </li>
+        <li>
+          <a href="/explore" class="footer_nav__item">Explore</a>
+        </li>
+        <% if (!currentUser){%>
+          <li>
+            <a href="/login" class="footer_nav__item">Log in</a>
+           </li>
+           <li>
+            <a href="/register" class="footer_nav__item">Sign Up</a>
+           </li>
+        <% } %>
+      <% if (currentUser) {%>
+          <li><a href="/profile/<%=currentUser.id%>" class="footer_nav__item">View Profile</a></li>
+          <li><a href="/profile/<%=currentUser.id%>/edit" class="footer_nav__item">Edit Profile</a></li>
+          <li><a href="/logout" class="footer_nav__item">Logout</a></li>
+      <%}%>
+      </ul><!-- todo: Add links to pages -->
     </div>
   </div>
 </footer>
