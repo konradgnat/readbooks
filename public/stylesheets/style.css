@@ -219,6 +219,9 @@ a:hover {
 .footer_nav__item {
 	color: var(--secondary);
 	font-size: 18px;
+	display: inline-block;
+	padding: 10px 4px;
+	width: 200px;
 }
 .footer_nav__item:hover {
 	color: var(--primary);
@@ -230,5 +233,6 @@ a:hover {
 	padding: 0;
 }
 .footer__links li {
-	padding: 10px 0;
+}
+.footer__links li:hover {
 }
