@@ -2,6 +2,9 @@
 	--primary: #b2cecf;
 	--secondary: #fffdef;
 }
+.app_body {
+	min-height: 100vh;
+}
 #main-title {
 	margin-top: 100px;
 }
